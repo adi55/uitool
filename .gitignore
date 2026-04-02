@@ -2,3 +2,6 @@
 .runtime/
 .tmp/
 *.tmp
+testingtheapp/runs/**/logs/recorder-command-*.stdout.log
+testingtheapp/runs/**/logs/recorder-command-*.stderr.log
+testingtheapp/runs/**/logs/*runtime-state*.json
