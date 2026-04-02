@@ -9,6 +9,7 @@ const REPLAY_STATUS_UPDATE = 'REPLAY_STATUS_UPDATE'
 const REPLAY_ERROR = 'REPLAY_ERROR'
 const REPLAY_CONTROL = 'REPLAY_CONTROL'
 const REPLAY_EXECUTE_STEP = 'REPLAY_EXECUTE_STEP'
+const DEBUG_EVENT_LIMIT = 200
 
 if (typeof importScripts === 'function') {
   importScripts('scenario-step-ids.js')
@@ -134,6 +135,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       const messageText = String(error?.message || error)
       console.error('[recorder][background] message handling failed', message?.type, messageText)
       appendActivityLog('ERROR', `Background error for ${message?.type || 'message'}: ${messageText}`)
+      appendDebugEvent({
+        source: 'background',
+        category: 'runtime',
+        actionType: 'runtime-message-error',
+        summary: `Runtime message ${message?.type || 'unknown'} failed`,
+        result: 'error',
+        tabId: Number.isInteger(sender?.tab?.id) ? sender.tab.id : null,
+        error: messageText,
+        details: buildRuntimeMessageDebugDetails(message)
+      })
       try {
         await chrome.storage.local.set({ [STORAGE_KEY]: state })
       } catch (persistError) {
@@ -152,12 +163,30 @@ async function handleMessage(message, sender = {}) {
   if (message?.type === 'GET_STATE') {
     markPanelConnected()
   }
+  if (message?.type && message.type !== 'DEBUG_EVENT') {
+    appendDebugEvent({
+      source: 'background',
+      category: 'runtime',
+      actionType: 'runtime-message-received',
+      summary: `Received ${message.type}`,
+      result: 'success',
+      tabId: Number.isInteger(sender?.tab?.id) ? sender.tab.id : null,
+      details: buildRuntimeMessageDebugDetails(message)
+    })
+  }
   switch (message.type) {
     case 'GET_STATE':
       repairAllTestScenarioStepIds()
       syncActiveTestIntoState()
       await refreshBackendStatus()
       return { ok: true, state }
+    case 'DEBUG_EVENT':
+      if (message.event) {
+        appendDebugEvent(Object.assign({}, message.event, {
+          tabId: message.event.tabId ?? (Number.isInteger(sender?.tab?.id) ? sender.tab.id : null)
+        }))
+      }
+      return persistAndBroadcast()
     case 'UPDATE_SETTINGS':
       updateSettings(message)
       return persistAndBroadcast()
@@ -557,6 +586,21 @@ async function addRecordedStep(step, tabId) {
   activeTest.scenario.orderedSteps.push(cloned)
   setSelectedStepIndex(activeTest.scenario.orderedSteps.length - 1)
   touchActiveTestRecord()
+  appendDebugEvent({
+    source: 'background',
+    category: 'recorder',
+    actionType: 'recorded-step-added',
+    summary: `Recorded ${cloned.type} step`,
+    result: 'success',
+    tabId: tabId ?? activeTest.tabId ?? null,
+    selectedStepIndex: activeTest.scenario.orderedSteps.length - 1,
+    stepId: cloned.id,
+    details: {
+      type: cloned.type,
+      origin: cloned.origin,
+      target: summarizeSelector(cloned.selector)
+    }
+  })
   await persistAndBroadcast()
 }
 
@@ -588,6 +632,18 @@ function acceptPickerTarget(payload = {}) {
   } else {
     state.pendingActionTarget = normalizeActionTarget(payload)
   }
+  appendDebugEvent({
+    source: payload.source || 'content',
+    category: 'picker',
+    actionType: 'picker-target-selected',
+    summary: `Picker selected a ${kind} target`,
+    result: 'success',
+    details: {
+      kind,
+      targetSummary: summarizeSelector(payload.selector),
+      url: payload.url || null
+    }
+  })
 }
 
 function createAssertionStep(message) {
@@ -631,6 +687,20 @@ function createAssertionStep(message) {
   activeTest.scenario.orderedSteps.push(step)
   setSelectedStepIndex(activeTest.scenario.orderedSteps.length - 1)
   touchActiveTestRecord()
+  appendDebugEvent({
+    source: 'background',
+    category: 'edit',
+    actionType: 'assertion-created',
+    summary: `Created assertion step ${assertionType}`,
+    result: 'success',
+    selectedStepIndex: activeTest.scenario.orderedSteps.length - 1,
+    stepId: step.id,
+    details: {
+      assertionType,
+      target: summarizeSelector(selector),
+      expectedValue
+    }
+  })
 }
 
 function createActionStep(message) {
@@ -701,9 +771,24 @@ function createActionStep(message) {
   activeTest.scenario.orderedSteps.push(step)
   setSelectedStepIndex(activeTest.scenario.orderedSteps.length - 1)
   touchActiveTestRecord()
+  appendDebugEvent({
+    source: 'background',
+    category: 'edit',
+    actionType: 'action-created',
+    summary: `Created action step ${step.type}`,
+    result: 'success',
+    selectedStepIndex: activeTest.scenario.orderedSteps.length - 1,
+    stepId: step.id,
+    details: {
+      actionType: step.type,
+      target: summarizeSelector(step.selector),
+      value: step.value ?? null
+    }
+  })
 }
 
 function updateSelectedStepFromMessage(updates) {
+  const selectedBefore = Number.isInteger(state.selectedStepIndex) ? state.selectedStepIndex : -1
   updateSelectedStep((step) => {
     if (updates.stage) {
       step.stage = updates.stage
@@ -758,6 +843,21 @@ function updateSelectedStepFromMessage(updates) {
             ? 'current page URL'
             : '')
       })
+    }
+  })
+  const step = selectedBefore >= 0 ? getActiveScenario().orderedSteps[selectedBefore] : null
+  appendDebugEvent({
+    source: 'background',
+    category: 'edit',
+    actionType: 'step-updated',
+    summary: `Updated step ${selectedBefore + 1}`,
+    result: 'success',
+    selectedStepIndex: selectedBefore,
+    stepId: step?.id || null,
+    details: {
+      stage: updates.stage || step?.stage || null,
+      targetStrategy: updates.targetStrategy || step?.selector?.primaryStrategy || null,
+      targetValue: updates.targetValue || step?.selector?.primaryValue || null
     }
   })
 }
@@ -915,6 +1015,16 @@ async function createReplaySession(options = {}) {
   state.playback = session
   syncSelectedStepToReplayState('replay-session-started')
   appendReplayLog('INFO', `Replay started at step ${startIndex + 1}/${totalSteps} (${session.mode})`)
+  appendDebugEvent({
+    source: 'background',
+    category: 'replay',
+    actionType: 'replay-started',
+    summary: `Replay started from step ${startIndex + 1}`,
+    result: 'success',
+    replayStepIndex: startIndex,
+    stepId: session.currentStepId,
+    details: buildReplayDebugSnapshot({ startIndex, mode: session.mode })
+  })
   logReplayStateDebug('replay-session-started', {
     selectedStepIndex: state.selectedStepIndex,
     replayPointer: state.playback.currentStepIndex,
@@ -1108,6 +1218,14 @@ async function pauseReplaySession(message = 'Replay paused', options = {}) {
   replay.status = replay.failedStepIndex != null ? 'failed' : 'paused'
   appendReplayLog('INFO', message)
   syncSelectedStepToReplayState('replay-paused')
+  appendDebugEvent({
+    source: 'background',
+    category: 'replay',
+    actionType: 'replay-paused',
+    summary: message,
+    result: 'success',
+    details: buildReplayDebugSnapshot()
+  })
   logReplayStateDebug('replay-paused', {
     selectedStepIndex: state.selectedStepIndex,
     replayPointer: state.playback.currentStepIndex,
@@ -1135,6 +1253,14 @@ async function resumeReplaySession(message = 'Replay resumed') {
   replay.status = 'running'
   syncSelectedStepToReplayState('replay-resumed')
   appendReplayLog('INFO', message)
+  appendDebugEvent({
+    source: 'background',
+    category: 'replay',
+    actionType: 'replay-resumed',
+    summary: message,
+    result: 'success',
+    details: buildReplayDebugSnapshot()
+  })
   logReplayStateDebug('replay-resumed', {
     selectedStepIndex: state.selectedStepIndex,
     replayPointer: state.playback.currentStepIndex,
@@ -1167,6 +1293,14 @@ async function stopReplaySession(message = 'Replay stopped') {
   replay.currentStepId = null
   appendReplayLog('INFO', message)
   syncSelectedStepToReplayState('replay-stopped', { fallbackToLastCompleted: true })
+  appendDebugEvent({
+    source: 'background',
+    category: 'replay',
+    actionType: 'replay-stopped',
+    summary: message,
+    result: 'warning',
+    details: buildReplayDebugSnapshot()
+  })
   logReplayStateDebug('replay-stopped', {
     selectedStepIndex: state.selectedStepIndex,
     replayPointer: state.playback.currentStepIndex,
@@ -1197,6 +1331,14 @@ async function completeReplaySession(sessionId) {
   state.playback.lastError = null
   appendReplayLog('INFO', 'Replay completed')
   syncSelectedStepToReplayState('replay-completed', { fallbackToLastCompleted: true })
+  appendDebugEvent({
+    source: 'background',
+    category: 'replay',
+    actionType: 'replay-completed',
+    summary: 'Replay completed',
+    result: 'success',
+    details: buildReplayDebugSnapshot({ completedStepIndexes: state.playback.completedStepIndexes.slice(0, 20) })
+  })
   logReplayStateDebug('replay-completed', {
     selectedStepIndex: state.selectedStepIndex,
     replayPointer: state.playback.currentStepIndex,
@@ -1232,6 +1374,20 @@ async function failReplaySession(sessionId, step, stepIndex, error) {
     'ERROR',
     `Step ${state.playback.failedStepIndex + 1}/${state.playback.totalSteps} failed: ${state.playback.lastError}`
   )
+  appendDebugEvent({
+    source: 'background',
+    category: 'replay',
+    actionType: 'replay-failed',
+    summary: `Replay failed at step ${state.playback.failedStepIndex + 1}`,
+    result: 'error',
+    replayStepIndex: state.playback.failedStepIndex,
+    stepId: step?.id || null,
+    error: state.playback.lastError,
+    details: buildReplayDebugSnapshot({
+      failedStepIndex: state.playback.failedStepIndex,
+      failedStepType: step?.type || null
+    })
+  })
   syncSelectedStepToReplayState('replay-failed')
   logReplayStateDebug('replay-failed', {
     selectedStepIndex: state.selectedStepIndex,
@@ -1268,6 +1424,16 @@ async function stepReplaySessionOnce(retryCurrentStep) {
   replay.running = true
   replay.status = 'running'
   replay.replaying = true
+  appendDebugEvent({
+    source: 'background',
+    category: 'replay',
+    actionType: retryCurrentStep ? 'replay-retry-requested' : 'replay-next-requested',
+    summary: retryCurrentStep ? 'Retry failed replay step requested' : 'Run next replay step requested',
+    result: 'success',
+    replayStepIndex: replay.currentStepIndex,
+    stepId: replay.currentStepId,
+    details: buildReplayDebugSnapshot()
+  })
   syncSelectedStepToReplayState(retryCurrentStep ? 'replay-retry-pointer-set' : 'replay-manual-step-pointer-set')
   logReplayStateDebug(retryCurrentStep ? 'replay-retry-pointer-set' : 'replay-manual-step-pointer-set', {
     selectedStepIndex: state.selectedStepIndex,
@@ -1306,6 +1472,16 @@ async function skipReplaySessionStep() {
     'WARN',
     `Step ${replay.currentStepIndex + 1}/${replay.totalSteps} skipped: ${step?.id || 'unknown-step'}`
   )
+  appendDebugEvent({
+    source: 'background',
+    category: 'replay',
+    actionType: 'replay-step-skipped',
+    summary: 'Replay step skipped',
+    result: 'warning',
+    replayStepIndex: replay.currentStepIndex,
+    stepId: step?.id || null,
+    details: buildReplayDebugSnapshot()
+  })
   replay.failedStepIndex = null
   replay.failureIndex = null
   replay.lastError = null
@@ -1532,6 +1708,150 @@ function appendReplayLog(level, message) {
   state.playback.logs = state.playback.logs.slice(-60)
 }
 
+function buildRuntimeMessageDebugDetails(message = {}) {
+  const details = {
+    messageType: message?.type || null
+  }
+  if (message?.testId) {
+    details.testId = message.testId
+  }
+  if (message?.kind) {
+    details.kind = message.kind
+  }
+  if (message?.stepType) {
+    details.stepType = message.stepType
+  }
+  if (Number.isInteger(message?.startIndex)) {
+    details.startIndex = message.startIndex
+  }
+  if (Number.isInteger(message?.index)) {
+    details.index = message.index
+  }
+  if (Number.isInteger(message?.delta)) {
+    details.delta = message.delta
+  }
+  return details
+}
+
+function buildReplayDebugSnapshot(extra = {}) {
+  return Object.assign({
+    sessionId: state.playback?.sessionId || null,
+    status: state.playback?.status || 'idle',
+    replaying: Boolean(state.playback?.replaying),
+    paused: Boolean(state.playback?.paused),
+    stopped: Boolean(state.playback?.stopped),
+    stepInProgress: Boolean(state.playback?.stepInProgress),
+    currentStepIndex: Number.isInteger(state.playback?.currentStepIndex) ? state.playback.currentStepIndex : null,
+    totalSteps: Number.isInteger(state.playback?.totalSteps) ? state.playback.totalSteps : Number(state.playback?.totalSteps || 0),
+    failedStepIndex: Number.isInteger(state.playback?.failedStepIndex) ? state.playback.failedStepIndex : null,
+    currentStepId: state.playback?.currentStepId || null,
+    lastError: state.playback?.lastError || null
+  }, extra)
+}
+
+function appendDebugEvent(partial = {}) {
+  const activeTest = getActiveTestRecordOrNull()
+  const steps = Array.isArray(activeTest?.scenario?.orderedSteps) ? activeTest.scenario.orderedSteps : []
+  const selectedStepIndex = Number.isInteger(partial.selectedStepIndex)
+    ? partial.selectedStepIndex
+    : (Number.isInteger(state.selectedStepIndex) && state.selectedStepIndex >= 0 ? state.selectedStepIndex : null)
+  const replayStepIndex = Number.isInteger(partial.replayStepIndex)
+    ? partial.replayStepIndex
+    : (Number.isInteger(state.playback?.currentStepIndex) && state.playback.currentStepIndex >= 0 ? state.playback.currentStepIndex : null)
+  const selectedStep = selectedStepIndex != null && selectedStepIndex >= 0 && selectedStepIndex < steps.length
+    ? steps[selectedStepIndex]
+    : null
+  const replayStep = replayStepIndex != null && replayStepIndex >= 0 && replayStepIndex < steps.length
+    ? steps[replayStepIndex]
+    : null
+  const entry = {
+    id: partial.id || `debug-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    timestamp: partial.timestamp || new Date().toISOString(),
+    source: partial.source || 'background',
+    category: partial.category || 'general',
+    actionType: partial.actionType || 'debug-event',
+    testId: partial.testId || activeTest?.id || null,
+    tabId: Number.isInteger(partial.tabId)
+      ? partial.tabId
+      : (Number.isInteger(activeTest?.tabId) ? activeTest.tabId : (Number.isInteger(state.activeTabId) ? state.activeTabId : null)),
+    selectedStepIndex,
+    replayStepIndex,
+    stepId: partial.stepId || replayStep?.id || selectedStep?.id || state.playback?.currentStepId || null,
+    summary: String(partial.summary || ''),
+    result: normalizeDebugResult(partial.error ? 'error' : partial.result),
+    error: partial.error ? String(partial.error) : null,
+    details: sanitizeDebugDetails(partial.details || {})
+  }
+  state.debugEvents = Array.isArray(state.debugEvents) ? state.debugEvents : []
+  state.debugEvents.unshift(entry)
+  state.debugEvents = state.debugEvents.slice(0, DEBUG_EVENT_LIMIT)
+  if (entry.result === 'error') {
+    state.debugLastError = structuredClone(entry)
+  }
+  return entry
+}
+
+function sanitizeDebugDetails(details = {}) {
+  const sanitized = {}
+  Object.keys(details || {}).slice(0, 16).forEach((key) => {
+    const value = trimDebugValue(details[key])
+    if (value !== undefined) {
+      sanitized[key] = value
+    }
+  })
+  return sanitized
+}
+
+function trimDebugValue(value) {
+  if (value == null) {
+    return value
+  }
+  if (typeof value === 'string') {
+    return value.length > 240 ? `${value.slice(0, 237)}...` : value
+  }
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return value
+  }
+  if (Array.isArray(value)) {
+    return value.slice(0, 12).map((item) => trimDebugValue(item))
+  }
+  if (typeof value === 'object') {
+    const nested = {}
+    Object.keys(value).slice(0, 16).forEach((key) => {
+      if (['scenario', 'steps', 'assertions', 'setup', 'cleanup', 'state'].includes(key)) {
+        return
+      }
+      const nestedValue = trimDebugValue(value[key])
+      if (nestedValue !== undefined) {
+        nested[key] = nestedValue
+      }
+    })
+    return nested
+  }
+  return String(value)
+}
+
+function normalizeDebugResult(value) {
+  switch (String(value || 'success').toLowerCase()) {
+    case 'warning':
+    case 'warn':
+      return 'warning'
+    case 'error':
+    case 'failed':
+    case 'failure':
+      return 'error'
+    default:
+      return 'success'
+  }
+}
+
+function getActiveTestRecordOrNull() {
+  if (!Array.isArray(state.tests) || !state.tests.length) {
+    return null
+  }
+  return state.tests.find((test) => test.id === state.activeTestId) || state.tests[0] || null
+}
+
 function logReplayStateDebug(eventName, details = {}) {
   const payload = Object.assign({
     event: eventName,
@@ -1712,6 +2032,15 @@ function setSelectedStepFromPanel(index) {
   }
 
   setSelectedStepIndex(index, { syncReplayPointer: true })
+  appendDebugEvent({
+    source: 'background',
+    category: 'edit',
+    actionType: 'step-selected',
+    summary: `Selected step ${state.selectedStepIndex + 1}`,
+    result: 'success',
+    selectedStepIndex: state.selectedStepIndex,
+    stepId: getActiveScenario().orderedSteps[state.selectedStepIndex]?.id || null
+  })
   logReplayStateDebug('panel-selected-step', {
     selectedStepIndex: state.selectedStepIndex,
     replayPointer: state.playback.currentStepIndex,
@@ -2514,6 +2843,10 @@ function mergeStoredState(storedState = {}) {
   merged.activityLog = Array.isArray(storedState.activityLog)
     ? storedState.activityLog.slice(-80)
     : []
+  merged.debugEvents = Array.isArray(storedState.debugEvents)
+    ? storedState.debugEvents.slice(0, DEBUG_EVENT_LIMIT)
+    : []
+  merged.debugLastError = storedState.debugLastError || null
   merged.diagnostics = Object.assign({}, initial.diagnostics, storedState.diagnostics || {})
   merged.diagnostics.backgroundLoaded = true
   merged.diagnostics.backgroundLoadedAt = merged.diagnostics.backgroundLoadedAt || new Date().toISOString()
@@ -2572,6 +2905,8 @@ function createInitialState() {
     pendingActionTarget: null,
     pickerMode: null,
     activityLog: [],
+    debugEvents: [],
+    debugLastError: null,
     diagnostics: {
       backgroundLoaded: true,
       backgroundLoadedAt: now,

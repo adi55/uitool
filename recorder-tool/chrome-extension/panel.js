@@ -1,6 +1,7 @@
 const DEFAULT_BACKEND_URL = 'http://127.0.0.1:17845'
 const REPLAY_STATUS_UPDATE = 'REPLAY_STATUS_UPDATE'
 const REPLAY_ERROR = 'REPLAY_ERROR'
+const DEBUG_EVENT_LIMIT = 200
 
 const StepIds = globalThis.TimUiRecorderStepIds
 if (!StepIds) {
@@ -100,7 +101,9 @@ const ACTION_TYPES = new Set([
 let elements = {}
 let currentState = null
 let uiLogEntries = []
+let panelDebugEntries = []
 let stepFilter = 'all'
+let debugFilter = 'all'
 let actionDraft = null
 let assertionDraft = null
 let lastPendingActionKey = null
@@ -144,6 +147,7 @@ async function initializePanel() {
   registerRuntimeListeners()
   await refreshStateFromRuntime({ silent: true })
   logAction('Panel initialized', 'INFO', { persist: false })
+  exposePanelTestHooks()
 }
 
 function cacheElements() {
@@ -182,6 +186,8 @@ function cacheElements() {
     stepCount: requireElement('stepCount'),
     stepsList: requireElement('stepsList'),
     playbackLog: requireElement('playbackLog'),
+    debugSummary: requireElement('debugSummary'),
+    debugLog: requireElement('debugLog'),
     selectedStepCategory: requireElement('selectedStepCategory'),
     stepEditorHelp: requireElement('stepEditorHelp'),
     stepEditorEmpty: requireElement('stepEditorEmpty'),
@@ -282,11 +288,19 @@ function cacheElements() {
     saveScenario: requireElement('saveScenario'),
     exportScenario: requireElement('exportScenario'),
     generateJava: requireElement('generateJava'),
+    copyDebugBundle: requireElement('copyDebugBundle'),
+    exportDebugBundle: requireElement('exportDebugBundle'),
     createAssertion: requireElement('createAssertion'),
     cancelAssertion: requireElement('cancelAssertion'),
     filterAllSteps: requireElement('filterAllSteps'),
     filterActionSteps: requireElement('filterActionSteps'),
-    filterAssertionSteps: requireElement('filterAssertionSteps')
+    filterAssertionSteps: requireElement('filterAssertionSteps'),
+    debugFilterAll: requireElement('debugFilterAll'),
+    debugFilterErrors: requireElement('debugFilterErrors'),
+    debugFilterReplay: requireElement('debugFilterReplay'),
+    debugFilterPicker: requireElement('debugFilterPicker'),
+    debugFilterEdit: requireElement('debugFilterEdit'),
+    debugFilterBackend: requireElement('debugFilterBackend')
   }
 }
 
@@ -352,6 +366,8 @@ function bindAllButtons() {
   bindButton('saveScenario', saveScenario)
   bindButton('exportScenario', exportScenario)
   bindButton('generateJava', generateJava)
+  bindButton('copyDebugBundle', copyDebugBundle)
+  bindButton('exportDebugBundle', exportDebugBundle)
   bindButton('applyStepChanges', applyStepChanges)
   bindButton('pickStepTarget', pickSelectedStepTarget)
   bindButton('pickActionTarget', pickActionTarget)
@@ -363,6 +379,12 @@ function bindAllButtons() {
   bindButton('filterAllSteps', () => setStepFilter('all'))
   bindButton('filterActionSteps', () => setStepFilter('actions'))
   bindButton('filterAssertionSteps', () => setStepFilter('assertions'))
+  bindButton('debugFilterAll', () => setDebugFilter('all'))
+  bindButton('debugFilterErrors', () => setDebugFilter('errors'))
+  bindButton('debugFilterReplay', () => setDebugFilter('replay'))
+  bindButton('debugFilterPicker', () => setDebugFilter('picker'))
+  bindButton('debugFilterEdit', () => setDebugFilter('edit'))
+  bindButton('debugFilterBackend', () => setDebugFilter('backend'))
 }
 
 function bindButton(id, handler) {
@@ -435,10 +457,38 @@ function bindFieldListeners() {
 function registerRuntimeListeners() {
   chrome.runtime.onMessage.addListener((message) => {
     if (message.type === 'STATE_UPDATED' && message.state) {
+      recordDebugEvent({
+        source: 'background',
+        category: 'runtime',
+        actionType: 'runtime-message-received',
+        summary: 'Received STATE_UPDATED from background',
+        result: 'success',
+        details: {
+          messageType: 'STATE_UPDATED',
+          replayStatus: message.state?.playback?.status || null
+        }
+      }, { sendToRuntime: false, render: false })
       applyState(message.state)
       return
     }
     if ((message.type === REPLAY_STATUS_UPDATE || message.type === REPLAY_ERROR) && message.replay && currentState) {
+      recordDebugEvent({
+        source: 'background',
+        category: 'replay',
+        actionType: message.type === REPLAY_ERROR ? 'replay-error-received' : 'replay-status-received',
+        summary: message.type === REPLAY_ERROR
+          ? 'Received replay error update from background'
+          : 'Received replay status update from background',
+        result: message.type === REPLAY_ERROR ? 'error' : 'success',
+        replayStepIndex: Number.isInteger(message.replay.currentStepIndex) ? message.replay.currentStepIndex : null,
+        stepId: message.replay.currentStepId || null,
+        error: message.error || message.replay.lastError || null,
+        details: {
+          messageType: message.type,
+          status: message.replay.status || null,
+          eventType: message.eventType || null
+        }
+      }, { sendToRuntime: false, render: false })
       currentState.playback = message.replay
       syncRecorderState()
       render()
@@ -553,6 +603,7 @@ function render() {
   renderStepEditor()
   renderAssertionComposer()
   renderLogs()
+  renderDebugEvents()
   updateButtonStates()
 }
 
@@ -997,6 +1048,348 @@ function renderLogs() {
   })
 }
 
+function renderDebugEvents() {
+  const merged = getMergedDebugEvents()
+  const visible = merged.filter((entry) => matchesDebugFilter(entry, debugFilter)).slice(0, 80)
+  const latestError = findLatestDebugError(merged)
+
+  setActive(elements.debugFilterAll, debugFilter === 'all')
+  setActive(elements.debugFilterErrors, debugFilter === 'errors')
+  setActive(elements.debugFilterReplay, debugFilter === 'replay')
+  setActive(elements.debugFilterPicker, debugFilter === 'picker')
+  setActive(elements.debugFilterEdit, debugFilter === 'edit')
+  setActive(elements.debugFilterBackend, debugFilter === 'backend')
+
+  elements.debugSummary.textContent = latestError
+    ? `Showing ${visible.length} of ${merged.length} debug events. Latest error: ${latestError.summary || latestError.error || latestError.actionType}.`
+    : `Showing ${visible.length} of ${merged.length} debug events.`
+
+  elements.debugLog.innerHTML = ''
+  if (!visible.length) {
+    elements.debugLog.appendChild(createEmptyState('No debug events match the current filter yet.'))
+    return
+  }
+
+  visible.forEach((entry) => {
+    const row = document.createElement('div')
+    row.className = 'log-entry debug-entry'
+    row.dataset.result = entry.result || 'success'
+
+    const topline = document.createElement('div')
+    topline.className = 'debug-topline'
+
+    const headline = document.createElement('div')
+    headline.className = 'debug-headline'
+
+    const source = document.createElement('span')
+    source.className = 'debug-tag'
+    source.textContent = formatDebugSource(entry.source)
+
+    const category = document.createElement('span')
+    category.className = 'debug-tag'
+    category.textContent = formatDebugCategory(entry.category)
+
+    const actionType = document.createElement('span')
+    actionType.className = 'debug-tag'
+    actionType.textContent = entry.actionType || 'debug-event'
+
+    const result = document.createElement('span')
+    result.className = 'debug-result'
+    result.dataset.result = entry.result || 'success'
+    result.textContent = entry.result || 'success'
+
+    const time = document.createElement('span')
+    time.textContent = formatTime(entry.timestamp)
+
+    headline.appendChild(source)
+    headline.appendChild(category)
+    headline.appendChild(actionType)
+    headline.appendChild(result)
+    topline.appendChild(headline)
+    topline.appendChild(time)
+
+    const summary = document.createElement('div')
+    summary.className = 'debug-summary'
+    summary.textContent = entry.summary || entry.error || 'Debug event'
+
+    const meta = document.createElement('div')
+    meta.className = 'debug-meta'
+    buildDebugMetaParts(entry).forEach((part) => {
+      const item = document.createElement('span')
+      item.textContent = part
+      meta.appendChild(item)
+    })
+
+    row.appendChild(topline)
+    row.appendChild(summary)
+    if (entry.error) {
+      const error = document.createElement('div')
+      error.className = 'log-message'
+      error.textContent = entry.error
+      row.appendChild(error)
+    }
+    if (meta.childNodes.length) {
+      row.appendChild(meta)
+    }
+
+    elements.debugLog.appendChild(row)
+  })
+}
+
+function getMergedDebugEvents() {
+  const merged = []
+  const seen = new Set()
+  const candidates = []
+    .concat(Array.isArray(currentState?.debugEvents) ? currentState.debugEvents : [])
+    .concat(panelDebugEntries)
+    .sort((left, right) => toTime(right.timestamp) - toTime(left.timestamp))
+
+  candidates.forEach((entry) => {
+    const id = entry?.id || `${entry?.timestamp || 'time'}-${entry?.source || 'source'}-${entry?.actionType || 'action'}`
+    if (seen.has(id)) {
+      return
+    }
+    seen.add(id)
+    merged.push(entry)
+  })
+  return merged.slice(0, DEBUG_EVENT_LIMIT)
+}
+
+function matchesDebugFilter(entry, filterValue) {
+  if (filterValue === 'errors') {
+    return entry.result === 'error'
+  }
+  if (filterValue === 'replay') {
+    return entry.category === 'replay'
+  }
+  if (filterValue === 'picker') {
+    return entry.category === 'picker'
+  }
+  if (filterValue === 'edit') {
+    return entry.category === 'edit'
+  }
+  if (filterValue === 'backend') {
+    return entry.category === 'backend' || entry.source === 'backend'
+  }
+  return true
+}
+
+function findLatestDebugError(events = getMergedDebugEvents()) {
+  return events.find((entry) => entry.result === 'error') || null
+}
+
+function buildDebugMetaParts(entry) {
+  const parts = []
+  if (entry.testId) {
+    parts.push(`Test ${entry.testId}`)
+  }
+  if (Number.isInteger(entry.tabId)) {
+    parts.push(`Tab #${entry.tabId}`)
+  }
+  if (Number.isInteger(entry.selectedStepIndex)) {
+    parts.push(`Selected ${entry.selectedStepIndex + 1}`)
+  }
+  if (Number.isInteger(entry.replayStepIndex)) {
+    parts.push(`Replay ${entry.replayStepIndex + 1}`)
+  }
+  if (entry.stepId) {
+    parts.push(`Step ${entry.stepId}`)
+  }
+  const detailSummary = summarizeDebugDetails(entry.details)
+  if (detailSummary) {
+    parts.push(detailSummary)
+  }
+  return parts
+}
+
+function summarizeDebugDetails(details = {}) {
+  const pairs = Object.entries(details || {})
+    .filter(([, value]) => value != null && value !== '')
+    .slice(0, 3)
+    .map(([key, value]) => `${key}: ${formatDebugValue(value)}`)
+  return pairs.join(' | ')
+}
+
+function formatDebugSource(value) {
+  switch (value) {
+    case 'backend':
+      return 'Backend'
+    case 'content':
+      return 'Content'
+    case 'panel':
+      return 'Panel'
+    default:
+      return 'Background'
+  }
+}
+
+function formatDebugCategory(value) {
+  switch (value) {
+    case 'backend':
+      return 'Backend'
+    case 'picker':
+      return 'Picker'
+    case 'edit':
+      return 'Edit'
+    case 'replay':
+      return 'Replay'
+    case 'runtime':
+      return 'Runtime'
+    case 'recorder':
+      return 'Recorder'
+    default:
+      return 'General'
+  }
+}
+
+function setDebugFilter(value) {
+  debugFilter = value
+  renderDebugEvents()
+}
+
+function recordDebugEvent(partial = {}, options = {}) {
+  const entry = createDebugEvent(partial)
+  panelDebugEntries.unshift(entry)
+  panelDebugEntries = panelDebugEntries.slice(0, DEBUG_EVENT_LIMIT)
+  if (options.sendToRuntime !== false) {
+    void postDebugEventToRuntime(entry)
+  }
+  if (options.render !== false) {
+    renderDebugEvents()
+  }
+  return entry
+}
+
+function createDebugEvent(partial = {}) {
+  const activeTest = getActiveTest()
+  const steps = currentState?.scenario?.orderedSteps || []
+  const selectedStepIndex = Number.isInteger(partial.selectedStepIndex)
+    ? partial.selectedStepIndex
+    : recorderState.selectedStepIndex
+  const replayStepIndex = Number.isInteger(partial.replayStepIndex)
+    ? partial.replayStepIndex
+    : recorderState.replayCurrentStepIndex
+  const selectedStep = Number.isInteger(selectedStepIndex) && selectedStepIndex >= 0 && selectedStepIndex < steps.length
+    ? steps[selectedStepIndex]
+    : null
+  const replayStep = Number.isInteger(replayStepIndex) && replayStepIndex >= 0 && replayStepIndex < steps.length
+    ? steps[replayStepIndex]
+    : null
+  return {
+    id: partial.id || `panel-debug-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    timestamp: partial.timestamp || new Date().toISOString(),
+    source: partial.source || 'panel',
+    category: partial.category || 'general',
+    actionType: partial.actionType || 'panel-event',
+    testId: partial.testId || activeTest?.id || recorderState.activeTestId || null,
+    tabId: Number.isInteger(partial.tabId) ? partial.tabId : recorderState.activeTabId,
+    selectedStepIndex: Number.isInteger(selectedStepIndex) ? selectedStepIndex : null,
+    replayStepIndex: Number.isInteger(replayStepIndex) ? replayStepIndex : null,
+    stepId: partial.stepId || replayStep?.id || selectedStep?.id || currentState?.playback?.currentStepId || null,
+    summary: String(partial.summary || ''),
+    result: normalizeDebugResult(partial.error ? 'error' : partial.result),
+    error: partial.error ? String(partial.error) : null,
+    details: sanitizeDebugDetails(partial.details || {})
+  }
+}
+
+async function postDebugEventToRuntime(entry) {
+  try {
+    await chrome.runtime.sendMessage({ type: 'DEBUG_EVENT', event: entry })
+  } catch (error) {
+    void error
+  }
+}
+
+function buildDebugBundle() {
+  const activeTest = getActiveTest()
+  const selectedStep = getSelectedStep()
+  const debugEvents = getMergedDebugEvents().slice(0, DEBUG_EVENT_LIMIT)
+  const lastError = findLatestDebugError(debugEvents)
+  return {
+    generatedAt: new Date().toISOString(),
+    currentTest: activeTest ? {
+      id: activeTest.id,
+      name: activeTest.name,
+      status: activeTest.status,
+      tabId: activeTest.tabId,
+      javaClassName: activeTest.javaClassName || '',
+      updatedAt: activeTest.updatedAt,
+      metadata: structuredClone(activeTest.scenario?.metadata || {}),
+      stepCount: Array.isArray(activeTest.scenario?.orderedSteps) ? activeTest.scenario.orderedSteps.length : 0
+    } : null,
+    selectedStep: selectedStep ? {
+      index: recorderState.selectedStepIndex,
+      step: buildDebugStepSnapshot(selectedStep)
+    } : null,
+    replayState: structuredClone(currentState?.playback || {}),
+    debugEvents,
+    lastError,
+    runtimeHealth: {
+      backendUrl: currentState?.backendUrl || DEFAULT_BACKEND_URL,
+      backend: structuredClone(currentState?.backend || {}),
+      diagnostics: structuredClone(currentState?.diagnostics || {}),
+      activeTestId: recorderState.activeTestId,
+      activeTabId: recorderState.activeTabId,
+      recording: recorderState.recording,
+      replayStatus: recorderState.replayStatus,
+      replaySessionId: recorderState.replaySessionId
+    }
+  }
+}
+
+function buildDebugStepSnapshot(step) {
+  return {
+    id: step.id || null,
+    type: step.type || null,
+    stage: step.stage || null,
+    description: step.description || '',
+    selector: structuredClone(step.selector || null),
+    value: step.value ?? null,
+    expectedValue: step.expectedValue ?? null,
+    note: step.note || ''
+  }
+}
+
+async function copyDebugBundle() {
+  const payload = JSON.stringify(buildDebugBundle(), null, 2)
+  if (globalThis.__TIM_UI_RECORDER_TESTING__ && typeof globalThis.__timUiRecorderTestClipboardWrite === 'function') {
+    await globalThis.__timUiRecorderTestClipboardWrite(payload)
+  } else if (!navigator.clipboard?.writeText) {
+    throw new Error('Clipboard access is unavailable for copying the debug bundle.')
+  } else {
+    await navigator.clipboard.writeText(payload)
+  }
+  recordDebugEvent({
+    category: 'backend',
+    actionType: 'debug-bundle-copied',
+    summary: 'Copied debug bundle JSON',
+    result: 'success'
+  })
+  logAction('Debug bundle copied')
+}
+
+async function exportDebugBundle() {
+  const payload = JSON.stringify(buildDebugBundle(), null, 2)
+  const downloadUrl = URL.createObjectURL(new Blob([payload], { type: 'application/json' }))
+  try {
+    await chrome.downloads.download({
+      url: downloadUrl,
+      filename: `tim-ui-recorder/debug-bundle-${sanitizeFileName(getScenarioName())}-${formatDebugFileTimestamp()}.json`,
+      saveAs: true
+    })
+    recordDebugEvent({
+      category: 'backend',
+      actionType: 'debug-bundle-exported',
+      summary: 'Exported debug bundle JSON',
+      result: 'success'
+    })
+    logAction('Debug bundle exported')
+  } finally {
+    URL.revokeObjectURL(downloadUrl)
+  }
+}
+
 function updateButtonStates() {
   const activeTest = getActiveTest()
   const steps = currentState?.scenario?.orderedSteps || []
@@ -1317,6 +1710,19 @@ async function replayFromIndex(startIndex) {
     return
   }
 
+  recordDebugEvent({
+    category: 'replay',
+    actionType: 'replay-command',
+    summary: startIndex > 0 ? `Replay From Selected requested from step ${startIndex + 1}` : 'Replay All requested',
+    result: 'success',
+    replayStepIndex: startIndex,
+    stepId: steps[startIndex]?.id || null,
+    details: {
+      command: 'REPLAY_START',
+      startIndex,
+      mode: 'hybrid'
+    }
+  })
   await withPendingAction('replay', async () => {
     await sendRuntimeMessage({ type: REPLAY_COMMANDS.START, startIndex, mode: 'hybrid' })
   })
@@ -1330,6 +1736,13 @@ async function pauseReplay() {
     invalidAction('Replay is not currently running.')
     return
   }
+  recordDebugEvent({
+    category: 'replay',
+    actionType: 'replay-command',
+    summary: 'Pause replay requested',
+    result: 'success',
+    details: { command: REPLAY_COMMANDS.PAUSE }
+  })
   await sendRuntimeMessage({ type: REPLAY_COMMANDS.PAUSE })
   logAction('Replay paused')
 }
@@ -1340,6 +1753,13 @@ async function resumeReplay() {
     invalidAction('Replay is not paused.')
     return
   }
+  recordDebugEvent({
+    category: 'replay',
+    actionType: 'replay-command',
+    summary: 'Resume replay requested',
+    result: 'success',
+    details: { command: REPLAY_COMMANDS.RESUME }
+  })
   await sendRuntimeMessage({ type: REPLAY_COMMANDS.RESUME })
   logAction('Replay resumed')
 }
@@ -1350,6 +1770,13 @@ async function stopReplay() {
     invalidAction('Replay is already stopped.')
     return
   }
+  recordDebugEvent({
+    category: 'replay',
+    actionType: 'replay-command',
+    summary: 'Stop replay requested',
+    result: 'warning',
+    details: { command: REPLAY_COMMANDS.STOP }
+  })
   await sendRuntimeMessage({ type: REPLAY_COMMANDS.STOP })
   logAction('Replay stopped')
 }
@@ -1365,6 +1792,15 @@ async function nextPlaybackStep() {
     invalidAction('Replay is already at the end of the scenario.')
     return
   }
+  recordDebugEvent({
+    category: 'replay',
+    actionType: 'replay-command',
+    summary: 'Run Next Step requested',
+    result: 'success',
+    replayStepIndex: recorderState.replayCurrentStepIndex,
+    stepId: currentState?.scenario?.orderedSteps?.[recorderState.replayCurrentStepIndex]?.id || null,
+    details: { command: REPLAY_COMMANDS.NEXT }
+  })
   await sendRuntimeMessage({ type: REPLAY_COMMANDS.NEXT })
   logAction('Advanced replay by one step')
 }
@@ -1375,6 +1811,15 @@ async function retryPlaybackStep() {
     invalidAction('There is no failed replay step to retry.')
     return
   }
+  recordDebugEvent({
+    category: 'replay',
+    actionType: 'replay-command',
+    summary: 'Retry Failed requested',
+    result: 'success',
+    replayStepIndex: recorderState.replayFailedStepIndex,
+    stepId: currentState?.scenario?.orderedSteps?.[recorderState.replayFailedStepIndex]?.id || null,
+    details: { command: REPLAY_COMMANDS.RETRY }
+  })
   await sendRuntimeMessage({ type: REPLAY_COMMANDS.RETRY })
   logAction('Retry replay requested')
 }
@@ -1385,6 +1830,15 @@ async function skipPlaybackStep() {
     invalidAction('Pause replay before skipping a step.')
     return
   }
+  recordDebugEvent({
+    category: 'replay',
+    actionType: 'replay-command',
+    summary: 'Skip Step requested',
+    result: 'warning',
+    replayStepIndex: recorderState.replayCurrentStepIndex,
+    stepId: currentState?.scenario?.orderedSteps?.[recorderState.replayCurrentStepIndex]?.id || null,
+    details: { command: REPLAY_COMMANDS.SKIP }
+  })
   await sendRuntimeMessage({ type: REPLAY_COMMANDS.SKIP })
   logAction('Replay step skipped')
 }
@@ -1542,6 +1996,17 @@ async function createActionStep() {
 
   const payload = buildActionRequestPayload(actionDraft)
   await sendRuntimeMessage(Object.assign({ type: 'CREATE_ACTION_STEP' }, payload))
+  recordDebugEvent({
+    category: 'edit',
+    actionType: 'action-created',
+    summary: `Created action step ${payload.actionType}`,
+    result: 'success',
+    details: {
+      actionType: payload.actionType,
+      targetStrategy: payload.targetStrategy,
+      targetValue: payload.targetValue
+    }
+  })
   clearActionDraftState()
   render()
   updateButtonStates()
@@ -1685,6 +2150,17 @@ async function createAssertionStep() {
     expectedValue: assertionDraft.expectedValue,
     timeoutMs: assertionDraft.timeoutMs
   })
+  recordDebugEvent({
+    category: 'edit',
+    actionType: 'assertion-created',
+    summary: `Created assertion step ${assertionDraft.assertionType}`,
+    result: 'success',
+    details: {
+      assertionType: assertionDraft.assertionType,
+      targetStrategy: assertionDraft.targetStrategy,
+      targetValue: assertionDraft.targetValue
+    }
+  })
   clearAssertionDraftState()
   render()
   updateButtonStates()
@@ -1773,6 +2249,19 @@ async function applyStepChanges() {
       timeoutMs,
       waitCondition,
       note: elements.stepNoteInput.value.trim()
+    }
+  })
+  recordDebugEvent({
+    category: 'edit',
+    actionType: 'step-updated',
+    summary: `Applied changes to step ${recorderState.selectedStepIndex + 1}`,
+    result: 'success',
+    selectedStepIndex: recorderState.selectedStepIndex,
+    stepId: step.id || null,
+    details: {
+      stage: elements.stepStageSelect.value,
+      targetStrategy: normalizedTargetStrategy,
+      targetValue: normalizedTargetValue
     }
   })
   render()
@@ -1928,6 +2417,14 @@ async function selectStep(index) {
     alertOnError: false,
     logErrors: true
   })
+  recordDebugEvent({
+    category: 'edit',
+    actionType: 'step-selected',
+    summary: `Selected step ${index + 1}`,
+    result: 'success',
+    selectedStepIndex: index,
+    stepId: currentState?.scenario?.orderedSteps?.[index]?.id || null
+  })
   console.log(`Step ${index + 1} selected`)
 }
 
@@ -1952,8 +2449,27 @@ async function syncSettings(options = {}) {
 }
 
 async function sendRuntimeMessage(message, options = {}) {
+  recordDebugEvent({
+    category: 'runtime',
+    actionType: 'runtime-message-sent',
+    summary: `Sent ${message.type}`,
+    result: 'success',
+    replayStepIndex: Number.isInteger(message.startIndex) ? message.startIndex : recorderState.replayCurrentStepIndex,
+    details: buildRuntimeDebugDetails(message)
+  })
   try {
     const response = await chrome.runtime.sendMessage(message)
+    recordDebugEvent({
+      source: 'background',
+      category: 'runtime',
+      actionType: 'runtime-message-response',
+      summary: `Received response for ${message.type}`,
+      result: response?.ok === false ? 'error' : 'success',
+      error: response?.ok === false ? (response.error || 'Runtime action failed.') : null,
+      details: Object.assign(buildRuntimeDebugDetails(message), {
+        ok: response?.ok !== false
+      })
+    }, { sendToRuntime: false })
     if (response?.state) {
       applyState(response.state)
     }
@@ -1967,6 +2483,14 @@ async function sendRuntimeMessage(message, options = {}) {
     if (options.logErrors !== false) {
       logAction(error.message || 'Runtime action failed', 'ERROR')
     }
+    recordDebugEvent({
+      category: 'runtime',
+      actionType: 'runtime-message-error',
+      summary: `Runtime action ${message.type} failed`,
+      result: 'error',
+      error: error.message || 'Runtime action failed.',
+      details: buildRuntimeDebugDetails(message)
+    })
     if (options.alertOnError !== false) {
       window.alert(error.message || 'Runtime action failed.')
       error.__alreadyAlerted = true
@@ -2000,6 +2524,15 @@ async function callApi(path, method = 'GET', body = null) {
     request.body = JSON.stringify(body)
   }
 
+  recordDebugEvent({
+    source: 'backend',
+    category: 'backend',
+    actionType: 'backend-request',
+    summary: `${method} ${path}`,
+    result: 'success',
+    details: buildBackendDebugDetails(path, method, body)
+  })
+
   try {
     const response = await fetch(`${baseUrl}${path}`, request)
     const text = await response.text()
@@ -2016,8 +2549,33 @@ async function callApi(path, method = 'GET', body = null) {
     if (currentState) {
       currentState.backend = { ok: true, details: `API call succeeded: ${path}` }
     }
+    recordDebugEvent({
+      source: 'backend',
+      category: 'backend',
+      actionType: 'backend-response',
+      summary: `${method} ${path} succeeded`,
+      result: 'success',
+      details: {
+        path,
+        method,
+        status: response.status
+      }
+    })
     return payload
   } catch (error) {
+    recordDebugEvent({
+      source: 'backend',
+      category: 'backend',
+      actionType: 'backend-response',
+      summary: `${method} ${path} failed`,
+      result: 'error',
+      error: error.message || String(error),
+      details: {
+        path,
+        method,
+        status: error.status || null
+      }
+    })
     if (error.status == null) {
       const wrappedError = new Error(`API error for ${path}: ${error.message || String(error)}`)
       wrappedError.cause = error
@@ -3138,6 +3696,115 @@ function safeJsonParse(text) {
   }
 }
 
+function buildRuntimeDebugDetails(message = {}) {
+  const details = {
+    messageType: message?.type || null
+  }
+  if (message?.testId) {
+    details.testId = message.testId
+  }
+  if (message?.kind) {
+    details.kind = message.kind
+  }
+  if (message?.stepType) {
+    details.stepType = message.stepType
+  }
+  if (Number.isInteger(message?.startIndex)) {
+    details.startIndex = message.startIndex
+  }
+  if (Number.isInteger(message?.index)) {
+    details.index = message.index
+  }
+  if (Number.isInteger(message?.delta)) {
+    details.delta = message.delta
+  }
+  return details
+}
+
+function buildBackendDebugDetails(path, method, body) {
+  const scenario = body?.scenario || null
+  return {
+    path,
+    method,
+    stepCount: Array.isArray(scenario?.orderedSteps)
+      ? scenario.orderedSteps.length
+      : Number(scenario?.setup?.length || 0) +
+        Number(scenario?.steps?.length || 0) +
+        Number(scenario?.assertions?.length || 0) +
+        Number(scenario?.cleanup?.length || 0),
+    className: body?.className || null,
+    fileName: body?.fileName || null
+  }
+}
+
+function sanitizeDebugDetails(details = {}) {
+  const sanitized = {}
+  Object.keys(details || {}).slice(0, 16).forEach((key) => {
+    const value = trimDebugValue(details[key])
+    if (value !== undefined) {
+      sanitized[key] = value
+    }
+  })
+  return sanitized
+}
+
+function trimDebugValue(value) {
+  if (value == null) {
+    return value
+  }
+  if (typeof value === 'string') {
+    return value.length > 240 ? `${value.slice(0, 237)}...` : value
+  }
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return value
+  }
+  if (Array.isArray(value)) {
+    return value.slice(0, 12).map((item) => trimDebugValue(item))
+  }
+  if (typeof value === 'object') {
+    const nested = {}
+    Object.keys(value).slice(0, 16).forEach((key) => {
+      if (['scenario', 'steps', 'assertions', 'setup', 'cleanup', 'state'].includes(key)) {
+        return
+      }
+      const nestedValue = trimDebugValue(value[key])
+      if (nestedValue !== undefined) {
+        nested[key] = nestedValue
+      }
+    })
+    return nested
+  }
+  return String(value)
+}
+
+function normalizeDebugResult(value) {
+  switch (String(value || 'success').toLowerCase()) {
+    case 'warning':
+    case 'warn':
+      return 'warning'
+    case 'error':
+    case 'failed':
+    case 'failure':
+      return 'error'
+    default:
+      return 'success'
+  }
+}
+
+function formatDebugValue(value) {
+  if (Array.isArray(value)) {
+    return value.map((item) => formatDebugValue(item)).join(', ')
+  }
+  if (value && typeof value === 'object') {
+    return Object.entries(value).slice(0, 2).map(([key, item]) => `${key}=${formatDebugValue(item)}`).join(', ')
+  }
+  return String(value)
+}
+
+function formatDebugFileTimestamp() {
+  return new Date().toISOString().replace(/[:.]/g, '-')
+}
+
 function setPill(element, text, stateValue) {
   element.textContent = text
   if (stateValue) {
@@ -3233,6 +3900,21 @@ function logAction(message, level = 'INFO', options = {}) {
   })
   uiLogEntries = uiLogEntries.slice(0, 60)
   renderLogs()
+}
+
+function exposePanelTestHooks() {
+  if (!globalThis.__TIM_UI_RECORDER_TESTING__) {
+    return
+  }
+  globalThis.__timUiRecorderPanelTestHooks = {
+    buildDebugBundle,
+    getMergedDebugEvents,
+    getVisibleDebugEvents() {
+      return getMergedDebugEvents().filter((entry) => matchesDebugFilter(entry, debugFilter))
+    },
+    setDebugFilter,
+    recordDebugEvent
+  }
 }
 
 function formatTime(value) {

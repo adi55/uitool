@@ -41,6 +41,8 @@
   <div id="stepsListHelp"></div>
   <div id="stepsList"></div>
   <div id="playbackLog"></div>
+  <div id="debugSummary"></div>
+  <div id="debugLog"></div>
 
   <div id="selectedStepCategory"></div>
   <div id="selectedStepOrigin" class="hidden"></div>
@@ -148,11 +150,20 @@
   <button id="saveScenario" type="button"></button>
   <button id="exportScenario" type="button"></button>
   <button id="generateJava" type="button"></button>
+  <button id="copyDebugBundle" type="button">Copy Debug JSON</button>
+  <button id="exportDebugBundle" type="button">Export Debug JSON</button>
   <button id="filterAllSteps" type="button"></button>
   <button id="filterActionSteps" type="button"></button>
   <button id="filterAssertionSteps" type="button"></button>
+  <button id="debugFilterAll" type="button">All</button>
+  <button id="debugFilterErrors" type="button">Errors</button>
+  <button id="debugFilterReplay" type="button">Replay</button>
+  <button id="debugFilterPicker" type="button">Picker</button>
+  <button id="debugFilterEdit" type="button">Edit</button>
+  <button id="debugFilterBackend" type="button">Backend</button>
 
   <pre id="output">Running panel replay tests...</pre>
+  <pre id="debugBundleSample"></pre>
   <script src="../scenario-step-ids.js"></script>
   <script src="./panel-replay-harness.js"></script>
 </body>

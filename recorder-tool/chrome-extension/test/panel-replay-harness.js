@@ -4,6 +4,10 @@ const listeners = []
 const fetchCalls = []
 let lastRuntimeMessage = null
 let forceStartNewTestFailure = false
+let lastDownloadRequest = null
+let copiedClipboardText = ''
+
+globalThis.__TIM_UI_RECORDER_TESTING__ = true
 
 const harnessState = {
   backendUrl: 'http://127.0.0.1:17845',
@@ -16,6 +20,16 @@ const harnessState = {
   pendingAssertion: null,
   pendingActionTarget: null,
   activityLog: [],
+  debugEvents: [],
+  debugLastError: null,
+  diagnostics: {
+    backgroundLoaded: true,
+    backgroundLoadedAt: new Date().toISOString(),
+    panelConnectedAt: new Date().toISOString(),
+    manifestPermissionsOk: true,
+    startNewTestHandlerRegistered: true,
+    tabCreateAvailable: true
+  },
   captureScreenshots: false,
   selectedStepIndex: 1,
   javaClassName: 'GeneratedReplayTest',
@@ -134,6 +148,15 @@ const BASELINE_STATE = structuredClone(harnessState)
 window.alert = () => {}
 window.prompt = () => ''
 window.confirm = () => true
+globalThis.navigator = globalThis.navigator || {}
+globalThis.navigator.clipboard = {
+  async writeText(value) {
+    copiedClipboardText = String(value || '')
+  }
+}
+globalThis.__timUiRecorderTestClipboardWrite = async (value) => {
+  copiedClipboardText = String(value || '')
+}
 window.fetch = async (url, request = {}) => {
   const target = String(url)
   const payload = request.body ? JSON.parse(request.body) : null
@@ -178,7 +201,8 @@ window.fetch = async (url, request = {}) => {
 
 window.chrome = {
   downloads: {
-    async download() {
+    async download(options) {
+      lastDownloadRequest = structuredClone(options)
       return 1
     }
   },
@@ -194,6 +218,17 @@ window.chrome = {
         case 'GET_STATE':
         case 'CHECK_BACKEND':
           return respond()
+        case 'DEBUG_EVENT': {
+          if (message.event) {
+            harnessState.debugEvents = Array.isArray(harnessState.debugEvents) ? harnessState.debugEvents : []
+            harnessState.debugEvents.unshift(structuredClone(message.event))
+            harnessState.debugEvents = harnessState.debugEvents.slice(0, 200)
+            if (message.event.result === 'error') {
+              harnessState.debugLastError = structuredClone(message.event)
+            }
+          }
+          return respond()
+        }
         case 'UPDATE_SETTINGS': {
           const active = currentHarnessTest()
           harnessState.backendUrl = message.backendUrl
@@ -463,6 +498,7 @@ async function run() {
   results.push(await runTest('Active replay keeps selection aligned with the executing step', testActiveReplaySelectionGuard))
   results.push(await runTest('Replay From Selected uses the current selected step', testReplayFromSelectedUsesCurrentSelection))
   results.push(await runTest('Replay controls and guidance explain recovery actions', testReplayGuidance))
+  results.push(await runTest('Debug view and bundle capture replay failure evidence', testDebugBundleCapturesReplayFailure))
   results.push(await runTest('Replay validation payload repairs missing step ids', testReplayValidationPayloadIncludesIds))
   results.push(await runTest('Save payload repairs missing step ids', testSavePayloadIncludesIds))
   results.push(await runTest('Generate Java payload repairs missing step ids', testGenerateJavaPayloadIncludesIds))
@@ -717,6 +753,144 @@ async function testReplayGuidance() {
   assert(document.getElementById('retryPlaybackStep').textContent.includes('Retry Failed'), 'Retry button copy should be explicit')
 }
 
+async function testDebugBundleCapturesReplayFailure() {
+  resetHarnessState()
+  const hooks = globalThis.__timUiRecorderPanelTestHooks
+  assert(hooks, 'Panel test hooks should be available for debug bundle validation')
+
+  const timestamp = new Date().toISOString()
+  harnessState.selectedStepIndex = 2
+  currentHarnessTest().selectedStepIndex = 2
+  harnessState.playback = Object.assign({}, harnessState.playback, {
+    sessionId: 'replay-failure-1',
+    status: 'failed',
+    replaying: true,
+    paused: true,
+    stopped: false,
+    currentStepIndex: 2,
+    currentStepId: 'step-003',
+    failedStepIndex: 2,
+    lastError: 'Selector missing for Username'
+  })
+  harnessState.debugEvents = [
+    {
+      id: 'debug-005',
+      timestamp,
+      source: 'background',
+      category: 'replay',
+      actionType: 'replay-failed',
+      testId: 'test-1',
+      tabId: 17,
+      selectedStepIndex: 2,
+      replayStepIndex: 2,
+      stepId: 'step-003',
+      summary: 'Replay failed at step 3',
+      result: 'error',
+      error: 'Selector missing for Username',
+      details: {
+        sessionId: 'replay-failure-1',
+        status: 'failed',
+        currentStepIndex: 2,
+        failedStepIndex: 2
+      }
+    },
+    {
+      id: 'debug-004',
+      timestamp,
+      source: 'content',
+      category: 'replay',
+      actionType: 'replay-step-failed',
+      testId: 'test-1',
+      tabId: 17,
+      selectedStepIndex: 2,
+      replayStepIndex: 2,
+      stepId: 'step-003',
+      summary: 'Replay step 3 failed',
+      result: 'error',
+      error: 'Selector missing for Username',
+      details: {
+        sessionId: 'replay-failure-1',
+        stepType: 'type'
+      }
+    },
+    {
+      id: 'debug-003',
+      timestamp,
+      source: 'panel',
+      category: 'replay',
+      actionType: 'replay-command',
+      testId: 'test-1',
+      tabId: 17,
+      selectedStepIndex: 2,
+      replayStepIndex: 2,
+      stepId: 'step-003',
+      summary: 'Retry Failed requested',
+      result: 'success',
+      details: {
+        command: 'REPLAY_RETRY_STEP'
+      }
+    },
+    {
+      id: 'debug-002',
+      timestamp,
+      source: 'backend',
+      category: 'backend',
+      actionType: 'backend-response',
+      testId: 'test-1',
+      tabId: 17,
+      selectedStepIndex: 2,
+      replayStepIndex: 2,
+      stepId: 'step-003',
+      summary: 'POST /api/scenario/validate succeeded',
+      result: 'success',
+      details: {
+        path: '/api/scenario/validate',
+        method: 'POST',
+        status: 200
+      }
+    }
+  ]
+  harnessState.debugLastError = structuredClone(harnessState.debugEvents[0])
+  refreshActiveScenario()
+  broadcast({
+    type: 'REPLAY_ERROR',
+    replay: structuredClone(harnessState.playback),
+    error: harnessState.playback.lastError
+  })
+  broadcast({
+    type: 'STATE_UPDATED',
+    state: structuredClone(harnessState)
+  })
+
+  document.getElementById('debugFilterReplay').click()
+  await waitFor(() => document.getElementById('debugSummary').textContent.includes('Latest error'), 'debug summary render')
+  assert(document.getElementById('debugLog').textContent.includes('Replay failed at step 3'), 'Debug view should show the replay failure summary')
+  assert(document.getElementById('debugLog').textContent.includes('Step step-003'), 'Debug view should show the failing step id')
+  assert(document.getElementById('debugLog').textContent.includes('Selector missing for Username'), 'Debug view should show the last replay error')
+
+  document.getElementById('debugFilterErrors').click()
+  assert(document.getElementById('debugLog').textContent.includes('Replay failed at step 3'), 'Errors filter should keep replay failures visible')
+  assert(!document.getElementById('debugLog').textContent.includes('POST /api/scenario/validate succeeded'), 'Errors filter should hide successful backend responses')
+
+  const bundle = hooks.buildDebugBundle()
+  document.getElementById('debugBundleSample').textContent = JSON.stringify(bundle, null, 2)
+  assert(bundle.currentTest?.id === 'test-1', 'Debug bundle should include current test metadata')
+  assert(bundle.selectedStep?.step?.id === 'step-003', 'Debug bundle should include the selected failing step')
+  assert(bundle.replayState?.status === 'failed', 'Debug bundle should include the failed replay state')
+  assert(bundle.lastError?.error === 'Selector missing for Username', 'Debug bundle should surface the last replay error')
+  assert(bundle.debugEvents.some((entry) => entry.actionType === 'replay-command'), 'Debug bundle should include the replay command that was issued')
+  assert(bundle.debugEvents.some((entry) => entry.actionType === 'replay-failed' && entry.stepId === 'step-003'), 'Debug bundle should include the failing replay step event')
+
+  lastDownloadRequest = null
+  document.getElementById('exportDebugBundle').click()
+  await waitFor(() => Boolean(lastDownloadRequest), 'debug bundle download request')
+  assert(lastDownloadRequest.filename.includes('debug-bundle-'), 'Debug bundle export should use a debug-bundle filename')
+
+  copiedClipboardText = ''
+  document.getElementById('copyDebugBundle').click()
+  await waitFor(() => copiedClipboardText.includes('"replayState"'), 'debug bundle clipboard copy')
+}
+
 async function testReplayValidationPayloadIncludesIds() {
   resetHarnessState()
   setReplayIdle()
@@ -770,7 +944,10 @@ function resetHarnessState() {
   Object.assign(harnessState, snapshot)
   lastRuntimeMessage = null
   forceStartNewTestFailure = false
+  lastDownloadRequest = null
+  copiedClipboardText = ''
   clearFetchCalls()
+  document.getElementById('debugBundleSample').textContent = ''
   refreshActiveScenario()
   broadcast({
     type: 'STATE_UPDATED',

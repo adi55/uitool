@@ -367,6 +367,28 @@
           </div>
           <div id="playbackLog" class="log-list"></div>
         </section>
+
+        <section class="steps-panel">
+          <div class="section-header">
+            <div>
+              <h2>Debug Events</h2>
+              <p id="debugSummary" class="status-copy">Recent structured runtime, picker, edit, replay, and backend events will appear here.</p>
+            </div>
+            <div class="section-meta">
+              <button id="copyDebugBundle" type="button" class="ghost">Copy Debug JSON</button>
+              <button id="exportDebugBundle" type="button" class="ghost">Export Debug JSON</button>
+            </div>
+          </div>
+          <div class="debug-toolbar">
+            <button id="debugFilterAll" type="button" class="ghost filter-chip is-active">All</button>
+            <button id="debugFilterErrors" type="button" class="ghost filter-chip">Errors</button>
+            <button id="debugFilterReplay" type="button" class="ghost filter-chip">Replay</button>
+            <button id="debugFilterPicker" type="button" class="ghost filter-chip">Picker</button>
+            <button id="debugFilterEdit" type="button" class="ghost filter-chip">Edit</button>
+            <button id="debugFilterBackend" type="button" class="ghost filter-chip">Backend</button>
+          </div>
+          <div id="debugLog" class="log-list debug-list"></div>
+        </section>
       </div>
     </main>
   </div>

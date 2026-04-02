@@ -19,6 +19,33 @@ const recentEvents = new Map()
 
 installDialogProbe()
 
+function emitDebugEvent(partial = {}) {
+  const event = {
+    id: partial.id || `content-debug-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    timestamp: partial.timestamp || new Date().toISOString(),
+    source: partial.source || 'content',
+    category: partial.category || 'general',
+    actionType: partial.actionType || 'content-event',
+    summary: String(partial.summary || ''),
+    result: partial.error ? 'error' : (partial.result || 'success'),
+    replayStepIndex: Number.isInteger(partial.replayStepIndex) ? partial.replayStepIndex : null,
+    stepId: partial.stepId || null,
+    error: partial.error ? String(partial.error) : null,
+    details: Object.assign({
+      pageUrl: window.location.href,
+      pageTitle: document.title
+    }, partial.details || {})
+  }
+  try {
+    const response = chrome.runtime.sendMessage({ type: 'DEBUG_EVENT', event })
+    if (response?.catch) {
+      response.catch(() => {})
+    }
+  } catch (error) {
+    void error
+  }
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'SET_MODE') {
     recorderFlags.recording = Boolean(message.recording)
@@ -29,10 +56,34 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return
   }
   if (message.type === 'REPLAY_CONTROL') {
+    emitDebugEvent({
+      category: 'replay',
+      actionType: 'replay-control-received',
+      summary: `Received replay control ${message.command || 'unknown'}`,
+      result: 'success',
+      replayStepIndex: Number.isInteger(message.currentStepIndex) ? message.currentStepIndex : null,
+      details: {
+        command: message.command || null,
+        sessionId: message.sessionId || null,
+        totalSteps: Number.isInteger(message.totalSteps) ? message.totalSteps : null
+      }
+    })
     sendResponse(handleReplayControl(message))
     return
   }
   if (message.type === 'REPLAY_EXECUTE_STEP' || message.type === 'EXECUTE_STEP') {
+    emitDebugEvent({
+      category: 'replay',
+      actionType: 'replay-step-received',
+      summary: `Received replay step ${Number(message.stepIndex) + 1}`,
+      result: 'success',
+      replayStepIndex: Number.isInteger(message.stepIndex) ? message.stepIndex : null,
+      stepId: message.step?.id || null,
+      details: {
+        sessionId: message.sessionId || null,
+        stepType: message.step?.type || null
+      }
+    })
     executeReplayMessage(message)
       .then((result) => sendResponse(result))
       .catch((error) => sendResponse({
@@ -142,6 +193,18 @@ async function executeReplayMessage(message) {
   }
 
   startReplayContext(replayContext)
+  emitDebugEvent({
+    category: 'replay',
+    actionType: 'replay-step-started',
+    summary: `Executing replay step ${replayContext.stepIndex + 1}`,
+    result: 'success',
+    replayStepIndex: replayContext.stepIndex,
+    stepId: message.step?.id || null,
+    details: {
+      sessionId: replayContext.sessionId,
+      stepType: message.step?.type || null
+    }
+  })
   const result = await executeStep(message.step, replayContext)
   return formatReplayResponse(result, message.step, replayContext)
 }
@@ -257,6 +320,17 @@ function isFormValueControl(target) {
 }
 
 function recordStep(step) {
+  emitDebugEvent({
+    category: 'recorder',
+    actionType: 'record-step-captured',
+    summary: `Captured ${step.type} step from the page`,
+    result: 'success',
+    stepId: step.id || null,
+    details: {
+      stepType: step.type,
+      target: `${step.selector?.primaryStrategy || 'selector'}:${step.selector?.primaryValue || ''}`.trim()
+    }
+  })
   chrome.runtime.sendMessage({ type: 'RECORDED_STEP', step })
 }
 
@@ -508,6 +582,16 @@ function selectPickerTarget(target, pickerMode = {}) {
     suggestions: assertionSuggestions(target, selector),
     timeoutMs: 5000
   }
+  emitDebugEvent({
+    category: 'picker',
+    actionType: 'picker-target-picked',
+    summary: `Picked a ${payload.kind} target from the page`,
+    result: 'success',
+    details: {
+      kind: payload.kind,
+      target: `${selector.primaryStrategy || 'selector'}:${selector.primaryValue || ''}`.trim()
+    }
+  })
   chrome.runtime.sendMessage({ type: 'PICKER_TARGET_SELECTED', payload })
 }
 
@@ -683,6 +767,18 @@ function formatReplayResponse(result, step, replayContext) {
 
   if (result?.ok) {
     replayController.status = 'running'
+    emitDebugEvent({
+      category: 'replay',
+      actionType: 'replay-step-succeeded',
+      summary: `Replay step ${replayContext.stepIndex + 1} completed`,
+      result: 'success',
+      replayStepIndex: replayContext.stepIndex,
+      stepId: step?.id || null,
+      details: {
+        sessionId: replayContext.sessionId,
+        stepType: step?.type || null
+      }
+    })
     return Object.assign(base, {
       type: 'REPLAY_STEP_RESULT'
     }, result)
@@ -694,6 +790,22 @@ function formatReplayResponse(result, step, replayContext) {
   } else {
     replayController.status = 'failed'
   }
+  emitDebugEvent({
+    category: 'replay',
+    actionType: result?.aborted ? 'replay-step-aborted' : 'replay-step-failed',
+    summary: result?.aborted
+      ? `Replay step ${replayContext.stepIndex + 1} was interrupted`
+      : `Replay step ${replayContext.stepIndex + 1} failed`,
+    result: result?.aborted ? 'warning' : 'error',
+    replayStepIndex: replayContext.stepIndex,
+    stepId: step?.id || null,
+    error,
+    details: {
+      sessionId: replayContext.sessionId,
+      stepType: step?.type || null,
+      aborted: Boolean(result?.aborted)
+    }
+  })
 
   return Object.assign(base, {
     ok: false,
