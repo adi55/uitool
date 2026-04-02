@@ -1,0 +1,4 @@
+# Local runtime and scratch artifacts
+.runtime/
+.tmp/
+*.tmp
