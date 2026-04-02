@@ -1,0 +1,518 @@
+{
+  "metadata": {
+    "scenarioId": "nightly-login-candidate-tasknmotion",
+    "name": "Nightly Login Candidate TaskNmotion",
+    "description": "Login attempt against nightly TIM Flow using username/password fields discovered from the live DOM.",
+    "baseUrl": "https://nightly.tim-bpm.com",
+    "sourceUrl": "https://nightly.tim-bpm.com/tim/client/login",
+    "profileId": "tim-ui-junit4-selenide",
+    "createdAt": "2026-03-31T15:20:00Z",
+    "updatedAt": "2026-03-31T15:20:00Z",
+    "createdBy": "codex",
+    "version": "1.0",
+    "tags": [
+      "ui",
+      "login",
+      "nightly"
+    ]
+  },
+  "variables": {
+    "loginUrl": "https://nightly.tim-bpm.com/tim/client/login",
+    "username": {
+      "source": "env",
+      "name": "TIM_UI_RECORDER_USERNAME",
+      "defaultValue": "",
+      "sensitive": false
+    },
+    "password": {
+      "source": "env",
+      "name": "TIM_UI_RECORDER_PASSWORD",
+      "defaultValue": "",
+      "sensitive": true
+    }
+  },
+  "uploadAliases": {},
+  "setup": [
+    {
+      "id": "step-001",
+      "type": "navigate",
+      "stage": "setup",
+      "description": "Open login page",
+      "note": "",
+      "timestamp": 0,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "",
+      "value": "{{loginUrl}}",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "setup",
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": null,
+        "primaryValue": null,
+        "confidenceScore": 0,
+        "explanation": "Navigation step",
+        "visibleText": "",
+        "elementTag": "",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": null,
+        "cssPath": null,
+        "xpath": null,
+        "domPath": null,
+        "classes": [],
+        "candidates": []
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "url_change",
+        "targetSelector": null,
+        "expectedUrlFragment": "/tim/client/login",
+        "timeoutMs": 8000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": "Wait for login page URL"
+      },
+      "extra": {}
+    },
+    {
+      "id": "step-002",
+      "type": "wait",
+      "stage": "setup",
+      "description": "Wait for username field",
+      "note": "",
+      "timestamp": 0,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "Username",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "setup",
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "email1",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "Username",
+        "elementTag": "input",
+        "inputType": "text",
+        "id": "email1",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "Username",
+        "cssPath": "body tim-login-page input#email1",
+        "xpath": "//*[@id=\"email1\"]",
+        "domPath": "body tim-login-page input#email1",
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "email1",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          },
+          {
+            "strategy": "label",
+            "value": "Username",
+            "confidenceScore": 0.82,
+            "explanation": "Semantic label relationship",
+            "primary": false
+          },
+          {
+            "strategy": "css",
+            "value": "body tim-login-page input#email1",
+            "confidenceScore": 0.54,
+            "explanation": "DOM CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//*[@id=\"email1\"]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "visible",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "timeoutMs": 10000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": "Wait for the Angular login form to render"
+      },
+      "extra": {}
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-003",
+      "type": "type",
+      "stage": "test",
+      "description": "Type username",
+      "note": "",
+      "timestamp": 0,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "Username",
+      "value": "{{username}}",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "email1",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "Username",
+        "elementTag": "input",
+        "inputType": "text",
+        "id": "email1",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "Username",
+        "cssPath": "body tim-login-page input#email1",
+        "xpath": "//*[@id=\"email1\"]",
+        "domPath": "body tim-login-page input#email1",
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "email1",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": "No explicit wait"
+      },
+      "extra": {}
+    },
+    {
+      "id": "step-004",
+      "type": "type",
+      "stage": "test",
+      "description": "Type password",
+      "note": "",
+      "timestamp": 0,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "Password",
+      "value": "{{password}}",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "password1",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "Password",
+        "elementTag": "input",
+        "inputType": "password",
+        "id": "password1",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "Password",
+        "cssPath": "body tim-login-page input#password1",
+        "xpath": "//*[@id=\"password1\"]",
+        "domPath": "body tim-login-page input#password1",
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "password1",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": "No explicit wait"
+      },
+      "extra": {}
+    },
+    {
+      "id": "step-005",
+      "type": "click",
+      "stage": "test",
+      "description": "Click Login",
+      "note": "",
+      "timestamp": 0,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "Login",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "text",
+        "primaryValue": "Login",
+        "confidenceScore": 0.76,
+        "explanation": "Visible text selector",
+        "visibleText": "Login",
+        "elementTag": "button",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body tim-login-page button.p-button",
+        "xpath": "//button[.//span[contains(normalize-space(),\"Login\")]]",
+        "domPath": "body tim-login-page button.p-button",
+        "classes": [
+          "p-button",
+          "p-component",
+          "w-full"
+        ],
+        "candidates": [
+          {
+            "strategy": "text",
+            "value": "Login",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text selector",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body tim-login-page button.p-button",
+            "confidenceScore": 0.54,
+            "explanation": "DOM CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//button[.//span[contains(normalize-space(),\"Login\")]]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "loading_overlay_disappear",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "timeoutMs": 10000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": "Wait for post-login loading overlay to disappear"
+      },
+      "extra": {}
+    }
+  ],
+  "assertions": [
+    {
+      "id": "step-006",
+      "type": "assert_not_exists",
+      "stage": "assertion",
+      "description": "Username field disappears after login",
+      "note": "",
+      "timestamp": 0,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "Username",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "assertion",
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "email1",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "Username",
+        "elementTag": "input",
+        "inputType": "text",
+        "id": "email1",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "Username",
+        "cssPath": "body tim-login-page input#email1",
+        "xpath": "//*[@id=\"email1\"]",
+        "domPath": "body tim-login-page input#email1",
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "email1",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "disappear",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "timeoutMs": 10000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": "Successful login should replace the login form"
+      },
+      "extra": {}
+    }
+  ],
+  "cleanup": [],
+  "notes": [
+    "Live DOM inspection on 2026-03-31 found only username and password fields.",
+    "Set TIM_UI_RECORDER_USERNAME and TIM_UI_RECORDER_PASSWORD before replaying or generating from this scenario."
+  ]
+}

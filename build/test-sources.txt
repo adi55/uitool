@@ -1,0 +1,7 @@
+C:\dev\uitool\recorder-tool\src\test\java\com\timbpm\recorder\tests\JavaGeneratorTest.java
+C:\dev\uitool\recorder-tool\src\test\java\com\timbpm\recorder\tests\RecorderToolSelfTest.java
+C:\dev\uitool\recorder-tool\src\test\java\com\timbpm\recorder\tests\ScenarioIoTest.java
+C:\dev\uitool\recorder-tool\src\test\java\com\timbpm\recorder\tests\ScenarioStepIdRepairTest.java
+C:\dev\uitool\recorder-tool\src\test\java\com\timbpm\recorder\tests\ScenarioValidationTest.java
+C:\dev\uitool\recorder-tool\src\test\java\com\timbpm\recorder\tests\SelectorRankerTest.java
+C:\dev\uitool\recorder-tool\src\test\java\com\timbpm\recorder\tests\StructuredDataTest.java

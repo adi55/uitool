@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Replay Harness</title>
+</head>
+<body>
+  <div id="backendState"></div>
+  <div id="backendActionState"></div>
+  <div id="activeTestState"></div>
+  <div id="currentModePill"></div>
+  <div id="recordingState"></div>
+  <div id="recordingModePill"></div>
+  <div id="playbackModePill"></div>
+  <div id="selectionState"></div>
+  <div id="scenarioNameLabel"></div>
+  <div id="replaySummary"></div>
+  <div id="replayError" class="hidden"></div>
+  <div id="replayHelp"></div>
+  <div id="replayProgress"></div>
+  <div id="heroTitle"></div>
+  <div id="testTabState"></div>
+  <div id="statusActiveTest"></div>
+  <div id="statusTestStatus"></div>
+  <div id="statusAttachedTab"></div>
+  <div id="statusCurrentMode"></div>
+  <div id="statusSelectedStep"></div>
+  <div id="statusRecording"></div>
+  <div id="statusReplay"></div>
+  <div id="testSessionSummary"></div>
+  <div id="creationModeHelp"></div>
+
+  <input id="backendUrl" type="text">
+  <div id="testsList"></div>
+  <input id="scenarioName" type="text">
+  <input id="startUrl" type="text">
+  <select id="profileSelect"></select>
+  <input id="javaClassName" type="text">
+  <input id="captureScreenshots" type="checkbox">
+  <div id="stepCount"></div>
+  <div id="stepsListHelp"></div>
+  <div id="stepsList"></div>
+  <div id="playbackLog"></div>
+
+  <div id="selectedStepCategory"></div>
+  <div id="selectedStepOrigin" class="hidden"></div>
+  <div id="stepEditorEmpty"></div>
+  <div id="stepEditor" class="hidden"></div>
+  <div id="stepEditorHelp"></div>
+  <div id="selectedStepHint" class="hidden"></div>
+  <div id="stepSubtypeField"></div>
+  <div id="stepStageField"></div>
+  <div id="stepTargetStrategyField"></div>
+  <div id="stepTargetValueField"></div>
+  <div id="stepActionValueField"></div>
+  <span id="stepActionValueLabel"></span>
+  <div id="stepWaitConditionField" class="hidden"></div>
+  <div id="stepExpectedValueField"></div>
+  <span id="stepExpectedValueLabel"></span>
+  <div id="stepTimeoutField"></div>
+  <div id="stepNoteField"></div>
+  <input id="stepSubtype" type="text">
+  <select id="stepStageSelect"></select>
+  <select id="stepTargetStrategy"></select>
+  <input id="stepTargetValue" type="text">
+  <input id="stepActionValue" type="text">
+  <select id="stepWaitConditionSelect"></select>
+  <input id="stepExpectedValue" type="text">
+  <input id="stepTimeoutMs" type="number">
+  <input id="stepNoteInput" type="text">
+  <div id="stepTargetPreview"></div>
+  <div id="stepSummaryPreview"></div>
+  <button id="pickStepTarget" type="button">Pick In Page</button>
+  <button id="applyStepChanges" type="button">Apply Step Changes</button>
+
+  <div id="actionComposer" class="hidden"></div>
+  <div id="actionTargetSummary"></div>
+  <div id="actionScopeSummary"></div>
+  <div id="actionTypeField"></div>
+  <div id="actionTargetStrategyField"></div>
+  <div id="actionTargetValueField"></div>
+  <div id="actionValueField"></div>
+  <span id="actionValueLabel"></span>
+  <div id="actionWaitConditionField" class="hidden"></div>
+  <div id="actionTimeoutField"></div>
+  <div id="actionNoteField"></div>
+  <select id="actionTypeSelect"></select>
+  <select id="actionTargetStrategy"></select>
+  <input id="actionTargetValue" type="text">
+  <input id="actionValueInput" type="text">
+  <select id="actionWaitConditionSelect"></select>
+  <input id="actionTimeoutMs" type="number">
+  <input id="actionNoteInput" type="text">
+  <div id="actionSummaryPreview"></div>
+  <button id="pickActionTarget" type="button">Pick Element</button>
+  <button id="createAction" type="button">Create Action</button>
+  <button id="cancelAction" type="button">Cancel</button>
+
+  <div id="assertionComposer" class="hidden"></div>
+  <div id="assertionTargetSummary"></div>
+  <div id="assertionScopeSummary"></div>
+  <div id="assertionTypeField"></div>
+  <div id="assertionTargetStrategyField"></div>
+  <div id="assertionTargetValueField"></div>
+  <div id="assertionExpectedValueField"></div>
+  <span id="assertionExpectedValueLabel"></span>
+  <div id="assertionTimeoutField"></div>
+  <select id="assertionTypeSelect"></select>
+  <select id="assertionTargetStrategy"></select>
+  <input id="assertionTargetValue" type="text">
+  <input id="assertionExpectedValue" type="text">
+  <input id="assertionTimeoutMs" type="number">
+  <div id="assertionTargetPreview"></div>
+  <button id="pickAssertionTarget" type="button">Pick Element</button>
+  <button id="createAssertion" type="button">Create Assertion</button>
+  <button id="cancelAssertion" type="button">Cancel</button>
+
+  <button id="startNewTest" type="button"></button>
+  <button id="finishTest" type="button"></button>
+  <button id="renameTest" type="button"></button>
+  <button id="duplicateTest" type="button"></button>
+  <button id="deleteTest" type="button"></button>
+  <button id="modeRecordAction" type="button"></button>
+  <button id="addActionMode" type="button"></button>
+  <button id="clearComposerMode" type="button"></button>
+  <button id="startRecording" type="button"></button>
+  <button id="pauseRecording" type="button"></button>
+  <button id="resumeRecording" type="button" class="hidden"></button>
+  <button id="stopRecording" type="button"></button>
+  <button id="assertionMode" type="button"></button>
+  <button id="undoLastStep" type="button"></button>
+  <button id="replayAll" type="button">Replay All</button>
+  <button id="replayFromCurrent" type="button">Replay From Selected</button>
+  <button id="stopPlayback" type="button">Stop Replay</button>
+  <button id="pausePlayback" type="button">Pause Replay</button>
+  <button id="resumePlayback" type="button" class="hidden">Resume Replay</button>
+  <button id="nextPlaybackStep" type="button">Run Next Step</button>
+  <button id="retryPlaybackStep" type="button">Retry Failed</button>
+  <button id="skipPlaybackStep" type="button">Skip Step</button>
+  <button id="moveStepUp" type="button"></button>
+  <button id="moveStepDown" type="button"></button>
+  <button id="deleteSelectedStep" type="button"></button>
+  <button id="addNote" type="button"></button>
+  <button id="markSetup" type="button"></button>
+  <button id="markTest" type="button"></button>
+  <button id="markCleanup" type="button"></button>
+  <button id="validateScenario" type="button"></button>
+  <button id="saveScenario" type="button"></button>
+  <button id="exportScenario" type="button"></button>
+  <button id="generateJava" type="button"></button>
+  <button id="filterAllSteps" type="button"></button>
+  <button id="filterActionSteps" type="button"></button>
+  <button id="filterAssertionSteps" type="button"></button>
+
+  <pre id="output">Running panel replay tests...</pre>
+  <script src="../scenario-step-ids.js"></script>
+  <script src="./panel-replay-harness.js"></script>
+</body>
+</html>

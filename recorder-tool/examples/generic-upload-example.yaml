@@ -1,0 +1,291 @@
+metadata:
+  scenarioId: "generic-upload-example"
+  name: "Generic Upload Flow"
+  description: "YAML example showing upload aliases, assertions, and cleanup sections."
+  baseUrl: "https://example.test"
+  sourceUrl: "https://example.test/upload"
+  profileId: "tim-ui-junit4-selenide"
+  createdAt: "2026-03-31T16:00:00Z"
+  updatedAt: "2026-03-31T16:00:00Z"
+  createdBy: "codex"
+  version: "1.0"
+  tags:
+    - "ui"
+    - "upload"
+variables:
+  uploadPage: "https://example.test/upload"
+uploadAliases:
+  workflowZip: "./fixtures/workflow.zip"
+setup:
+  -
+    id: "step-001"
+    type: "navigate"
+    stage: "setup"
+    description: "Open upload page"
+    note: ""
+    timestamp: 0
+    url: "https://example.test/upload"
+    visibleText: ""
+    value: "https://example.test/upload"
+    expectedValue: null
+    key: null
+    optionText: null
+    checked: null
+    enabled: true
+    uploadAlias: null
+    fileNames:
+    screenshotPath: null
+    todo: null
+    tags:
+      - "setup"
+      - "ui"
+    mappingHints:
+    selector:
+      primaryStrategy: null
+      primaryValue: null
+      confidenceScore: 0
+      explanation: "Navigation step"
+      visibleText: ""
+      elementTag: ""
+      inputType: ""
+      id: null
+      name: null
+      ariaLabel: null
+      dataTestId: null
+      dataQa: null
+      semanticLabel: null
+      cssPath: null
+      xpath: null
+      domPath: null
+      classes:
+      candidates:
+    frameContext:
+      frameSelectors:
+      frameName: null
+      sameOrigin: true
+    windowContext:
+      title: "Upload"
+      url: "https://example.test/upload"
+      index: 0
+      handleName: "Upload"
+    waitStrategy:
+      kind: "url_change"
+      targetSelector: null
+      expectedUrlFragment: "/upload"
+      timeoutMs: 5000
+      collectionSize: null
+      customHelper: null
+      notes: "Wait for upload page URL"
+    extra:
+steps:
+  -
+    id: "step-002"
+    type: "upload_file"
+    stage: "test"
+    description: "Upload workflow zip"
+    note: ""
+    timestamp: 0
+    url: "https://example.test/upload"
+    visibleText: "Upload"
+    value: null
+    expectedValue: null
+    key: null
+    optionText: null
+    checked: null
+    enabled: true
+    uploadAlias: "workflowZip"
+    fileNames:
+      - "workflow.zip"
+    screenshotPath: null
+    todo: "Replace css fallback with framework helper if available."
+    tags:
+      - "ui"
+      - "upload"
+    mappingHints:
+      - "upload-helper"
+    selector:
+      primaryStrategy: "css"
+      primaryValue: "input[type='file']"
+      confidenceScore: 0.54
+      explanation: "DOM CSS path fallback"
+      visibleText: ""
+      elementTag: "input"
+      inputType: "file"
+      id: null
+      name: "file"
+      ariaLabel: null
+      dataTestId: null
+      dataQa: null
+      semanticLabel: "Upload"
+      cssPath: "input[type='file']"
+      xpath: "//input[@type='file']"
+      domPath: "input[type='file']"
+      classes:
+      candidates:
+        -
+          strategy: "css"
+          value: "input[type='file']"
+          confidenceScore: 0.54
+          explanation: "DOM CSS path fallback"
+          primary: true
+        -
+          strategy: "xpath"
+          value: "//input[@type='file']"
+          confidenceScore: 0.37
+          explanation: "XPath fallback"
+          primary: false
+    frameContext:
+      frameSelectors:
+      frameName: null
+      sameOrigin: true
+    windowContext:
+      title: "Upload"
+      url: "https://example.test/upload"
+      index: 0
+      handleName: "Upload"
+    waitStrategy:
+      kind: "loading_overlay_disappear"
+      targetSelector: null
+      expectedUrlFragment: null
+      timeoutMs: 8000
+      collectionSize: null
+      customHelper: null
+      notes: "Wait for upload processing to finish"
+    extra:
+assertions:
+  -
+    id: "step-003"
+    type: "assert_text_contains"
+    stage: "assertion"
+    description: "Toast contains success text"
+    note: ""
+    timestamp: 0
+    url: "https://example.test/upload"
+    visibleText: "Upload complete"
+    value: null
+    expectedValue: "Upload complete"
+    key: null
+    optionText: null
+    checked: null
+    enabled: true
+    uploadAlias: null
+    fileNames:
+    screenshotPath: null
+    todo: null
+    tags:
+      - "assertion"
+      - "ui"
+    mappingHints:
+      - "toast-helper"
+    selector:
+      primaryStrategy: "css"
+      primaryValue: ".p-toast-message-text"
+      confidenceScore: 0.54
+      explanation: "Toast text CSS fallback"
+      visibleText: "Upload complete"
+      elementTag: "div"
+      inputType: ""
+      id: null
+      name: null
+      ariaLabel: null
+      dataTestId: null
+      dataQa: null
+      semanticLabel: ""
+      cssPath: ".p-toast-message-text"
+      xpath: "//*[contains(@class,'p-toast-message-text')]"
+      domPath: ".p-toast-message-text"
+      classes:
+      candidates:
+        -
+          strategy: "css"
+          value: ".p-toast-message-text"
+          confidenceScore: 0.54
+          explanation: "Toast text CSS fallback"
+          primary: true
+    frameContext:
+      frameSelectors:
+      frameName: null
+      sameOrigin: true
+    windowContext:
+      title: "Upload"
+      url: "https://example.test/upload"
+      index: 0
+      handleName: "Upload"
+    waitStrategy:
+      kind: "visible"
+      targetSelector: null
+      expectedUrlFragment: null
+      timeoutMs: 5000
+      collectionSize: null
+      customHelper: null
+      notes: "Wait for toast"
+    extra:
+cleanup:
+  -
+    id: "step-004"
+    type: "click"
+    stage: "cleanup"
+    description: "Dismiss modal"
+    note: ""
+    timestamp: 0
+    url: "https://example.test/upload"
+    visibleText: "Close"
+    value: null
+    expectedValue: null
+    key: null
+    optionText: null
+    checked: null
+    enabled: true
+    uploadAlias: null
+    fileNames:
+    screenshotPath: null
+    todo: null
+    tags:
+      - "cleanup"
+      - "ui"
+    mappingHints:
+    selector:
+      primaryStrategy: "text"
+      primaryValue: "Close"
+      confidenceScore: 0.76
+      explanation: "Visible text selector"
+      visibleText: "Close"
+      elementTag: "button"
+      inputType: ""
+      id: null
+      name: null
+      ariaLabel: null
+      dataTestId: null
+      dataQa: null
+      semanticLabel: ""
+      cssPath: "button.close"
+      xpath: "//button[contains(normalize-space(),'Close')]"
+      domPath: "button.close"
+      classes:
+      candidates:
+        -
+          strategy: "text"
+          value: "Close"
+          confidenceScore: 0.76
+          explanation: "Visible text selector"
+          primary: true
+    frameContext:
+      frameSelectors:
+      frameName: null
+      sameOrigin: true
+    windowContext:
+      title: "Upload"
+      url: "https://example.test/upload"
+      index: 0
+      handleName: "Upload"
+    waitStrategy:
+      kind: "none"
+      targetSelector: null
+      expectedUrlFragment: null
+      timeoutMs: 5000
+      collectionSize: null
+      customHelper: null
+      notes: "No explicit wait"
+    extra:
+notes:
+  - "This YAML file demonstrates upload alias usage and sectioned step classification."

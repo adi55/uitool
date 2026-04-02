@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Content Replay Harness</title>
+</head>
+<body>
+  <button id="actionButton" type="button">Launch Action</button>
+  <label for="nameInput">User Name</label>
+  <input id="nameInput" type="text" name="username" placeholder="Search users" aria-label="User Name Field" data-testid="user-name-input" value="">
+  <div id="statusLabel" hidden>Ready for replay</div>
+  <pre id="output">Running content replay tests...</pre>
+  <script src="./content-replay-harness.js"></script>
+</body>
+</html>

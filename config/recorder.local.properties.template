@@ -1,0 +1,10 @@
+# TIM UI Recorder local configuration template.
+# Environment variables take precedence over values in recorder.local.properties.
+# Leave secrets blank here if you prefer to inject them via the environment.
+
+TIM_UI_RECORDER_USERNAME=
+TIM_UI_RECORDER_PASSWORD=
+TIM_UI_RECORDER_LOGIN_URL=https://nightly.tim-bpm.com/tim/client/login
+TIM_UI_RECORDER_SERVER_PORT=17845
+TIM_UI_RECORDER_CHROME_DEBUG_PORT=9222
+TIM_UI_RECORDER_CHROME_PATH=

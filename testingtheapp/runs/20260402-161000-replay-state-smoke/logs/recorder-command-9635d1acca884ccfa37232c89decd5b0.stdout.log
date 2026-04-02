@@ -1,0 +1,22 @@
+[recorder] Building recorder tool
+[recorder] Running: C:\Program Files\Amazon Corretto\jdk17.0.18_9\bin\javac.exe -d C:\dev\uitool\build\classes\main @C:\dev\uitool\build\main-sources.txt
+[recorder] Running: C:\Program Files\Amazon Corretto\jdk17.0.18_9\bin\javac.exe -cp C:\dev\uitool\build\classes\main -d C:\dev\uitool\build\classes\compat @C:\dev\uitool\build\compat-sources.txt
+[recorder] Running: C:\Program Files\Amazon Corretto\jdk17.0.18_9\bin\javac.exe -cp C:\dev\uitool\build\classes\main -d C:\dev\uitool\build\classes\test @C:\dev\uitool\build\test-sources.txt
+[recorder] Running: C:\Program Files\Amazon Corretto\jdk17.0.18_9\bin\java.exe -cp C:\dev\uitool\build\classes\main;C:\dev\uitool\build\classes\test com.timbpm.recorder.tests.RecorderToolSelfTest
+Recorder self-tests passed
+[recorder] Running: C:\Program Files\Amazon Corretto\jdk17.0.18_9\bin\java.exe -cp C:\dev\uitool\build\classes\main com.timbpm.recorder.Main generate --scenario C:\dev\uitool\recorder-tool\examples\nightly-login-candidate-tasknmotion.json --profile tim-ui-junit4-selenide --class NightlyLoginGeneratedTest
+C:\dev\uitool\recorder-tool\generated\java\com\timbpm\generated\ui\NightlyLoginGeneratedTest.java
+[recorder] Running: C:\Program Files\Amazon Corretto\jdk17.0.18_9\bin\javac.exe -cp C:\dev\uitool\build\classes\main;C:\dev\uitool\build\classes\compat -d C:\dev\uitool\build\classes\generated @C:\dev\uitool\build\generated-sources.txt
+[recorder] Running: C:\Program Files\Amazon Corretto\jdk17.0.18_9\bin\jar.exe --create --file C:\dev\uitool\dist\recorder-tool.jar --main-class com.timbpm.recorder.Main -C C:\dev\uitool\build\classes\main .
+[recorder] Build complete
+[recorder] Backend ready on http://127.0.0.1:17845
+[recorder] Provisioning project-local Chrome for Testing
+[recorder] Downloading chrome-for-testing-147.0.7727.50-win64.zip
+[recorder] Launching managed Chrome for Testing with the recorder extension preloaded
+[recorder] Recorder UI tab opened automatically in Chrome
+[recorder] Ready
+[recorder] Backend: http://127.0.0.1:17845/api/health
+[recorder] Chrome binary: C:\dev\uitool\.runtime\chrome-for-testing\chrome.exe
+[recorder] Chrome debug endpoint: http://127.0.0.1:9222/json/version
+[recorder] Chrome profile: C:\dev\uitool\.runtime\chrome-profile
+[recorder] Local config: C:\dev\uitool\config\recorder.local.properties

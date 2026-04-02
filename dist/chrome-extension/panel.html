@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIM UI Recorder</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <div class="panel-layout">
+    <aside class="sidebar">
+      <div class="sidebar-shell">
+        <div class="sidebar-header">
+          <p class="eyebrow">Recorder</p>
+          <h1>TIM UI</h1>
+          <p class="sidebar-copy">Start one controlled test tab, then either record actions or manually author action and assertion steps without leaving that same session.</p>
+        </div>
+
+        <section class="control-group">
+          <div class="group-heading">
+            <h2>Server</h2>
+            <span id="backendActionState" class="pill">Ready</span>
+          </div>
+          <label class="stack-field">
+            <span>Backend URL</span>
+            <input id="backendUrl" type="text" value="http://127.0.0.1:17845">
+          </label>
+          <div class="sidebar-meta">
+            <span id="backendState" class="pill">Backend unknown</span>
+            <span id="recordingState" class="hero-state">Idle</span>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <div class="group-heading">
+            <h2>Tests</h2>
+            <span id="activeTestState" class="pill">No active test</span>
+          </div>
+          <div class="button-grid">
+            <button id="startNewTest" type="button" class="primary success span-2">Start New Test</button>
+            <button id="finishTest" type="button" class="ghost span-2">Finish Test</button>
+            <button id="renameTest" type="button" class="ghost">Rename Test</button>
+            <button id="duplicateTest" type="button" class="ghost">Duplicate Test</button>
+            <button id="deleteTest" type="button" class="ghost span-2">Delete Test</button>
+          </div>
+          <div id="testsList" class="tests-list"></div>
+        </section>
+
+        <section class="control-group">
+          <div class="group-heading">
+            <h2>Create Steps</h2>
+            <span id="currentModePill" class="pill">Browse</span>
+          </div>
+          <div class="button-grid">
+            <button id="modeRecordAction" type="button" class="ghost">Record Action</button>
+            <button id="addActionMode" type="button" class="ghost">Add Action</button>
+            <button id="assertionMode" type="button" class="ghost accent-tone">Add Assertion</button>
+            <button id="clearComposerMode" type="button" class="ghost">Clear Mode</button>
+          </div>
+          <p class="sidebar-copy">Start Recording captures ACTION steps from the active test tab. Add Action manually creates ACTION steps. Add Assertion manually creates ASSERT steps. Start New Test opens one tab. Add, edit, delete, and finish flows never open a new tab.</p>
+        </section>
+
+        <section class="control-group">
+          <div class="group-heading">
+            <h2>Recording</h2>
+            <span id="recordingModePill" class="pill">Idle</span>
+          </div>
+          <div class="button-grid">
+            <button id="startRecording" type="button" class="primary success span-2">Start Recording</button>
+            <button id="pauseRecording" type="button" class="ghost">Pause</button>
+            <button id="resumeRecording" type="button" class="ghost hidden">Continue</button>
+            <button id="stopRecording" type="button" class="ghost">Stop</button>
+            <button id="undoLastStep" type="button" class="ghost span-2">Undo</button>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <div class="group-heading">
+            <h2>Playback</h2>
+            <span id="playbackModePill" class="pill">Idle</span>
+          </div>
+          <div class="button-grid">
+            <button id="replayAll" type="button" class="primary span-2">Replay All</button>
+            <button id="replayFromCurrent" type="button" class="ghost">Replay From Selected</button>
+            <button id="stopPlayback" type="button" class="ghost">Stop Replay</button>
+            <button id="pausePlayback" type="button" class="ghost">Pause Replay</button>
+            <button id="resumePlayback" type="button" class="ghost hidden">Resume Replay</button>
+            <button id="nextPlaybackStep" type="button" class="ghost">Run Next Step</button>
+            <button id="retryPlaybackStep" type="button" class="ghost">Retry Failed</button>
+            <button id="skipPlaybackStep" type="button" class="ghost">Skip Step</button>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <div class="group-heading">
+            <h2>Step Actions</h2>
+            <span id="selectionState" class="pill">No selection</span>
+          </div>
+          <div class="button-grid">
+            <button id="moveStepUp" type="button" class="ghost">Move Up</button>
+            <button id="moveStepDown" type="button" class="ghost">Move Down</button>
+            <button id="deleteSelectedStep" type="button" class="ghost">Delete Selected Step</button>
+            <button id="addNote" type="button" class="ghost">Add Note</button>
+            <button id="markSetup" type="button" class="ghost">Mark Setup</button>
+            <button id="markTest" type="button" class="ghost">Mark Test</button>
+            <button id="markCleanup" type="button" class="ghost span-2">Mark Cleanup</button>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <div class="group-heading">
+            <h2>Scenario Actions</h2>
+            <span id="scenarioNameLabel" class="pill">Scenario: untitled</span>
+          </div>
+          <div class="button-grid">
+            <button id="validateScenario" type="button" class="ghost">Validate</button>
+            <button id="saveScenario" type="button" class="ghost">Save</button>
+            <button id="exportScenario" type="button" class="ghost">Export</button>
+            <button id="generateJava" type="button" class="primary accent span-2">Generate Java</button>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <main class="content-area">
+      <div class="content-scroll">
+        <header class="hero">
+          <div>
+            <p class="eyebrow">Selected Test</p>
+            <h1 id="heroTitle">Recorder Workspace</h1>
+            <p class="hero-copy">Record the real page when you want fast capture, or author manual action/assert steps with readable targets such as text, label, placeholder, aria-label, test id, id, css, and xpath.</p>
+          </div>
+          <div class="hero-status">
+            <span id="testTabState" class="pill">No controlled tab</span>
+            <span id="replayProgress" class="pill">Replay idle</span>
+          </div>
+        </header>
+
+        <section class="status-card">
+          <div class="status-stack">
+            <div class="status-line">
+              <span id="replaySummary">Replay: idle</span>
+            </div>
+            <div class="status-strip">
+              <span id="statusActiveTest" class="pill">Active Test</span>
+              <span id="statusTestStatus" class="pill">Test Status</span>
+              <span id="statusAttachedTab" class="pill">No Tab</span>
+              <span id="statusCurrentMode" class="pill">Mode</span>
+              <span id="statusSelectedStep" class="pill">Selected Step</span>
+              <span id="statusRecording" class="pill">Recording Off</span>
+              <span id="statusReplay" class="pill">Replay Idle</span>
+            </div>
+            <p id="replayError" class="status-copy hidden"></p>
+            <p id="replayHelp" class="status-copy">Replay runs in the current controlled tab. Select a step and use Replay From Selected when you only need part of the scenario.</p>
+            <p id="testSessionSummary" class="status-copy">Select a test from the list or start a new one to open the single controlled browser tab for that session.</p>
+            <p id="creationModeHelp" class="status-copy">Choose Record Action, Add Action, or Add Assertion from the left. Add and edit flows never open a new tab.</p>
+          </div>
+          <label class="toggle">
+            <span>Screenshots</span>
+            <input id="captureScreenshots" type="checkbox">
+          </label>
+        </section>
+
+        <section class="form-card">
+          <div class="section-header">
+            <h2>Test Details</h2>
+            <span id="stepCount" class="pill">0</span>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span>Test Name</span>
+              <input id="scenarioName" type="text" placeholder="Nightly login">
+            </label>
+            <label>
+              <span>Profile</span>
+              <select id="profileSelect"></select>
+            </label>
+            <label>
+              <span>Start URL</span>
+              <input id="startUrl" type="text" placeholder="https://app.example.com/login">
+            </label>
+            <label>
+              <span>Java Class</span>
+              <input id="javaClassName" type="text" placeholder="NightlyLoginGeneratedTest">
+            </label>
+          </div>
+        </section>
+
+        <section id="actionComposer" class="composer hidden">
+          <div class="composer-header">
+            <h2>Create Action</h2>
+          </div>
+          <p class="status-copy">Pick an element or define it manually, then choose what this action should do. Actions stay in the current test session and never open a new tab.</p>
+          <div class="editor-grid">
+            <div class="inspector-summary">
+              <span class="summary-label">Target</span>
+              <span id="actionTargetSummary">Pick an element or define it manually</span>
+            </div>
+            <div class="inspector-summary">
+              <span class="summary-label">Scope</span>
+              <span id="actionScopeSummary">Element</span>
+            </div>
+            <label id="actionTypeField">
+              <span>Action Type</span>
+              <select id="actionTypeSelect"></select>
+            </label>
+            <label id="actionTargetStrategyField">
+              <span>How to find the element</span>
+              <select id="actionTargetStrategy"></select>
+            </label>
+            <label id="actionTargetValueField">
+              <span>Text / label / selector to match</span>
+              <input id="actionTargetValue" type="text" placeholder="Login">
+            </label>
+            <label id="actionValueField">
+              <span id="actionValueLabel">Action Value</span>
+              <input id="actionValueInput" type="text" placeholder="john">
+            </label>
+            <label id="actionWaitConditionField" class="hidden">
+              <span>Wait Condition</span>
+              <select id="actionWaitConditionSelect"></select>
+            </label>
+            <label id="actionTimeoutField">
+              <span>Timeout (ms)</span>
+              <input id="actionTimeoutMs" type="number" min="0" step="100" placeholder="5000">
+            </label>
+            <label id="actionNoteField">
+              <span>Note</span>
+              <input id="actionNoteInput" type="text" placeholder="Optional note">
+            </label>
+            <div class="inspector-summary">
+              <span class="summary-label">Summary Preview</span>
+              <span id="actionSummaryPreview">No action summary yet</span>
+            </div>
+            <button id="pickActionTarget" type="button" class="ghost">Pick Element</button>
+            <button id="createAction" type="button" class="primary">Create Action</button>
+            <button id="cancelAction" type="button" class="ghost">Cancel</button>
+          </div>
+        </section>
+
+        <section id="assertionComposer" class="composer hidden">
+          <div class="composer-header">
+            <h2>Create Assertion</h2>
+          </div>
+          <p class="status-copy">Pick an element or define it manually. Then choose what is expected. Assertions verify expected state on the current test page and never open a new tab.</p>
+          <div class="editor-grid">
+            <div class="inspector-summary">
+              <span class="summary-label">Target</span>
+              <span id="assertionTargetSummary">Pick an element or define it manually</span>
+            </div>
+            <div class="inspector-summary">
+              <span class="summary-label">Scope</span>
+              <span id="assertionScopeSummary">Element</span>
+            </div>
+            <label id="assertionTypeField">
+              <span>What is expected?</span>
+              <select id="assertionTypeSelect"></select>
+            </label>
+            <label id="assertionTargetStrategyField">
+              <span>How to find the element</span>
+              <select id="assertionTargetStrategy"></select>
+            </label>
+            <label id="assertionTargetValueField">
+              <span>Text / label / selector to match</span>
+              <input id="assertionTargetValue" type="text" placeholder="Dashboard">
+            </label>
+            <label id="assertionExpectedValueField">
+              <span id="assertionExpectedValueLabel">Expected Value</span>
+              <input id="assertionExpectedValue" type="text" placeholder="Saved">
+            </label>
+            <label id="assertionTimeoutField">
+              <span>Timeout (ms)</span>
+              <input id="assertionTimeoutMs" type="number" min="0" step="100" placeholder="5000">
+            </label>
+            <div class="inspector-summary">
+              <span class="summary-label">Summary Preview</span>
+              <span id="assertionTargetPreview">No assertion summary yet</span>
+            </div>
+            <button id="pickAssertionTarget" type="button" class="ghost">Pick Element</button>
+            <button id="createAssertion" type="button" class="primary accent">Create Assertion</button>
+            <button id="cancelAssertion" type="button" class="ghost">Cancel</button>
+          </div>
+        </section>
+
+        <section class="steps-panel">
+          <div class="section-header">
+            <h2>Steps</h2>
+            <div class="section-meta">
+              <button id="filterAllSteps" type="button" class="ghost filter-chip is-active">All</button>
+              <button id="filterActionSteps" type="button" class="ghost filter-chip">Actions</button>
+              <button id="filterAssertionSteps" type="button" class="ghost filter-chip">Assertions</button>
+            </div>
+          </div>
+          <p id="stepsListHelp" class="status-copy">Click a step to edit it on the right.</p>
+          <div id="stepsList" class="steps-list"></div>
+        </section>
+
+        <section class="form-card">
+          <div class="section-header">
+            <h2>Selected Step</h2>
+            <div class="section-meta">
+              <span id="selectedStepCategory" class="pill">No step selected</span>
+              <span id="selectedStepOrigin" class="pill hidden">Origin</span>
+            </div>
+          </div>
+          <p id="stepEditorHelp" class="status-copy">Update the fields below, then click Apply Step Changes.</p>
+          <p id="selectedStepHint" class="status-copy hidden"></p>
+          <div id="stepEditorEmpty" class="empty-state">Select a step from the list to edit it.</div>
+          <div id="stepEditor" class="editor-grid hidden">
+            <label id="stepSubtypeField">
+              <span>Subtype</span>
+              <input id="stepSubtype" type="text" readonly>
+            </label>
+            <label id="stepStageField">
+              <span>Stage</span>
+              <select id="stepStageSelect">
+                <option value="setup">Setup</option>
+                <option value="test">Test</option>
+                <option value="assertion">Assertion</option>
+                <option value="cleanup">Cleanup</option>
+              </select>
+            </label>
+            <label id="stepTargetStrategyField">
+              <span>How to find the element</span>
+              <select id="stepTargetStrategy"></select>
+            </label>
+            <label id="stepTargetValueField">
+              <span>Text / label / selector to match</span>
+              <input id="stepTargetValue" type="text" placeholder="Login">
+            </label>
+            <label id="stepActionValueField">
+              <span id="stepActionValueLabel">Action Value</span>
+              <input id="stepActionValue" type="text" placeholder="Typed text or option value">
+            </label>
+            <label id="stepWaitConditionField" class="hidden">
+              <span>Wait Condition</span>
+              <select id="stepWaitConditionSelect"></select>
+            </label>
+            <label id="stepExpectedValueField">
+              <span id="stepExpectedValueLabel">Expected Value</span>
+              <input id="stepExpectedValue" type="text" placeholder="Expected text or value">
+            </label>
+            <label id="stepTimeoutField">
+              <span>Timeout (ms)</span>
+              <input id="stepTimeoutMs" type="number" min="0" step="100" placeholder="5000">
+            </label>
+            <label id="stepNoteField">
+              <span>Note</span>
+              <input id="stepNoteInput" type="text" placeholder="Optional note">
+            </label>
+            <div class="inspector-summary">
+              <span class="summary-label">Target Preview</span>
+              <span id="stepTargetPreview">No target yet</span>
+            </div>
+            <div class="inspector-summary">
+              <span class="summary-label">Summary Preview</span>
+              <span id="stepSummaryPreview">No summary yet</span>
+            </div>
+            <button id="pickStepTarget" type="button" class="ghost">Pick In Page</button>
+            <button id="applyStepChanges" type="button" class="primary">Apply Step Changes</button>
+          </div>
+        </section>
+
+        <section class="steps-panel">
+          <div class="section-header">
+            <h2>Activity Log</h2>
+          </div>
+          <div id="playbackLog" class="log-list"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="scenario-step-ids.js"></script>
+  <script src="panel.js"></script>
+</body>
+</html>

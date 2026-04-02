@@ -1,0 +1,1902 @@
+{
+  "metadata": {
+    "scenarioId": "scenario-1775049674610",
+    "name": "Untitled Test 3",
+    "description": "Recorded with TIM UI Recorder",
+    "baseUrl": "",
+    "sourceUrl": "https://nightly.tim-bpm.com/tim/client/login",
+    "profileId": "tim-ui-junit4-selenide",
+    "createdAt": "2026-04-01T13:21:14.610Z",
+    "updatedAt": "2026-04-01T13:23:00.040Z",
+    "createdBy": "chrome-extension",
+    "version": "1.0",
+    "tags": [
+      "ui"
+    ]
+  },
+  "variables": {},
+  "uploadAliases": {},
+  "setup": [],
+  "steps": [
+    {
+      "id": "step-001",
+      "type": "navigate",
+      "stage": "test",
+      "description": "Navigate to https://nightly.tim-bpm.com/tim/client/login",
+      "note": "",
+      "timestamp": 1775049675232,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "",
+      "value": "https://nightly.tim-bpm.com/tim/client/login",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "url",
+        "primaryValue": "https://nightly.tim-bpm.com/tim/client/login",
+        "confidenceScore": 0.0,
+        "explanation": "Navigation step",
+        "visibleText": "",
+        "elementTag": "",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": null,
+        "cssPath": null,
+        "xpath": null,
+        "domPath": null,
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "url",
+            "value": "https://nightly.tim-bpm.com/tim/client/login",
+            "confidenceScore": 1.0,
+            "explanation": "Page URL",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "standard.title",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "standard.title"
+      },
+      "waitStrategy": {
+        "kind": "url_change",
+        "targetSelector": null,
+        "expectedUrlFragment": "https://nightly.tim-bpm.com/tim/client/login",
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 8000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-002",
+      "type": "press_key",
+      "stage": "test",
+      "description": "Press Tab",
+      "note": "",
+      "timestamp": 1775049679956,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "sme/pm",
+      "value": null,
+      "expectedValue": null,
+      "key": "Tab",
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "email1",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "sme/pm",
+        "elementTag": "input",
+        "inputType": "text",
+        "id": "email1",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "Username",
+        "cssPath": "body > input#email1",
+        "xpath": "//*[@id=\"email1\"]",
+        "domPath": "body > input#email1",
+        "classes": [
+          "w-full",
+          "mb-4",
+          "ng-untouched",
+          "p-component",
+          "p-inputtext",
+          "ng-dirty",
+          "ng-valid",
+          "p-filled"
+        ],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "email1",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          },
+          {
+            "strategy": "placeholder",
+            "value": "Username",
+            "confidenceScore": 0.87,
+            "explanation": "Input placeholder",
+            "primary": false
+          },
+          {
+            "strategy": "label",
+            "value": "Username",
+            "confidenceScore": 0.82,
+            "explanation": "Semantic label",
+            "primary": false
+          },
+          {
+            "strategy": "text",
+            "value": "sme/pm",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": false
+          },
+          {
+            "strategy": "css",
+            "value": "body > input#email1",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//*[@id=\"email1\"]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-003",
+      "type": "type",
+      "stage": "test",
+      "description": "Type into email1",
+      "note": "",
+      "timestamp": 1775049679956,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "sme/pm",
+      "value": "sme/pm",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "email1",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "sme/pm",
+        "elementTag": "input",
+        "inputType": "text",
+        "id": "email1",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "Username",
+        "cssPath": "body > input#email1",
+        "xpath": "//*[@id=\"email1\"]",
+        "domPath": "body > input#email1",
+        "classes": [
+          "w-full",
+          "mb-4",
+          "ng-untouched",
+          "p-component",
+          "p-inputtext",
+          "ng-dirty",
+          "ng-valid",
+          "p-filled"
+        ],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "email1",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          },
+          {
+            "strategy": "placeholder",
+            "value": "Username",
+            "confidenceScore": 0.87,
+            "explanation": "Input placeholder",
+            "primary": false
+          },
+          {
+            "strategy": "label",
+            "value": "Username",
+            "confidenceScore": 0.82,
+            "explanation": "Semantic label",
+            "primary": false
+          },
+          {
+            "strategy": "text",
+            "value": "sme/pm",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": false
+          },
+          {
+            "strategy": "css",
+            "value": "body > input#email1",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//*[@id=\"email1\"]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-004",
+      "type": "press_key",
+      "stage": "test",
+      "description": "Press Enter",
+      "note": "",
+      "timestamp": 1775049684434,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "task!nmotion",
+      "value": null,
+      "expectedValue": null,
+      "key": "Enter",
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "password1",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "task!nmotion",
+        "elementTag": "input",
+        "inputType": "password",
+        "id": "password1",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "Password",
+        "cssPath": "body > input#password1",
+        "xpath": "//*[@id=\"password1\"]",
+        "domPath": "body > input#password1",
+        "classes": [
+          "w-full",
+          "mb-4",
+          "ng-untouched",
+          "p-component",
+          "p-inputtext",
+          "ng-dirty",
+          "ng-valid",
+          "p-filled"
+        ],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "password1",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          },
+          {
+            "strategy": "placeholder",
+            "value": "Password",
+            "confidenceScore": 0.87,
+            "explanation": "Input placeholder",
+            "primary": false
+          },
+          {
+            "strategy": "label",
+            "value": "Password",
+            "confidenceScore": 0.82,
+            "explanation": "Semantic label",
+            "primary": false
+          },
+          {
+            "strategy": "text",
+            "value": "task!nmotion",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": false
+          },
+          {
+            "strategy": "css",
+            "value": "body > input#password1",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//*[@id=\"password1\"]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-005",
+      "type": "type",
+      "stage": "test",
+      "description": "Type into password1",
+      "note": "",
+      "timestamp": 1775049684435,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "task!nmotion",
+      "value": "task!nmotion",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "password1",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "task!nmotion",
+        "elementTag": "input",
+        "inputType": "password",
+        "id": "password1",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "Password",
+        "cssPath": "body > input#password1",
+        "xpath": "//*[@id=\"password1\"]",
+        "domPath": "body > input#password1",
+        "classes": [
+          "w-full",
+          "mb-4",
+          "ng-untouched",
+          "p-component",
+          "p-inputtext",
+          "ng-dirty",
+          "ng-valid",
+          "p-filled"
+        ],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "password1",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          },
+          {
+            "strategy": "placeholder",
+            "value": "Password",
+            "confidenceScore": 0.87,
+            "explanation": "Input placeholder",
+            "primary": false
+          },
+          {
+            "strategy": "label",
+            "value": "Password",
+            "confidenceScore": 0.82,
+            "explanation": "Semantic label",
+            "primary": false
+          },
+          {
+            "strategy": "text",
+            "value": "task!nmotion",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": false
+          },
+          {
+            "strategy": "css",
+            "value": "body > input#password1",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//*[@id=\"password1\"]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-006",
+      "type": "click",
+      "stage": "test",
+      "description": "Click Login",
+      "note": "",
+      "timestamp": 1775049684436,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "Login",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "text",
+        "primaryValue": "Login",
+        "confidenceScore": 0.76,
+        "explanation": "Visible text",
+        "visibleText": "Login",
+        "elementTag": "button",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > tim-root > tim-login-page > div.w-full.min-h-full > div.w-full.px-2 > div.bg-surface-0.dark\\:bg-surface-900:nth-of-type(1) > div:nth-of-type(2) > form.ng-dirty.ng-touched > p-button > button.p-ripple.p-button",
+        "xpath": "/html[1]/body[1]/tim-root[1]/tim-login-page[1]/div[1]/div[1]/div[1]/div[2]/form[1]/p-button[1]/button[1]",
+        "domPath": "body > tim-root > tim-login-page > div.w-full.min-h-full > div.w-full.px-2 > div.bg-surface-0.dark\\:bg-surface-900:nth-of-type(1) > div:nth-of-type(2) > form.ng-dirty.ng-touched > p-button > button.p-ripple.p-button",
+        "classes": [
+          "p-ripple",
+          "p-button",
+          "p-component",
+          "w-full"
+        ],
+        "candidates": [
+          {
+            "strategy": "text",
+            "value": "Login",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body > tim-root > tim-login-page > div.w-full.min-h-full > div.w-full.px-2 > div.bg-surface-0.dark\\:bg-surface-900:nth-of-type(1) > div:nth-of-type(2) > form.ng-dirty.ng-touched > p-button > button.p-ripple.p-button",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/tim-login-page[1]/div[1]/div[1]/div[1]/div[2]/form[1]/p-button[1]/button[1]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "TIM Flow - Login",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "TIM Flow - Login"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-007",
+      "type": "navigate",
+      "stage": "test",
+      "description": "Navigate to https://nightly.tim-bpm.com/tim/client/home",
+      "note": "",
+      "timestamp": 1775049690636,
+      "url": "https://nightly.tim-bpm.com/tim/client/home",
+      "visibleText": "",
+      "value": "https://nightly.tim-bpm.com/tim/client/home",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "url",
+        "primaryValue": "https://nightly.tim-bpm.com/tim/client/home",
+        "confidenceScore": 0.0,
+        "explanation": "Navigation step",
+        "visibleText": "",
+        "elementTag": "",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": null,
+        "cssPath": null,
+        "xpath": null,
+        "domPath": null,
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "url",
+            "value": "https://nightly.tim-bpm.com/tim/client/home",
+            "confidenceScore": 1.0,
+            "explanation": "Page URL",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "standard.home",
+        "url": "https://nightly.tim-bpm.com/tim/client/home",
+        "index": 0,
+        "handleName": "standard.home"
+      },
+      "waitStrategy": {
+        "kind": "url_change",
+        "targetSelector": null,
+        "expectedUrlFragment": "https://nightly.tim-bpm.com/tim/client/home",
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 8000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-008",
+      "type": "click",
+      "stage": "test",
+      "description": "Click i",
+      "note": "",
+      "timestamp": 1775049702995,
+      "url": "https://nightly.tim-bpm.com/tim/client/home",
+      "visibleText": "",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "css",
+        "primaryValue": "body > li#automate > div.p-tieredmenu-item-content > tim-menu-item > a.no-underline.rounded-2xl > i.mb-0.text-3xl",
+        "confidenceScore": 0.54,
+        "explanation": "CSS path fallback",
+        "visibleText": "",
+        "elementTag": "i",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > li#automate > div.p-tieredmenu-item-content > tim-menu-item > a.no-underline.rounded-2xl > i.mb-0.text-3xl",
+        "xpath": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/p-tieredmenu[1]/div[1]/p-tieredmenusub[1]/ul[1]/li[3]/div[1]/tim-menu-item[1]/a[1]/i[1]",
+        "domPath": "body > li#automate > div.p-tieredmenu-item-content > tim-menu-item > a.no-underline.rounded-2xl > i.mb-0.text-3xl",
+        "classes": [
+          "mb-0",
+          "text-3xl",
+          "icon-tim-play-circle"
+        ],
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "body > li#automate > div.p-tieredmenu-item-content > tim-menu-item > a.no-underline.rounded-2xl > i.mb-0.text-3xl",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": true
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/p-tieredmenu[1]/div[1]/p-tieredmenusub[1]/ul[1]/li[3]/div[1]/tim-menu-item[1]/a[1]/i[1]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Home",
+        "url": "https://nightly.tim-bpm.com/tim/client/home",
+        "index": 0,
+        "handleName": "Home"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-009",
+      "type": "click",
+      "stage": "test",
+      "description": "Click Start workflows",
+      "note": "",
+      "timestamp": 1775049704283,
+      "url": "https://nightly.tim-bpm.com/tim/client/home",
+      "visibleText": "Start workflows",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "text",
+        "primaryValue": "Start workflows",
+        "confidenceScore": 0.76,
+        "explanation": "Visible text",
+        "visibleText": "Start workflows",
+        "elementTag": "span",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > li#startable-processes > div.p-tieredmenu-item-content > tim-menu-item > a.no-underline.text-center > span.font-normal",
+        "xpath": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/p-tieredmenu[1]/div[1]/p-tieredmenusub[1]/ul[1]/li[3]/p-tieredmenusub[1]/ul[1]/li[1]/div[1]/tim-menu-item[1]/a[1]/span[1]",
+        "domPath": "body > li#startable-processes > div.p-tieredmenu-item-content > tim-menu-item > a.no-underline.text-center > span.font-normal",
+        "classes": [
+          "font-normal"
+        ],
+        "candidates": [
+          {
+            "strategy": "text",
+            "value": "Start workflows",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body > li#startable-processes > div.p-tieredmenu-item-content > tim-menu-item > a.no-underline.text-center > span.font-normal",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/p-tieredmenu[1]/div[1]/p-tieredmenusub[1]/ul[1]/li[3]/p-tieredmenusub[1]/ul[1]/li[1]/div[1]/tim-menu-item[1]/a[1]/span[1]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Home",
+        "url": "https://nightly.tim-bpm.com/tim/client/home",
+        "index": 0,
+        "handleName": "Home"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-010",
+      "type": "navigate",
+      "stage": "test",
+      "description": "Navigate to https://nightly.tim-bpm.com/tim/client/automate/start",
+      "note": "",
+      "timestamp": 1775049704666,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/start",
+      "visibleText": "",
+      "value": "https://nightly.tim-bpm.com/tim/client/automate/start",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "url",
+        "primaryValue": "https://nightly.tim-bpm.com/tim/client/automate/start",
+        "confidenceScore": 0.0,
+        "explanation": "Navigation step",
+        "visibleText": "",
+        "elementTag": "",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": null,
+        "cssPath": null,
+        "xpath": null,
+        "domPath": null,
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "url",
+            "value": "https://nightly.tim-bpm.com/tim/client/automate/start",
+            "confidenceScore": 1.0,
+            "explanation": "Page URL",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Home",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/start",
+        "index": 0,
+        "handleName": "Home"
+      },
+      "waitStrategy": {
+        "kind": "url_change",
+        "targetSelector": null,
+        "expectedUrlFragment": "https://nightly.tim-bpm.com/tim/client/automate/start",
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 8000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-011",
+      "type": "click",
+      "stage": "test",
+      "description": "Click AT1224",
+      "note": "",
+      "timestamp": 1775049714683,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/start",
+      "visibleText": "AT1224",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "css",
+        "primaryValue": "body > table#pn_id_1-table > tbody.p-datatable-tbody > tr.cursor-pointer.t-table-pinned-row:nth-of-type(6) > td.px-2.p-1:nth-of-type(1) > span.flex.items-center",
+        "confidenceScore": 0.54,
+        "explanation": "CSS path fallback",
+        "visibleText": "AT1224",
+        "elementTag": "span",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > table#pn_id_1-table > tbody.p-datatable-tbody > tr.cursor-pointer.t-table-pinned-row:nth-of-type(6) > td.px-2.p-1:nth-of-type(1) > span.flex.items-center",
+        "xpath": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/t-workflow-library-start[1]/div[1]/tim-content-panel[1]/div[1]/div[1]/p-card[1]/div[1]/div[1]/div[1]/div[2]/t-workflow-library-list-view[1]/div[1]/t-no-categories-list-view[1]/t-table[1]/div[1]/div[1]/p-table[1]/div[1]/table[1]/tbody[1]/tr[6]/td[1]/span[1]",
+        "domPath": "body > table#pn_id_1-table > tbody.p-datatable-tbody > tr.cursor-pointer.t-table-pinned-row:nth-of-type(6) > td.px-2.p-1:nth-of-type(1) > span.flex.items-center",
+        "classes": [
+          "flex",
+          "items-center"
+        ],
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "body > table#pn_id_1-table > tbody.p-datatable-tbody > tr.cursor-pointer.t-table-pinned-row:nth-of-type(6) > td.px-2.p-1:nth-of-type(1) > span.flex.items-center",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": true
+          },
+          {
+            "strategy": "text",
+            "value": "AT1224",
+            "confidenceScore": 0.46,
+            "explanation": "Visible text (reduced confidence for dynamic token)",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/t-workflow-library-start[1]/div[1]/tim-content-panel[1]/div[1]/div[1]/p-card[1]/div[1]/div[1]/div[1]/div[2]/t-workflow-library-list-view[1]/div[1]/t-no-categories-list-view[1]/t-table[1]/div[1]/div[1]/p-table[1]/div[1]/table[1]/tbody[1]/tr[6]/td[1]/span[1]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Workflow Launchpad",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/start",
+        "index": 0,
+        "handleName": "Workflow Launchpad"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-012",
+      "type": "navigate",
+      "stage": "test",
+      "description": "Navigate to https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+      "note": "",
+      "timestamp": 1775049714991,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+      "visibleText": "",
+      "value": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "url",
+        "primaryValue": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+        "confidenceScore": 0.0,
+        "explanation": "Navigation step",
+        "visibleText": "",
+        "elementTag": "",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": null,
+        "cssPath": null,
+        "xpath": null,
+        "domPath": null,
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "url",
+            "value": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+            "confidenceScore": 1.0,
+            "explanation": "Page URL",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Workflow Launchpad",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+        "index": 0,
+        "handleName": "Workflow Launchpad"
+      },
+      "waitStrategy": {
+        "kind": "url_change",
+        "targetSelector": null,
+        "expectedUrlFragment": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 8000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-013",
+      "type": "click",
+      "stage": "test",
+      "description": "Click dropdown trigger",
+      "note": "",
+      "timestamp": 1775049723243,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+      "visibleText": "",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "ariaLabel",
+        "primaryValue": "dropdown trigger",
+        "confidenceScore": 0.86,
+        "explanation": "Accessible label",
+        "visibleText": "",
+        "elementTag": "div",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": "dropdown trigger",
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > p-select#pn_id_311 > div.p-select-dropdown",
+        "xpath": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/t-workflow-library-start[1]/div[1]/tim-content-panel[1]/div[1]/p-card[1]/div[1]/div[1]/t-start-process-form[1]/tim-content-details[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/tim-form-renderer[1]/tim-form-row-list[1]/div[1]/div[4]/div[1]/tim-form-row[1]/div[1]/div[1]/div[1]/tim-form-row-column[1]/div[1]/div[2]/div[1]/tim-form-element[1]/div[1]/div[2]/div[1]/p-select[1]/div[1]",
+        "domPath": "body > p-select#pn_id_311 > div.p-select-dropdown",
+        "classes": [
+          "p-select-dropdown"
+        ],
+        "candidates": [
+          {
+            "strategy": "ariaLabel",
+            "value": "dropdown trigger",
+            "confidenceScore": 0.86,
+            "explanation": "Accessible label",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body > p-select#pn_id_311 > div.p-select-dropdown",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/t-workflow-library-start[1]/div[1]/tim-content-panel[1]/div[1]/p-card[1]/div[1]/div[1]/t-start-process-form[1]/tim-content-details[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/tim-form-renderer[1]/tim-form-row-list[1]/div[1]/div[4]/div[1]/tim-form-row[1]/div[1]/div[1]/div[1]/tim-form-row-column[1]/div[1]/div[2]/div[1]/tim-form-element[1]/div[1]/div[2]/div[1]/p-select[1]/div[1]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Workflow Launchpad",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+        "index": 0,
+        "handleName": "Workflow Launchpad"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-014",
+      "type": "click",
+      "stage": "test",
+      "description": "Click James Green",
+      "note": "",
+      "timestamp": 1775049724338,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+      "visibleText": "James Green",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "text",
+        "primaryValue": "James Green",
+        "confidenceScore": 0.76,
+        "explanation": "Visible text",
+        "visibleText": "James Green",
+        "elementTag": "span",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > li#pn_id_311_0 > span",
+        "xpath": "/html[1]/body[1]/div[1]/p-motion[1]/div[1]/div[1]/div[1]/ul[1]/p-selectitem[1]/li[1]/span[1]",
+        "domPath": "body > li#pn_id_311_0 > span",
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "text",
+            "value": "James Green",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body > li#pn_id_311_0 > span",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/div[1]/p-motion[1]/div[1]/div[1]/div[1]/ul[1]/p-selectitem[1]/li[1]/span[1]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Workflow Launchpad",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+        "index": 0,
+        "handleName": "Workflow Launchpad"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-015",
+      "type": "click",
+      "stage": "test",
+      "description": "Click dropdown trigger",
+      "note": "",
+      "timestamp": 1775049727379,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+      "visibleText": "",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "ariaLabel",
+        "primaryValue": "dropdown trigger",
+        "confidenceScore": 0.86,
+        "explanation": "Accessible label",
+        "visibleText": "",
+        "elementTag": "div",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": "dropdown trigger",
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > p-select#pn_id_311 > div.p-select-dropdown",
+        "xpath": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/t-workflow-library-start[1]/div[1]/tim-content-panel[1]/div[1]/p-card[1]/div[1]/div[1]/t-start-process-form[1]/tim-content-details[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/tim-form-renderer[1]/tim-form-row-list[1]/div[1]/div[4]/div[1]/tim-form-row[1]/div[1]/div[1]/div[1]/tim-form-row-column[1]/div[1]/div[2]/div[1]/tim-form-element[1]/div[1]/div[2]/div[1]/p-select[1]/div[1]",
+        "domPath": "body > p-select#pn_id_311 > div.p-select-dropdown",
+        "classes": [
+          "p-select-dropdown"
+        ],
+        "candidates": [
+          {
+            "strategy": "ariaLabel",
+            "value": "dropdown trigger",
+            "confidenceScore": 0.86,
+            "explanation": "Accessible label",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body > p-select#pn_id_311 > div.p-select-dropdown",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/t-workflow-library-start[1]/div[1]/tim-content-panel[1]/div[1]/p-card[1]/div[1]/div[1]/t-start-process-form[1]/tim-content-details[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/tim-form-renderer[1]/tim-form-row-list[1]/div[1]/div[4]/div[1]/tim-form-row[1]/div[1]/div[1]/div[1]/tim-form-row-column[1]/div[1]/div[2]/div[1]/tim-form-element[1]/div[1]/div[2]/div[1]/p-select[1]/div[1]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Workflow Launchpad",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+        "index": 0,
+        "handleName": "Workflow Launchpad"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-016",
+      "type": "click",
+      "stage": "test",
+      "description": "Click Start process instance",
+      "note": "",
+      "timestamp": 1775049729427,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+      "visibleText": "Start process instance",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "text",
+        "primaryValue": "Start process instance",
+        "confidenceScore": 0.76,
+        "explanation": "Visible text",
+        "visibleText": "Start process instance",
+        "elementTag": "span",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > p-button#smartform-startprocess > button.p-ripple.p-button > span.p-button-label",
+        "xpath": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/t-workflow-library-start[1]/div[1]/tim-content-panel[1]/div[1]/p-card[1]/div[1]/div[1]/t-start-process-form[1]/tim-content-details[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/p-button[2]/button[1]/span[1]",
+        "domPath": "body > p-button#smartform-startprocess > button.p-ripple.p-button > span.p-button-label",
+        "classes": [
+          "p-button-label"
+        ],
+        "candidates": [
+          {
+            "strategy": "text",
+            "value": "Start process instance",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body > p-button#smartform-startprocess > button.p-ripple.p-button > span.p-button-label",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/t-workflow-library-start[1]/div[1]/tim-content-panel[1]/div[1]/p-card[1]/div[1]/div[1]/t-start-process-form[1]/tim-content-details[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/p-button[2]/button[1]/span[1]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Workflow Launchpad",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/start/44269928",
+        "index": 0,
+        "handleName": "Workflow Launchpad"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-017",
+      "type": "navigate",
+      "stage": "test",
+      "description": "Navigate to https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+      "note": "",
+      "timestamp": 1775049737732,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+      "visibleText": "",
+      "value": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "url",
+        "primaryValue": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+        "confidenceScore": 0.0,
+        "explanation": "Navigation step",
+        "visibleText": "",
+        "elementTag": "",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": null,
+        "cssPath": null,
+        "xpath": null,
+        "domPath": null,
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "url",
+            "value": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+            "confidenceScore": 1.0,
+            "explanation": "Page URL",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Workflow Launchpad",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+        "index": 0,
+        "handleName": "Workflow Launchpad"
+      },
+      "waitStrategy": {
+        "kind": "url_change",
+        "targetSelector": null,
+        "expectedUrlFragment": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 8000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-018",
+      "type": "click",
+      "stage": "test",
+      "description": "Click pm",
+      "note": "",
+      "timestamp": 1775049751083,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+      "visibleText": "pm",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "text",
+        "primaryValue": "pm",
+        "confidenceScore": 0.76,
+        "explanation": "Visible text",
+        "visibleText": "pm",
+        "elementTag": "span",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > li#userprofile > div.p-menubar-item-content > a.flex.items-center > span.w-full.text-muted-color:nth-of-type(2)",
+        "xpath": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/tim-navbar[1]/div[1]/div[2]/p-menubar[1]/ul[1]/li[1]/div[1]/a[1]/span[2]",
+        "domPath": "body > li#userprofile > div.p-menubar-item-content > a.flex.items-center > span.w-full.text-muted-color:nth-of-type(2)",
+        "classes": [
+          "w-full",
+          "text-muted-color",
+          "ml-2"
+        ],
+        "candidates": [
+          {
+            "strategy": "text",
+            "value": "pm",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body > li#userprofile > div.p-menubar-item-content > a.flex.items-center > span.w-full.text-muted-color:nth-of-type(2)",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/tim-navbar[1]/div[1]/div[2]/p-menubar[1]/ul[1]/li[1]/div[1]/a[1]/span[2]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Process instances",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+        "index": 0,
+        "handleName": "Process instances"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-019",
+      "type": "click",
+      "stage": "test",
+      "description": "Click Logout",
+      "note": "",
+      "timestamp": 1775049752122,
+      "url": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+      "visibleText": "Logout",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "text",
+        "primaryValue": "Logout",
+        "confidenceScore": 0.76,
+        "explanation": "Visible text",
+        "visibleText": "Logout",
+        "elementTag": "span",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > li#logout > div.p-menubar-item-content > a.flex.items-center > span.w-full.text-muted-color:nth-of-type(2)",
+        "xpath": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/tim-navbar[1]/div[1]/div[2]/p-menubar[1]/ul[1]/li[1]/ul[1]/li[4]/div[1]/a[1]/span[2]",
+        "domPath": "body > li#logout > div.p-menubar-item-content > a.flex.items-center > span.w-full.text-muted-color:nth-of-type(2)",
+        "classes": [
+          "w-full",
+          "text-muted-color",
+          "ml-2"
+        ],
+        "candidates": [
+          {
+            "strategy": "text",
+            "value": "Logout",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": true
+          },
+          {
+            "strategy": "css",
+            "value": "body > li#logout > div.p-menubar-item-content > a.flex.items-center > span.w-full.text-muted-color:nth-of-type(2)",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "/html[1]/body[1]/tim-root[1]/t-layout[1]/div[1]/tim-navbar[1]/div[1]/div[2]/p-menubar[1]/ul[1]/li[1]/ul[1]/li[4]/div[1]/a[1]/span[2]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Process instances",
+        "url": "https://nightly.tim-bpm.com/tim/client/automate/processes/myinstances/61317005/smartforms",
+        "index": 0,
+        "handleName": "Process instances"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-020",
+      "type": "navigate",
+      "stage": "test",
+      "description": "Navigate to https://nightly.tim-bpm.com/tim/client/login",
+      "note": "",
+      "timestamp": 1775049752470,
+      "url": "https://nightly.tim-bpm.com/tim/client/login",
+      "visibleText": "",
+      "value": "https://nightly.tim-bpm.com/tim/client/login",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "url",
+        "primaryValue": "https://nightly.tim-bpm.com/tim/client/login",
+        "confidenceScore": 0.0,
+        "explanation": "Navigation step",
+        "visibleText": "",
+        "elementTag": "",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": null,
+        "cssPath": null,
+        "xpath": null,
+        "domPath": null,
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "url",
+            "value": "https://nightly.tim-bpm.com/tim/client/login",
+            "confidenceScore": 1.0,
+            "explanation": "Page URL",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Process instances",
+        "url": "https://nightly.tim-bpm.com/tim/client/login",
+        "index": 0,
+        "handleName": "Process instances"
+      },
+      "waitStrategy": {
+        "kind": "url_change",
+        "targetSelector": null,
+        "expectedUrlFragment": "https://nightly.tim-bpm.com/tim/client/login",
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 8000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    }
+  ],
+  "assertions": [],
+  "cleanup": [],
+  "notes": []
+}

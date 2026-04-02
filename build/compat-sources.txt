@@ -1,0 +1,17 @@
+C:\dev\uitool\recorder-tool\src\compat\java\com\codeborne\selenide\Condition.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\codeborne\selenide\Selenide.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\codeborne\selenide\SelenideElement.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\codeborne\selenide\SelenideTargetLocator.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\timbpm\generated\support\BaseUiTest.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\timbpm\generated\support\TimLoginSupport.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\timbpm\generated\support\UiAlerts.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\timbpm\generated\support\UiFrames.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\timbpm\generated\support\UiToasts.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\timbpm\generated\support\UiUploads.java
+C:\dev\uitool\recorder-tool\src\compat\java\com\timbpm\generated\support\UiWaits.java
+C:\dev\uitool\recorder-tool\src\compat\java\org\junit\After.java
+C:\dev\uitool\recorder-tool\src\compat\java\org\junit\Before.java
+C:\dev\uitool\recorder-tool\src\compat\java\org\junit\Test.java
+C:\dev\uitool\recorder-tool\src\compat\java\org\openqa\selenium\Alert.java
+C:\dev\uitool\recorder-tool\src\compat\java\org\openqa\selenium\By.java
+C:\dev\uitool\recorder-tool\src\compat\java\org\openqa\selenium\Keys.java

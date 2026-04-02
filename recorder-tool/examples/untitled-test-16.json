@@ -1,0 +1,450 @@
+{
+  "metadata": {
+    "scenarioId": "scenario-1775125391326",
+    "name": "Untitled Test 16",
+    "description": "Recorded with TIM UI Recorder",
+    "baseUrl": "",
+    "sourceUrl": "http://127.0.0.1:17846/recorder-test-page.html",
+    "profileId": "tim-ui-junit4-selenide",
+    "createdAt": "2026-04-02T10:23:11.326Z",
+    "updatedAt": "2026-04-02T10:23:16.795Z",
+    "createdBy": "chrome-extension",
+    "version": "1.0",
+    "tags": [
+      "ui"
+    ]
+  },
+  "variables": {},
+  "uploadAliases": {},
+  "setup": [],
+  "steps": [
+    {
+      "id": "step-001",
+      "type": "navigate",
+      "stage": "test",
+      "description": "Navigate to http://127.0.0.1:17846/recorder-test-page.html",
+      "note": "",
+      "timestamp": 1775125391494,
+      "url": "http://127.0.0.1:17846/recorder-test-page.html",
+      "visibleText": "",
+      "value": "http://127.0.0.1:17846/recorder-test-page.html",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "url",
+        "primaryValue": "http://127.0.0.1:17846/recorder-test-page.html",
+        "confidenceScore": 0.0,
+        "explanation": "Navigation step",
+        "visibleText": "",
+        "elementTag": "",
+        "inputType": "",
+        "id": null,
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": null,
+        "dataQa": null,
+        "semanticLabel": null,
+        "cssPath": null,
+        "xpath": null,
+        "domPath": null,
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "url",
+            "value": "http://127.0.0.1:17846/recorder-test-page.html",
+            "confidenceScore": 1.0,
+            "explanation": "Page URL",
+            "primary": true
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Recorder Baseline Fixture",
+        "url": "http://127.0.0.1:17846/recorder-test-page.html",
+        "index": 0,
+        "handleName": "Recorder Baseline Fixture"
+      },
+      "waitStrategy": {
+        "kind": "url_change",
+        "targetSelector": null,
+        "expectedUrlFragment": "http://127.0.0.1:17846/recorder-test-page.html",
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 8000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-002",
+      "type": "type",
+      "stage": "test",
+      "description": "Type into username",
+      "note": "",
+      "timestamp": 1775125392360,
+      "url": "http://127.0.0.1:17846/recorder-test-page.html",
+      "visibleText": "alice",
+      "value": "alice",
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "usernameInput",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "alice",
+        "elementTag": "input",
+        "inputType": "text",
+        "id": "usernameInput",
+        "name": "username",
+        "ariaLabel": "Username",
+        "dataTestId": "username-input",
+        "dataQa": null,
+        "semanticLabel": "Username",
+        "cssPath": "body > input#usernameInput",
+        "xpath": "//*[@id=\"usernameInput\"]",
+        "domPath": "body > input#usernameInput",
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "usernameInput",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          },
+          {
+            "strategy": "dataTestId",
+            "value": "username-input",
+            "confidenceScore": 0.91,
+            "explanation": "Explicit test id",
+            "primary": false
+          },
+          {
+            "strategy": "name",
+            "value": "username",
+            "confidenceScore": 0.88,
+            "explanation": "Element name",
+            "primary": false
+          },
+          {
+            "strategy": "placeholder",
+            "value": "Username",
+            "confidenceScore": 0.87,
+            "explanation": "Input placeholder",
+            "primary": false
+          },
+          {
+            "strategy": "ariaLabel",
+            "value": "Username",
+            "confidenceScore": 0.86,
+            "explanation": "Accessible label",
+            "primary": false
+          },
+          {
+            "strategy": "label",
+            "value": "Username",
+            "confidenceScore": 0.82,
+            "explanation": "Semantic label",
+            "primary": false
+          },
+          {
+            "strategy": "text",
+            "value": "alice",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": false
+          },
+          {
+            "strategy": "css",
+            "value": "body > input#usernameInput",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//*[@id=\"usernameInput\"]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Recorder Baseline Fixture",
+        "url": "http://127.0.0.1:17846/recorder-test-page.html",
+        "index": 0,
+        "handleName": "Recorder Baseline Fixture"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    },
+    {
+      "id": "step-003",
+      "type": "click",
+      "stage": "test",
+      "description": "Click Login",
+      "note": "",
+      "timestamp": 1775125392375,
+      "url": "http://127.0.0.1:17846/recorder-test-page.html",
+      "visibleText": "Login",
+      "value": null,
+      "expectedValue": null,
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "loginBtn",
+        "confidenceScore": 0.99,
+        "explanation": "Stable element id",
+        "visibleText": "Login",
+        "elementTag": "button",
+        "inputType": "",
+        "id": "loginBtn",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": "login-button",
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > button#loginBtn",
+        "xpath": "//*[@id=\"loginBtn\"]",
+        "domPath": "body > button#loginBtn",
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "loginBtn",
+            "confidenceScore": 0.99,
+            "explanation": "Stable element id",
+            "primary": true
+          },
+          {
+            "strategy": "dataTestId",
+            "value": "login-button",
+            "confidenceScore": 0.91,
+            "explanation": "Explicit test id",
+            "primary": false
+          },
+          {
+            "strategy": "text",
+            "value": "Login",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": false
+          },
+          {
+            "strategy": "css",
+            "value": "body > button#loginBtn",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//*[@id=\"loginBtn\"]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Recorder Baseline Fixture",
+        "url": "http://127.0.0.1:17846/recorder-test-page.html",
+        "index": 0,
+        "handleName": "Recorder Baseline Fixture"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "recorded-action"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "id": "step-004",
+      "type": "assert_text_equals",
+      "stage": "assertion",
+      "description": "Expect element with id \"message\" text to equal \"Logged in as alice\"",
+      "note": "",
+      "timestamp": 1775125393103,
+      "url": "http://127.0.0.1:17846/recorder-test-page.html",
+      "visibleText": "Logged in as alice",
+      "value": null,
+      "expectedValue": "Logged in as alice",
+      "key": null,
+      "optionText": null,
+      "checked": null,
+      "enabled": true,
+      "uploadAlias": null,
+      "fileNames": [],
+      "screenshotPath": null,
+      "todo": null,
+      "tags": [
+        "assertion",
+        "ui"
+      ],
+      "mappingHints": [],
+      "selector": {
+        "primaryStrategy": "id",
+        "primaryValue": "message",
+        "confidenceScore": 1.0,
+        "explanation": "User selected target by id",
+        "visibleText": "Logged in as alice",
+        "elementTag": "div",
+        "inputType": "",
+        "id": "message",
+        "name": null,
+        "ariaLabel": null,
+        "dataTestId": "message-box",
+        "dataQa": null,
+        "semanticLabel": "",
+        "cssPath": "body > div#message",
+        "xpath": "//*[@id=\"message\"]",
+        "domPath": "body > div#message",
+        "classes": [],
+        "candidates": [
+          {
+            "strategy": "id",
+            "value": "message",
+            "confidenceScore": 1.0,
+            "explanation": "User selected target by id",
+            "primary": true
+          },
+          {
+            "strategy": "dataTestId",
+            "value": "message-box",
+            "confidenceScore": 0.91,
+            "explanation": "Explicit test id",
+            "primary": false
+          },
+          {
+            "strategy": "text",
+            "value": "Logged in as alice",
+            "confidenceScore": 0.76,
+            "explanation": "Visible text",
+            "primary": false
+          },
+          {
+            "strategy": "css",
+            "value": "body > div#message",
+            "confidenceScore": 0.54,
+            "explanation": "CSS path fallback",
+            "primary": false
+          },
+          {
+            "strategy": "xpath",
+            "value": "//*[@id=\"message\"]",
+            "confidenceScore": 0.37,
+            "explanation": "XPath fallback",
+            "primary": false
+          }
+        ]
+      },
+      "frameContext": {
+        "frameSelectors": [],
+        "frameName": null,
+        "sameOrigin": true
+      },
+      "windowContext": {
+        "title": "Recorder Baseline Fixture",
+        "url": "http://127.0.0.1:17846/recorder-test-page.html",
+        "index": 0,
+        "handleName": "Recorder Baseline Fixture"
+      },
+      "waitStrategy": {
+        "kind": "none",
+        "targetSelector": null,
+        "expectedUrlFragment": null,
+        "expectedText": null,
+        "expectedValue": null,
+        "timeoutMs": 5000,
+        "collectionSize": null,
+        "customHelper": null,
+        "notes": null
+      },
+      "extra": {
+        "source": "manual-assertion",
+        "scope": "Element Text",
+        "summary": "Expect element with id \"message\" text to equal \"Logged in as alice\"",
+        "targetSummary": "id \"message\""
+      }
+    }
+  ],
+  "cleanup": [],
+  "notes": []
+}
