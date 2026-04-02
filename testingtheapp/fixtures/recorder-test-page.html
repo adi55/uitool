@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recorder Test Page</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f7fb;
+      color: #12304a;
+    }
+
+    main {
+      max-width: 640px;
+      margin: 48px auto;
+      padding: 32px;
+      background: #ffffff;
+      border: 1px solid #d7e4f1;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(18, 48, 74, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      border: 1px solid #aac1d6;
+      border-radius: 10px;
+      font: inherit;
+    }
+
+    button {
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 10px;
+      background: #0f62fe;
+      color: #ffffff;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0a4fd3;
+    }
+
+    #message {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #e8f1ff;
+      border: 1px solid #bed3ff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Recorder Fixture Login</h1>
+    <p>This page is used for live recorder validation. Type a username, click the button, and verify the updated message.</p>
+
+    <div class="field">
+      <label for="usernameInput">Username</label>
+      <input id="usernameInput" name="username" type="text" autocomplete="off" placeholder="alice">
+    </div>
+
+    <button id="loginBtn" type="button">Sign in</button>
+
+    <div id="message" role="status" aria-live="polite">Logged out</div>
+  </main>
+
+  <script>
+    (() => {
+      const usernameInput = document.getElementById('usernameInput');
+      const loginBtn = document.getElementById('loginBtn');
+      const message = document.getElementById('message');
+
+      loginBtn.addEventListener('click', () => {
+        const username = usernameInput.value.trim() || 'anonymous';
+        message.textContent = `Logged in as ${username}`;
+      });
+    })();
+  </script>
+</body>
+</html>
