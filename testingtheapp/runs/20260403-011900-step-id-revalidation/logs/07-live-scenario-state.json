@@ -1,0 +1,42 @@
+﻿{
+    "statusReplay":  "Replay Idle",
+    "replaySummary":  "Replay: idle",
+    "replayError":  "",
+    "playbackLog":  "INFO - PANEL\n01:16:06 AM\nAssertion step created and selected\nINFO - PANEL\n01:16:05 AM\nCreate Assertion clicked\nINFO - PANEL\n01:16:05 AM\nClick an element in the current test tab to fill the assertion target, then choose what is expected\nINFO - PANEL\n01:16:05 AM\nPick assertion target clicked\nINFO - PANEL\n01:16:05 AM\nAssertion composer opened. Pick an element or define it manually, then choose what is expected.\nINFO - PANEL\n01:16:05 AM\nRecording stopped\nINFO - PANEL\n01:16:04 AM\nStop clicked\nINFO - PANEL\n01:16:03 AM\nNew test started successfully in controlled tab #224811923\nINFO - PANEL\n01:16:03 AM\nPanel state refreshed for test-002 in controlled tab #224811923\nINFO - PANEL\n01:16:03 AM\nBackground responded to START_NEW_TEST with test test-002 and tab 224811923\nINFO - BACKGROUND\n01:16:02 AM\nStart New Test returning success for test-002 with tab #224811923\nINFO - BACKGROUND\n01:16:02 AM\nActive test updated to test-002\nINFO - BACKGROUND\n01:16:02 AM\nCreated controlled tab #224811923 for test-002\nINFO - BACKGROUND\n01:16:02 AM\nRequesting new controlled tab for http://127.0.0.1:17846/recorder-test-page.html\nINFO - BACKGROUND\n01:16:02 AM\nCreated test object test-002 (Untitled Test 2)\nINFO - BACKGROUND\n01:16:02 AM\nStart New Test handler received request\nINFO - PANEL\n01:16:02 AM\nSending START_NEW_TEST to background\nINFO - PANEL\n01:16:02 AM\nStart New Test clicked\nINFO - BACKGROUND\n01:12:06 AM\nStart New Test handler registered (tab creation available)\nINFO - BACKGROUND\n01:12:06 AM\nBackground script loaded",
+    "statusAttachedTab":  "Tab Attached #224811923",
+    "statusRecording":  "Recording Off",
+    "stepCount":  4,
+    "alerts":  [
+
+               ],
+    "stepIds":  [
+                    {
+                        "index":  1,
+                        "id":  "step-001",
+                        "type":  "navigate",
+                        "stage":  "test",
+                        "origin":  "recorded"
+                    },
+                    {
+                        "index":  2,
+                        "id":  "step-002",
+                        "type":  "type",
+                        "stage":  "test",
+                        "origin":  "recorded"
+                    },
+                    {
+                        "index":  3,
+                        "id":  "step-003",
+                        "type":  "click",
+                        "stage":  "test",
+                        "origin":  "recorded"
+                    },
+                    {
+                        "index":  4,
+                        "id":  "step-004",
+                        "type":  "assert_text_equals",
+                        "stage":  "assertion",
+                        "origin":  "manual"
+                    }
+                ]
+}

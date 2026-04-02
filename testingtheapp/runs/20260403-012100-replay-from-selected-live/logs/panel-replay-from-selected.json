@@ -1,0 +1,66 @@
+﻿{
+    "statusReplay":  "Replay Completed",
+    "replaySummary":  "Replay: Completed 3/3 (Hybrid)",
+    "replayError":  "",
+    "playbackLog":  "INFO - BACKGROUND\n01:20:15 AM\n[replay-debug] {\"event\":\"replay-completed\",\"selectedStepIndex\":2,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":null}\nINFO - BACKGROUND\n01:20:15 AM\n[replay-debug] {\"event\":\"replay-completed\",\"selectedStepIndex\":2,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - REPLAY\n01:20:15 AM\nReplay completed\nINFO - REPLAY\n01:20:14 AM\nStep 3/3 completed: step-003\nINFO - BACKGROUND\n01:20:14 AM\n[replay-debug] {\"event\":\"replay-step-completed\",\"selectedStepIndex\":2,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":null}\nINFO - REPLAY\n01:20:13 AM\nStep 3/3 started: step-003 click\nINFO - BACKGROUND\n01:20:13 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - PANEL\n01:20:13 AM\nReplay started from step 3\nINFO - REPLAY\n01:20:12 AM\nReplay control \"start\" acknowledged (running)\nINFO - BACKGROUND\n01:20:12 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - BACKGROUND\n01:20:12 AM\n[replay-debug] {\"event\":\"replay-session-started\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - REPLAY\n01:20:12 AM\nReplay started at step 3/3 (hybrid)\nINFO - BACKGROUND\n01:20:12 AM\n[replay-debug] {\"event\":\"replay-session-started\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - PANEL\n01:20:11 AM\nValidation passed.\nINFO - PANEL\n01:20:10 AM\nReplay validation from step 3\nINFO - PANEL\n01:20:10 AM\nReplay from current triggered\nINFO - BACKGROUND\n01:20:08 AM\n[replay-debug] {\"event\":\"panel-selected-step\",\"selectedStepIndex\":2,\"replayPointer\":-1,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - PANEL\n01:20:08 AM\nRecording stopped\nINFO - PANEL\n01:20:07 AM\nStop clicked\nINFO - PANEL\n01:20:06 AM\nNew test started successfully in controlled tab #224811924\nINFO - PANEL\n01:20:06 AM\nPanel state refreshed for test-003 in controlled tab #224811924\nINFO - PANEL\n01:20:06 AM\nBackground responded to START_NEW_TEST with test test-003 and tab 224811924\nINFO - BACKGROUND\n01:20:05 AM\nStart New Test returning success for test-003 with tab #224811924\nINFO - BACKGROUND\n01:20:05 AM\nActive test updated to test-003\nINFO - BACKGROUND\n01:20:05 AM\nCreated controlled tab #224811924 for test-003\nINFO - BACKGROUND\n01:20:05 AM\nRequesting new controlled tab for http://127.0.0.1:17846/recorder-test-page.html\nINFO - BACKGROUND\n01:20:05 AM\nCreated test object test-003 (Untitled Test 3)\nINFO - BACKGROUND\n01:20:05 AM\nStart New Test handler received request\nINFO - PANEL\n01:20:05 AM\nSending START_NEW_TEST to background\nINFO - PANEL\n01:20:05 AM\nStart New Test clicked\nINFO - PANEL\n01:16:31 AM\nJava generated: StepIdRevalidation20260403011900GeneratedTest\nINFO - PANEL\n01:16:30 AM\nGenerate Java clicked\nINFO - PANEL\n01:16:28 AM\nScenario saved to C:\\dev\\uitool\\recorder-tool\\examples\\untitled-test-2.json\nINFO - PANEL\n01:16:26 AM\nSave clicked\nINFO - BACKGROUND\n01:16:24 AM\n[replay-debug] {\"event\":\"replay-completed\",\"selectedStepIndex\":3,\"replayPointer\":4,\"failedStepIndex\":null,\"stepId\":null}\nINFO - BACKGROUND\n01:16:24 AM\n[replay-debug] {\"event\":\"replay-completed\",\"selectedStepIndex\":3,\"replayPointer\":4,\"failedStepIndex\":null,\"stepId\":\"step-004\"}\nINFO - BACKGROUND\n01:16:23 AM\n[replay-debug] {\"event\":\"replay-step-completed\",\"selectedStepIndex\":3,\"replayPointer\":4,\"failedStepIndex\":null,\"stepId\":null}\nINFO - BACKGROUND\n01:16:22 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":3,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":\"step-004\"}\nINFO - BACKGROUND\n01:16:22 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":3,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":\"step-004\"}\nINFO - PANEL\n01:16:21 AM\nReplay resumed",
+    "selectedStepText":  "Selected Step: Click element with id \"loginBtn\"",
+    "selectedStepIndex":  2,
+    "playback":  {
+                     "sessionId":  "replay-1775172012116-1",
+                     "mode":  "hybrid",
+                     "status":  "completed",
+                     "replaying":  false,
+                     "running":  false,
+                     "paused":  false,
+                     "stopped":  false,
+                     "stepInProgress":  false,
+                     "currentStepIndex":  3,
+                     "totalSteps":  3,
+                     "currentStepId":  null,
+                     "targetTabId":  224811924,
+                     "completedStepIndexes":  [
+                                                  2
+                                              ],
+                     "failedStepIndex":  null,
+                     "failureIndex":  null,
+                     "lastError":  null,
+                     "lastResult":  {
+                                        "ok":  true,
+                                        "sessionId":  "replay-1775172012116-1",
+                                        "stepIndex":  2,
+                                        "totalSteps":  3,
+                                        "stepId":  "step-003",
+                                        "stepType":  "click",
+                                        "type":  "REPLAY_STEP_RESULT"
+                                    },
+                     "startedAt":  "2026-04-02T23:20:12.116Z",
+                     "finishedAt":  "2026-04-02T23:20:15.712Z",
+                     "logs":  [
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay started at step 3/3 (hybrid)",
+                                      "timestamp":  "2026-04-02T23:20:12.116Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"start\" acknowledged (running)",
+                                      "timestamp":  "2026-04-02T23:20:12.940Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 3/3 started: step-003 click",
+                                      "timestamp":  "2026-04-02T23:20:13.783Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 3/3 completed: step-003",
+                                      "timestamp":  "2026-04-02T23:20:14.559Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay completed",
+                                      "timestamp":  "2026-04-02T23:20:15.712Z"
+                                  }
+                              ]
+                 }
+}

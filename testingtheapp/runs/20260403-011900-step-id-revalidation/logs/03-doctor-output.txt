@@ -1,0 +1,27 @@
+﻿{
+    "backendHealthy":  true,
+    "javaHome":  "C:\\Program Files\\Amazon Corretto\\jdk17.0.18_9",
+    "manifestScriptingPermission":  true,
+    "chromeDebugPort":  9222,
+    "backgroundScriptLoaded":  true,
+    "managedChromePath":  "C:\\dev\\uitool\\.runtime\\chrome-for-testing\\chrome.exe",
+    "recorderPanelOpen":  false,
+    "preferredChromePath":  "C:\\dev\\uitool\\.runtime\\chrome-for-testing\\chrome.exe",
+    "manifestActiveTabPermission":  true,
+    "tabCreationAvailable":  true,
+    "distJar":  true,
+    "root":  "C:\\dev\\uitool",
+    "systemChromePath":  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "manifestTabsPermission":  true,
+    "serverPort":  17845,
+    "manifestHostPermissions":  [
+                                    "\u003call_urls\u003e",
+                                    "http://127.0.0.1/*",
+                                    "http://localhost/*"
+                                ],
+    "recorderExtensionLoaded":  true,
+    "chromeDebugReachable":  true,
+    "configFile":  "C:\\dev\\uitool\\config\\recorder.local.properties",
+    "javaVersion":  "openjdk version \"17.0.18\" 2026-01-20 LTS",
+    "startNewTestHandlerRegistered":  true
+}

@@ -1,0 +1,15 @@
+﻿
+[2026-04-03 01:15:57Z] Fixture server ready at http://127.0.0.1:17846/recorder-test-page.html (pid 19568)
+[2026-04-03 01:15:57Z] Environment / setup: Reused the already-running managed backend and Chrome session.
+[2026-04-03 01:16:02Z] Saved screenshot C:\dev\uitool\testingtheapp\runs\20260403-011900-step-id-revalidation\screenshots\01-panel-initial-state.png
+[2026-04-03 01:16:04Z] Saved screenshot C:\dev\uitool\testingtheapp\runs\20260403-011900-step-id-revalidation\screenshots\02-after-start-new-test.png
+[2026-04-03 01:16:06Z] Environment / setup: Built a mixed live scenario with recorded navigate/type/click steps plus a manual assertion step.
+[2026-04-03 01:16:07Z] Saved screenshot C:\dev\uitool\testingtheapp\runs\20260403-011900-step-id-revalidation\screenshots\03-recorded-steps-and-assertion.png
+[2026-04-03 01:16:09Z] Replay: Started live replay from the panel on the repaired mixed scenario.
+[2026-04-03 01:16:14Z] Saved screenshot C:\dev\uitool\testingtheapp\runs\20260403-011900-step-id-revalidation\screenshots\04-replay-running.png
+[2026-04-03 01:16:19Z] Saved screenshot C:\dev\uitool\testingtheapp\runs\20260403-011900-step-id-revalidation\screenshots\05-replay-progress.png
+[2026-04-03 01:16:26Z] Saved screenshot C:\dev\uitool\testingtheapp\runs\20260403-011900-step-id-revalidation\screenshots\06-replay-result.png
+[2026-04-03 01:16:28Z] Save: Triggered live panel Save after the repaired replay scenario was authored.
+[2026-04-03 01:16:29Z] Saved screenshot C:\dev\uitool\testingtheapp\runs\20260403-011900-step-id-revalidation\screenshots\07-save-result.png
+[2026-04-03 01:16:31Z] Generate Java: Triggered live panel Generate Java after the repaired scenario replay/save checks.
+[2026-04-03 01:16:34Z] Saved screenshot C:\dev\uitool\testingtheapp\runs\20260403-011900-step-id-revalidation\screenshots\08-generate-java-result.png

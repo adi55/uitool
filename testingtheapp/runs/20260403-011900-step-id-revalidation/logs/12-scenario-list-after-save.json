@@ -1,0 +1,39 @@
+﻿{
+    "scenarios":  [
+                      {
+                          "fileName":  "generic-upload-example.yaml",
+                          "path":  "C:\\dev\\uitool\\recorder-tool\\examples\\generic-upload-example.yaml",
+                          "format":  "yaml"
+                      },
+                      {
+                          "fileName":  "nightly-login-candidate-tasknmotion.json",
+                          "path":  "C:\\dev\\uitool\\recorder-tool\\examples\\nightly-login-candidate-tasknmotion.json",
+                          "format":  "json"
+                      },
+                      {
+                          "fileName":  "untitled-scenario.json",
+                          "path":  "C:\\dev\\uitool\\recorder-tool\\examples\\untitled-scenario.json",
+                          "format":  "json"
+                      },
+                      {
+                          "fileName":  "untitled-test-16.json",
+                          "path":  "C:\\dev\\uitool\\recorder-tool\\examples\\untitled-test-16.json",
+                          "format":  "json"
+                      },
+                      {
+                          "fileName":  "untitled-test-2.json",
+                          "path":  "C:\\dev\\uitool\\recorder-tool\\examples\\untitled-test-2.json",
+                          "format":  "json"
+                      },
+                      {
+                          "fileName":  "untitled-test-3.json",
+                          "path":  "C:\\dev\\uitool\\recorder-tool\\examples\\untitled-test-3.json",
+                          "format":  "json"
+                      },
+                      {
+                          "fileName":  "untitled-test-4.json",
+                          "path":  "C:\\dev\\uitool\\recorder-tool\\examples\\untitled-test-4.json",
+                          "format":  "json"
+                      }
+                  ]
+}

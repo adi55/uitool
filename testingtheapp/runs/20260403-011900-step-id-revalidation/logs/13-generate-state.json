@@ -1,0 +1,49 @@
+﻿{
+    "statusReplay":  "Replay Completed",
+    "replaySummary":  "Replay: Completed 4/4 (Hybrid)",
+    "replayError":  "",
+    "playbackLog":  "INFO - PANEL\n01:16:31 AM\nJava generated: StepIdRevalidation20260403011900GeneratedTest\nINFO - PANEL\n01:16:30 AM\nGenerate Java clicked\nINFO - PANEL\n01:16:28 AM\nScenario saved to C:\\dev\\uitool\\recorder-tool\\examples\\untitled-test-2.json\nINFO - PANEL\n01:16:26 AM\nSave clicked\nINFO - BACKGROUND\n01:16:24 AM\n[replay-debug] {\"event\":\"replay-completed\",\"selectedStepIndex\":3,\"replayPointer\":4,\"failedStepIndex\":null,\"stepId\":null}\nINFO - REPLAY\n01:16:24 AM\nReplay completed\nINFO - BACKGROUND\n01:16:24 AM\n[replay-debug] {\"event\":\"replay-completed\",\"selectedStepIndex\":3,\"replayPointer\":4,\"failedStepIndex\":null,\"stepId\":\"step-004\"}\nINFO - REPLAY\n01:16:23 AM\nStep 4/4 completed: step-004\nINFO - BACKGROUND\n01:16:23 AM\n[replay-debug] {\"event\":\"replay-step-completed\",\"selectedStepIndex\":3,\"replayPointer\":4,\"failedStepIndex\":null,\"stepId\":null}\nINFO - REPLAY\n01:16:22 AM\nStep 4/4 started: step-004 assert_text_equals\nINFO - BACKGROUND\n01:16:22 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":3,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":\"step-004\"}\nINFO - BACKGROUND\n01:16:22 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":3,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":\"step-004\"}\nINFO - PANEL\n01:16:21 AM\nReplay resumed\nINFO - BACKGROUND\n01:16:20 AM\n[replay-debug] {\"event\":\"replay-step-completed\",\"selectedStepIndex\":3,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":\"step-004\"}\nINFO - REPLAY\n01:16:20 AM\nStep 3/4 completed: step-003\nINFO - BACKGROUND\n01:16:20 AM\n[replay-debug] {\"event\":\"replay-pointer-advanced\",\"selectedStepIndex\":3,\"replayPointer\":3,\"failedStepIndex\":null,\"stepId\":\"step-004\"}\nINFO - REPLAY\n01:16:20 AM\nReplay control \"resume\" acknowledged (running)\nINFO - REPLAY\n01:16:20 AM\nReplay resumed\nINFO - BACKGROUND\n01:16:20 AM\n[replay-debug] {\"event\":\"replay-resumed\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - BACKGROUND\n01:16:20 AM\n[replay-debug] {\"event\":\"replay-resumed\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - PANEL\n01:16:19 AM\nContinue replay clicked\nINFO - PANEL\n01:16:16 AM\nReplay paused\nINFO - REPLAY\n01:16:15 AM\nStep 3/4 started: step-003 click\nINFO - BACKGROUND\n01:16:15 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - REPLAY\n01:16:14 AM\nReplay control \"pause\" acknowledged (paused)\nINFO - REPLAY\n01:16:14 AM\nReplay paused\nINFO - BACKGROUND\n01:16:14 AM\n[replay-debug] {\"event\":\"replay-paused\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - BACKGROUND\n01:16:14 AM\n[replay-debug] {\"event\":\"replay-paused\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - PANEL\n01:16:14 AM\nPause replay clicked\nINFO - BACKGROUND\n01:16:14 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - BACKGROUND\n01:16:13 AM\n[replay-debug] {\"event\":\"replay-step-completed\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - BACKGROUND\n01:16:13 AM\n[replay-debug] {\"event\":\"replay-pointer-advanced\",\"selectedStepIndex\":2,\"replayPointer\":2,\"failedStepIndex\":null,\"stepId\":\"step-003\"}\nINFO - REPLAY\n01:16:13 AM\nStep 2/4 completed: step-002\nINFO - REPLAY\n01:16:12 AM\nStep 2/4 started: step-002 type\nINFO - BACKGROUND\n01:16:12 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":1,\"replayPointer\":1,\"failedStepIndex\":null,\"stepId\":\"step-002\"}\nINFO - BACKGROUND\n01:16:12 AM\n[replay-debug] {\"event\":\"replay-step-started\",\"selectedStepIndex\":1,\"replayPointer\":1,\"failedStepIndex\":null,\"stepId\":\"step-002\"}\nINFO - BACKGROUND\n01:16:11 AM\n[replay-debug] {\"event\":\"replay-step-completed\",\"selectedStepIndex\":1,\"replayPointer\":1,\"failedStepIndex\":null,\"stepId\":\"step-002\"}\nINFO - BACKGROUND\n01:16:11 AM\n[replay-debug] {\"event\":\"replay-pointer-advanced\",\"selectedStepIndex\":1,\"replayPointer\":1,\"failedStepIndex\":null,\"stepId\":\"step-002\"}\nINFO - REPLAY\n01:16:11 AM\nStep 1/4 completed: step-001\nINFO - REPLAY\n01:16:10 AM\nStep 1/4 started: step-001 navigate",
+    "statusAttachedTab":  "Tab Attached #224811923",
+    "statusRecording":  "Recording Off",
+    "stepCount":  4,
+    "alerts":  [
+                   {
+                       "message":  "Saved to C:\\dev\\uitool\\recorder-tool\\examples\\untitled-test-2.json",
+                       "timestamp":  "2026-04-02T23:16:28.093Z"
+                   },
+                   {
+                       "message":  "Generated StepIdRevalidation20260403011900GeneratedTest\nC:\\dev\\uitool\\recorder-tool\\generated\\java\\com\\timbpm\\generated\\ui\\StepIdRevalidation20260403011900GeneratedTest.java",
+                       "timestamp":  "2026-04-02T23:16:31.486Z"
+                   }
+               ],
+    "stepIds":  [
+                    {
+                        "index":  1,
+                        "id":  "step-001",
+                        "type":  "navigate",
+                        "stage":  "test",
+                        "origin":  "recorded"
+                    },
+                    {
+                        "index":  2,
+                        "id":  "step-002",
+                        "type":  "type",
+                        "stage":  "test",
+                        "origin":  "recorded"
+                    },
+                    {
+                        "index":  3,
+                        "id":  "step-003",
+                        "type":  "click",
+                        "stage":  "test",
+                        "origin":  "recorded"
+                    },
+                    {
+                        "index":  4,
+                        "id":  "step-004",
+                        "type":  "assert_text_equals",
+                        "stage":  "assertion",
+                        "origin":  "manual"
+                    }
+                ]
+}

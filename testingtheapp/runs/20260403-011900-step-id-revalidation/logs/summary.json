@@ -1,0 +1,86 @@
+﻿{
+    "results":  {
+                    "Environment":  {
+                                        "Label":  "Environment / setup",
+                                        "Goal":  "Reuse or start the recorder runtime, verify backend health, open the panel, and build a mixed live test with recorded actions plus a manual assertion.",
+                                        "Status":  "VERIFIED",
+                                        "Steps":  [
+                                                      "Reused the already-running managed backend and Chrome session.",
+                                                      "Built a mixed live scenario with recorded navigate/type/click steps plus a manual assertion step."
+                                                  ],
+                                        "Evidence":  [
+                                                         "logs/02-runtime-state-reused.json",
+                                                         "logs/03-doctor-output.json",
+                                                         "logs/04-backend-health.json",
+                                                         "logs/05-extension-status.json",
+                                                         "screenshots/01-panel-initial-state.png",
+                                                         "logs/06-panel-initial-state.json",
+                                                         "screenshots/02-after-start-new-test.png",
+                                                         "screenshots/03-recorded-steps-and-assertion.png",
+                                                         "logs/07-live-scenario-state.json",
+                                                         "logs/08-step-id-snapshot.json"
+                                                     ],
+                                        "Notes":  [
+
+                                                  ],
+                                        "NextAction":  ""
+                                    },
+                    "Replay":  {
+                                   "Label":  "Replay",
+                                   "Goal":  "Replay the mixed live scenario end to end with direct evidence of running, progress, and final result.",
+                                   "Status":  "VERIFIED",
+                                   "Steps":  [
+                                                 "Started live replay from the panel on the repaired mixed scenario."
+                                             ],
+                                   "Evidence":  [
+                                                    "screenshots/04-replay-running.png",
+                                                    "screenshots/05-replay-progress.png",
+                                                    "screenshots/06-replay-result.png",
+                                                    "logs/10-replay-state.json"
+                                                ],
+                                   "Notes":  [
+
+                                             ],
+                                   "NextAction":  ""
+                               },
+                    "Save":  {
+                                 "Label":  "Save",
+                                 "Goal":  "Save the repaired live-authored scenario and confirm persistence directly.",
+                                 "Status":  "VERIFIED",
+                                 "Steps":  [
+                                               "Triggered live panel Save after the repaired replay scenario was authored."
+                                           ],
+                                 "Evidence":  [
+                                                  "screenshots/07-save-result.png",
+                                                  "logs/11-save-state.json",
+                                                  "logs/12-scenario-list-after-save.json"
+                                              ],
+                                 "Notes":  [
+
+                                           ],
+                                 "NextAction":  ""
+                             },
+                    "GenerateJava":  {
+                                         "Label":  "Generate Java",
+                                         "Goal":  "Generate Java from the repaired live-authored scenario and confirm the output file exists.",
+                                         "Status":  "VERIFIED",
+                                         "Steps":  [
+                                                       "Triggered live panel Generate Java after the repaired scenario replay/save checks."
+                                                   ],
+                                         "Evidence":  [
+                                                          "screenshots/08-generate-java-result.png",
+                                                          "logs/13-generate-state.json"
+                                                      ],
+                                         "Notes":  [
+
+                                                   ],
+                                         "NextAction":  ""
+                                     }
+                },
+    "runName":  "20260403-011900-step-id-revalidation",
+    "scenarioFileName":  "step-id-revalidation-20260403-011900-step-id-revalidation.json",
+    "javaClassName":  "StepIdRevalidation20260403011900GeneratedTest",
+    "runDir":  "C:\\dev\\uitool\\testingtheapp\\runs\\20260403-011900-step-id-revalidation",
+    "scenarioName":  "Step Id Revalidation 20260403-011900-step-id-revalidation",
+    "completedAt":  "2026-04-03T01:16:34.2159633+02:00"
+}

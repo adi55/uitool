@@ -1,0 +1,20 @@
+﻿[
+    {
+        "index":  0,
+        "id":  "step-001",
+        "type":  "navigate",
+        "description":  "Navigate to http://127.0.0.1:17846/recorder-test-page.html"
+    },
+    {
+        "index":  1,
+        "id":  "step-002",
+        "type":  "type",
+        "description":  "Type into username"
+    },
+    {
+        "index":  2,
+        "id":  "step-003",
+        "type":  "click",
+        "description":  "Click Sign in"
+    }
+]

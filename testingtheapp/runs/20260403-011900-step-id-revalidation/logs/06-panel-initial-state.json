@@ -1,0 +1,15 @@
+﻿{
+    "statusReplay":  "Replay Idle",
+    "replaySummary":  "Replay: idle",
+    "replayError":  "",
+    "playbackLog":  "INFO - BACKGROUND\n01:12:06 AM\nStart New Test handler registered (tab creation available)\nINFO - BACKGROUND\n01:12:06 AM\nBackground script loaded",
+    "statusAttachedTab":  "Tab Detached",
+    "statusRecording":  "Recording Off",
+    "stepCount":  0,
+    "alerts":  [
+
+               ],
+    "stepIds":  [
+
+                ]
+}
