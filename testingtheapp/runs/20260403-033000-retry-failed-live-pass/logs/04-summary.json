@@ -1,0 +1,33 @@
+﻿{
+    "failure":  {
+                    "stepIndex":  3,
+                    "stepId":  "step-004",
+                    "stepType":  "assert_text_equals",
+                    "selectorStrategy":  "id",
+                    "selectorValue":  "message",
+                    "replayStatus":  "failed",
+                    "replaySummary":  "Replay: Failed at step 4 of 4 (Hybrid)",
+                    "replayHelp":  "Replay stopped at step 4. Review the error, edit the step if needed, then use Retry Failed, Skip Step, or Replay From Selected.",
+                    "failedStepIndex":  3,
+                    "currentStepIndex":  3,
+                    "lastError":  "Error: Assertion failed: expected text \"Logged in as bob\" but got \"Logged in as alice\"",
+                    "retryDisabled":  false
+                },
+    "retry":  {
+                  "replayStatus":  "failed",
+                  "replaySummary":  "Replay: Failed at step 4 of 4 (Hybrid)",
+                  "replayHelp":  "Replay stopped at step 4. Review the error, edit the step if needed, then use Retry Failed, Skip Step, or Replay From Selected.",
+                  "failedStepIndex":  3,
+                  "currentStepIndex":  3,
+                  "lastError":  "Error: Assertion failed: expected text \"Logged in as bob\" but got \"Logged in as alice\"",
+                  "selectedStepIndex":  3,
+                  "lastResult":  {
+                                     "ok":  false,
+                                     "type":  "REPLAY_ERROR",
+                                     "sessionId":  "replay-1775175609911-2",
+                                     "stepIndex":  3,
+                                     "stepId":  "step-004",
+                                     "error":  "Error: Assertion failed: expected text \"Logged in as bob\" but got \"Logged in as alice\""
+                                 }
+              }
+}

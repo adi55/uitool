@@ -1352,6 +1352,7 @@ async function failReplaySession(sessionId, step, stepIndex, error) {
     return
   }
 
+  state.playback.stepInProgress = false
   state.playback.paused = true
   state.playback.replaying = true
   state.playback.running = false
