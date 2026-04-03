@@ -1,0 +1,237 @@
+﻿{
+    "statusReplay":  "Replay Failed",
+    "replaySummary":  "Replay: Failed at step 4 of 4 (Hybrid)",
+    "replayHelp":  "Replay stopped at step 4. Review the error, edit the step if needed, then use Retry Failed, Skip Step, or Replay From Selected.",
+    "replayError":  "Error: Assertion failed: expected text \"Logged in as bob\" but got \"Logged in as alice\"",
+    "selectedStepText":  "Selected Step: Expect element with id \"message\" text to equal \"Logged…",
+    "nextDisabled":  false,
+    "retryDisabled":  false,
+    "skipDisabled":  false,
+    "selectedStepIndex":  3,
+    "playback":  {
+                     "sessionId":  "replay-1775212082367-2",
+                     "mode":  "hybrid",
+                     "status":  "failed",
+                     "replaying":  true,
+                     "running":  false,
+                     "paused":  true,
+                     "stopped":  false,
+                     "stepInProgress":  false,
+                     "currentStepIndex":  3,
+                     "totalSteps":  4,
+                     "currentStepId":  "step-004",
+                     "targetTabId":  224812649,
+                     "completedStepIndexes":  [
+                                                  0,
+                                                  1,
+                                                  2
+                                              ],
+                     "failedStepIndex":  3,
+                     "failureIndex":  3,
+                     "lastError":  "Error: Assertion failed: expected text \"Logged in as bob\" but got \"Logged in as alice\"",
+                     "lastResult":  {
+                                        "ok":  false,
+                                        "type":  "REPLAY_ERROR",
+                                        "sessionId":  "replay-1775212082367-2",
+                                        "stepIndex":  3,
+                                        "stepId":  "step-004",
+                                        "error":  "Error: Assertion failed: expected text \"Logged in as bob\" but got \"Logged in as alice\""
+                                    },
+                     "startedAt":  "2026-04-03T10:28:02.367Z",
+                     "finishedAt":  null,
+                     "logs":  [
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay started at step 1/4 (hybrid)",
+                                      "timestamp":  "2026-04-03T10:28:02.367Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"start\" acknowledged (running)",
+                                      "timestamp":  "2026-04-03T10:28:03.473Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 1/4 started: step-001 navigate",
+                                      "timestamp":  "2026-04-03T10:28:04.149Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 1/4 completed: step-001",
+                                      "timestamp":  "2026-04-03T10:28:04.833Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 2/4 started: step-002 type",
+                                      "timestamp":  "2026-04-03T10:28:05.846Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 2/4 completed: step-002",
+                                      "timestamp":  "2026-04-03T10:28:06.357Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 3/4 started: step-003 click",
+                                      "timestamp":  "2026-04-03T10:28:07.414Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 3/4 completed: step-003",
+                                      "timestamp":  "2026-04-03T10:28:07.921Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 4/4 started: step-004 assert_text_equals",
+                                      "timestamp":  "2026-04-03T10:28:08.978Z"
+                                  },
+                                  {
+                                      "level":  "ERROR",
+                                      "message":  "Step 4/4 failed: Error: Assertion failed: expected text \"Logged in as bob\" but got \"Logged in as alice\"",
+                                      "timestamp":  "2026-04-03T10:28:09.480Z"
+                                  }
+                              ]
+                 },
+    "currentStep":  {
+                        "index":  3,
+                        "id":  "step-004",
+                        "type":  "assert_text_equals",
+                        "description":  "Expect element with id \"message\" text to equal \"Logged in as bob\"",
+                        "selector":  {
+                                         "primaryStrategy":  "id",
+                                         "primaryValue":  "message",
+                                         "confidenceScore":  1,
+                                         "explanation":  "User selected target by id",
+                                         "visibleText":  "",
+                                         "elementTag":  "",
+                                         "inputType":  "",
+                                         "id":  "message",
+                                         "name":  null,
+                                         "placeholder":  null,
+                                         "ariaLabel":  null,
+                                         "dataTestId":  null,
+                                         "dataQa":  null,
+                                         "semanticLabel":  null,
+                                         "cssPath":  null,
+                                         "xpath":  null,
+                                         "domPath":  null,
+                                         "classes":  [
+
+                                                     ],
+                                         "candidates":  [
+                                                            {
+                                                                "strategy":  "id",
+                                                                "value":  "message",
+                                                                "confidenceScore":  1,
+                                                                "explanation":  "User selected target by id",
+                                                                "primary":  true
+                                                            },
+                                                            {
+                                                                "strategy":  "text",
+                                                                "value":  "",
+                                                                "confidenceScore":  1,
+                                                                "explanation":  "User selected target by text",
+                                                                "primary":  true
+                                                            }
+                                                        ]
+                                     },
+                        "expectedValue":  "Logged in as bob"
+                    },
+    "failedStep":  {
+                       "index":  3,
+                       "id":  "step-004",
+                       "type":  "assert_text_equals",
+                       "description":  "Expect element with id \"message\" text to equal \"Logged in as bob\"",
+                       "selector":  {
+                                        "primaryStrategy":  "id",
+                                        "primaryValue":  "message",
+                                        "confidenceScore":  1,
+                                        "explanation":  "User selected target by id",
+                                        "visibleText":  "",
+                                        "elementTag":  "",
+                                        "inputType":  "",
+                                        "id":  "message",
+                                        "name":  null,
+                                        "placeholder":  null,
+                                        "ariaLabel":  null,
+                                        "dataTestId":  null,
+                                        "dataQa":  null,
+                                        "semanticLabel":  null,
+                                        "cssPath":  null,
+                                        "xpath":  null,
+                                        "domPath":  null,
+                                        "classes":  [
+
+                                                    ],
+                                        "candidates":  [
+                                                           {
+                                                               "strategy":  "id",
+                                                               "value":  "message",
+                                                               "confidenceScore":  1,
+                                                               "explanation":  "User selected target by id",
+                                                               "primary":  true
+                                                           },
+                                                           {
+                                                               "strategy":  "text",
+                                                               "value":  "",
+                                                               "confidenceScore":  1,
+                                                               "explanation":  "User selected target by text",
+                                                               "primary":  true
+                                                           }
+                                                       ]
+                                    },
+                       "expectedValue":  "Logged in as bob"
+                   },
+    "recentReplayLogs":  [
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay started at step 1/4 (hybrid)",
+                                 "timestamp":  "2026-04-03T10:28:02.367Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"start\" acknowledged (running)",
+                                 "timestamp":  "2026-04-03T10:28:03.473Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 1/4 started: step-001 navigate",
+                                 "timestamp":  "2026-04-03T10:28:04.149Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 1/4 completed: step-001",
+                                 "timestamp":  "2026-04-03T10:28:04.833Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 2/4 started: step-002 type",
+                                 "timestamp":  "2026-04-03T10:28:05.846Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 2/4 completed: step-002",
+                                 "timestamp":  "2026-04-03T10:28:06.357Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 3/4 started: step-003 click",
+                                 "timestamp":  "2026-04-03T10:28:07.414Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 3/4 completed: step-003",
+                                 "timestamp":  "2026-04-03T10:28:07.921Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 4/4 started: step-004 assert_text_equals",
+                                 "timestamp":  "2026-04-03T10:28:08.978Z"
+                             },
+                             {
+                                 "level":  "ERROR",
+                                 "message":  "Step 4/4 failed: Error: Assertion failed: expected text \"Logged in as bob\" but got \"Logged in as alice\"",
+                                 "timestamp":  "2026-04-03T10:28:09.480Z"
+                             }
+                         ]
+}

@@ -1,0 +1,14 @@
+﻿[2026-04-03T12:27:50.6085883+02:00] Starting failed-state Run Next Step live validation
+[2026-04-03T12:27:53.4105368+02:00] Fixture server ready
+[2026-04-03T12:27:56.6398063+02:00] Panel socket connected
+[2026-04-03T12:27:57.1387502+02:00] Screenshot intentionally skipped for 01-panel-initial-state.png; panel-state JSON is the primary evidence for this run.
+[2026-04-03T12:27:58.8123938+02:00] Start New Test completed and fixture tab detected
+[2026-04-03T12:27:59.0971599+02:00] Screenshot intentionally skipped for 02-after-start-new-test.png; panel-state JSON is the primary evidence for this run.
+[2026-04-03T12:28:00.4456790+02:00] Recorded navigate/type/click steps and stopped recording
+[2026-04-03T12:28:01.0470533+02:00] Screenshot intentionally skipped for 03-failure-scenario-authored.png; panel-state JSON is the primary evidence for this run.
+[2026-04-03T12:28:01.0486891+02:00] Added deterministic failing assertion step
+[2026-04-03T12:28:03.2595628+02:00] Screenshot intentionally skipped for 04-replay-running.png; panel-state JSON is the primary evidence for this run.
+[2026-04-03T12:28:10.4039900+02:00] Screenshot intentionally skipped for 05-replay-failed.png; panel-state JSON is the primary evidence for this run.
+[2026-04-03T12:28:10.4112848+02:00] Replay entered deterministic failed state with Run Next Step enabled
+[2026-04-03T12:28:13.6785290+02:00] Screenshot intentionally skipped for 06-next-step-from-failed.png; panel-state JSON is the primary evidence for this run.
+[2026-04-03T12:28:13.6852736+02:00] Run Next Step from failed state settled
