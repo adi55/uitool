@@ -1318,7 +1318,7 @@ async function stopReplaySession(message = 'Replay stopped') {
   await broadcastReplayStatusUpdate('stopped')
 }
 
-async function completeReplaySession(sessionId) {
+async function completeReplaySession(sessionId, options = {}) {
   if (!matchesReplaySession(sessionId)) {
     return
   }
@@ -1334,7 +1334,20 @@ async function completeReplaySession(sessionId) {
   state.playback.failureIndex = null
   state.playback.lastError = null
   appendReplayLog('INFO', 'Replay completed')
-  syncSelectedStepToReplayState('replay-completed', { fallbackToLastCompleted: true })
+  if (
+    Number.isInteger(options.selectionIndex) &&
+    options.selectionIndex >= 0 &&
+    options.selectionIndex < state.playback.totalSteps
+  ) {
+    setSelectedStepIndex(options.selectionIndex, { syncReplayPointer: false })
+    logReplayStateDebug('replay-completed-selection-anchor', {
+      selectedStepIndex: options.selectionIndex,
+      replayPointer: state.playback.currentStepIndex,
+      stepId: getActiveScenario().orderedSteps[options.selectionIndex]?.id || null
+    })
+  } else {
+    syncSelectedStepToReplayState('replay-completed', { fallbackToLastCompleted: true })
+  }
   appendDebugEvent({
     source: 'background',
     category: 'replay',
@@ -1474,6 +1487,7 @@ async function skipReplaySessionStep() {
   }
 
   const step = getActiveScenario().orderedSteps[replay.currentStepIndex]
+  const skippedStepIndex = replay.currentStepIndex
   appendReplayLog(
     'WARN',
     `Step ${replay.currentStepIndex + 1}/${replay.totalSteps} skipped: ${step?.id || 'unknown-step'}`
@@ -1495,7 +1509,7 @@ async function skipReplaySessionStep() {
   replay.currentStepId = getActiveScenario().orderedSteps[replay.currentStepIndex]?.id || null
 
   if (replay.currentStepIndex >= replay.totalSteps) {
-    await completeReplaySession(replay.sessionId)
+    await completeReplaySession(replay.sessionId, { selectionIndex: skippedStepIndex })
     return
   }
 

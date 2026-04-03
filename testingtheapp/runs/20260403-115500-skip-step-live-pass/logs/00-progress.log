@@ -1,0 +1,25 @@
+﻿[2026-04-03T09:44:36.9799559+02:00] Starting Skip Step live validation
+[2026-04-03T09:44:40.8480353+02:00] Doctor completed
+[2026-04-03T09:44:42.5372655+02:00] Fixture server ready
+[2026-04-03T09:44:45.6560960+02:00] Panel target reset
+[2026-04-03T09:44:46.7201932+02:00] Panel socket connected
+[2026-04-03T09:44:47.1888575+02:00] Screenshot intentionally skipped for 01-panel-initial-state.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:44:48.6421611+02:00] Start New Test completed and fixture tab detected
+[2026-04-03T09:44:48.7831395+02:00] Screenshot intentionally skipped for 02-after-start-new-test.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:44:48.8082495+02:00] Panel remained connected after Start New Test
+[2026-04-03T09:44:50.1549261+02:00] Recorded navigate/type/click steps and stopped recording
+[2026-04-03T09:44:50.7530828+02:00] Screenshot intentionally skipped for 03-step-scenario-authored.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:44:52.6455809+02:00] Added passing assertion step
+[2026-04-03T09:44:53.6027391+02:00] Screenshot intentionally skipped for 04-replay-running-before-pause.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:44:53.6659925+02:00] Replay started and pause requested
+[2026-04-03T09:44:57.9856504+02:00] Screenshot intentionally skipped for 05-paused-before-skip-step.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:44:57.9906508+02:00] Replay paused and Skip Step enabled at currentStepIndex=0
+[2026-04-03T09:45:01.1143112+02:00] Screenshot intentionally skipped for 06-after-skip-step-1.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:45:01.1506607+02:00] Skip Step advanced once to currentStepIndex=1
+[2026-04-03T09:45:03.7758693+02:00] Screenshot intentionally skipped for 07-after-skip-step-2.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:45:03.7828773+02:00] Skip Step advanced once to currentStepIndex=2
+[2026-04-03T09:45:06.1752306+02:00] Screenshot intentionally skipped for 08-after-skip-step-3.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:45:06.1823436+02:00] Skip Step advanced once to currentStepIndex=3
+[2026-04-03T09:45:09.0219366+02:00] Screenshot intentionally skipped for 08-final-completed-state.png; JSON state is the primary evidence for this run.
+[2026-04-03T09:45:09.1802795+02:00] Final Skip Step completed replay cleanly after skip #4
+[2026-04-03T09:45:10.5848811+02:00] Results note saved

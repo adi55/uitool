@@ -1,0 +1,153 @@
+﻿{
+    "statusReplay":  "Replay Paused",
+    "replaySummary":  "Replay: Paused at step 4 of 4 (Hybrid)",
+    "replayHelp":  "Replay is paused at step 4. Use Run Next Step to advance manually, Resume Replay to continue, or Stop Replay to end the session.",
+    "replayError":  "",
+    "selectedStepText":  "Selected Step: Expect element with id \"message\" text to equal \"Logged…",
+    "nextDisabled":  false,
+    "skipDisabled":  false,
+    "pauseDisabled":  true,
+    "selectedStepIndex":  3,
+    "playback":  {
+                     "sessionId":  "replay-1775202293143-1",
+                     "mode":  "hybrid",
+                     "status":  "paused",
+                     "replaying":  true,
+                     "running":  false,
+                     "paused":  true,
+                     "stopped":  false,
+                     "stepInProgress":  false,
+                     "currentStepIndex":  3,
+                     "totalSteps":  4,
+                     "currentStepId":  "step-004",
+                     "targetTabId":  224812641,
+                     "completedStepIndexes":  [
+
+                                              ],
+                     "failedStepIndex":  null,
+                     "failureIndex":  null,
+                     "lastError":  null,
+                     "lastResult":  null,
+                     "startedAt":  "2026-04-03T07:44:53.143Z",
+                     "finishedAt":  null,
+                     "logs":  [
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay started at step 1/4 (hybrid)",
+                                      "timestamp":  "2026-04-03T07:44:53.143Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay paused",
+                                      "timestamp":  "2026-04-03T07:44:53.699Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"pause\" acknowledged (paused)",
+                                      "timestamp":  "2026-04-03T07:44:53.773Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"start\" acknowledged (running)",
+                                      "timestamp":  "2026-04-03T07:44:54.064Z"
+                                  },
+                                  {
+                                      "level":  "WARN",
+                                      "message":  "Step 1/4 skipped: step-001",
+                                      "timestamp":  "2026-04-03T07:44:58.085Z"
+                                  },
+                                  {
+                                      "level":  "WARN",
+                                      "message":  "Step 2/4 skipped: step-002",
+                                      "timestamp":  "2026-04-03T07:45:01.204Z"
+                                  },
+                                  {
+                                      "level":  "WARN",
+                                      "message":  "Step 3/4 skipped: step-003",
+                                      "timestamp":  "2026-04-03T07:45:03.870Z"
+                                  }
+                              ]
+                 },
+    "currentStep":  {
+                        "index":  3,
+                        "id":  "step-004",
+                        "type":  "assert_text_equals",
+                        "description":  "Expect element with id \"message\" text to equal \"Logged in as alice\"",
+                        "selector":  {
+                                         "primaryStrategy":  "id",
+                                         "primaryValue":  "message",
+                                         "confidenceScore":  1,
+                                         "explanation":  "User selected target by id",
+                                         "visibleText":  "",
+                                         "elementTag":  "",
+                                         "inputType":  "",
+                                         "id":  "message",
+                                         "name":  null,
+                                         "placeholder":  null,
+                                         "ariaLabel":  null,
+                                         "dataTestId":  null,
+                                         "dataQa":  null,
+                                         "semanticLabel":  null,
+                                         "cssPath":  null,
+                                         "xpath":  null,
+                                         "domPath":  null,
+                                         "classes":  [
+
+                                                     ],
+                                         "candidates":  [
+                                                            {
+                                                                "strategy":  "id",
+                                                                "value":  "message",
+                                                                "confidenceScore":  1,
+                                                                "explanation":  "User selected target by id",
+                                                                "primary":  true
+                                                            },
+                                                            {
+                                                                "strategy":  "text",
+                                                                "value":  "",
+                                                                "confidenceScore":  1,
+                                                                "explanation":  "User selected target by text",
+                                                                "primary":  true
+                                                            }
+                                                        ]
+                                     },
+                        "expectedValue":  "Logged in as alice"
+                    },
+    "recentReplayLogs":  [
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay started at step 1/4 (hybrid)",
+                                 "timestamp":  "2026-04-03T07:44:53.143Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay paused",
+                                 "timestamp":  "2026-04-03T07:44:53.699Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"pause\" acknowledged (paused)",
+                                 "timestamp":  "2026-04-03T07:44:53.773Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"start\" acknowledged (running)",
+                                 "timestamp":  "2026-04-03T07:44:54.064Z"
+                             },
+                             {
+                                 "level":  "WARN",
+                                 "message":  "Step 1/4 skipped: step-001",
+                                 "timestamp":  "2026-04-03T07:44:58.085Z"
+                             },
+                             {
+                                 "level":  "WARN",
+                                 "message":  "Step 2/4 skipped: step-002",
+                                 "timestamp":  "2026-04-03T07:45:01.204Z"
+                             },
+                             {
+                                 "level":  "WARN",
+                                 "message":  "Step 3/4 skipped: step-003",
+                                 "timestamp":  "2026-04-03T07:45:03.870Z"
+                             }
+                         ]
+}

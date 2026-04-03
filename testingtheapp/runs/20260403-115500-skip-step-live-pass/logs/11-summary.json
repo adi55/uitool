@@ -1,0 +1,51 @@
+﻿{
+    "skipSteps":  [
+                      {
+                          "skipNumber":  1,
+                          "selectedStepIndex":  1,
+                          "currentStepIndex":  1,
+                          "failedStepIndex":  null,
+                          "stepInProgress":  false,
+                          "stepId":  "step-002",
+                          "replayStatus":  "paused"
+                      },
+                      {
+                          "skipNumber":  2,
+                          "selectedStepIndex":  2,
+                          "currentStepIndex":  2,
+                          "failedStepIndex":  null,
+                          "stepInProgress":  false,
+                          "stepId":  "step-003",
+                          "replayStatus":  "paused"
+                      },
+                      {
+                          "skipNumber":  3,
+                          "selectedStepIndex":  3,
+                          "currentStepIndex":  3,
+                          "failedStepIndex":  null,
+                          "stepInProgress":  false,
+                          "stepId":  "step-004",
+                          "replayStatus":  "paused"
+                      }
+                  ],
+    "paused":  {
+                   "totalSteps":  4,
+                   "stepInProgress":  false,
+                   "stepId":  "step-001",
+                   "currentStepIndex":  0,
+                   "selectedStepIndex":  0,
+                   "failedStepIndex":  null,
+                   "replayStatus":  "paused"
+               },
+    "final":  {
+                  "completedStepIndexes":  [
+
+                                           ],
+                  "stepInProgress":  false,
+                  "stepId":  null,
+                  "currentStepIndex":  4,
+                  "selectedStepIndex":  3,
+                  "failedStepIndex":  null,
+                  "replayStatus":  "completed"
+              }
+}

@@ -1,0 +1,116 @@
+﻿{
+    "statusReplay":  "Replay Paused",
+    "replaySummary":  "Replay: Paused at step 1 of 4 (Hybrid)",
+    "replayHelp":  "Replay is paused at step 1. Use Run Next Step to advance manually, Resume Replay to continue, or Stop Replay to end the session.",
+    "replayError":  "",
+    "selectedStepText":  "Selected Step: Navigate to \"http://127.0.0.1:17846/recorder-test-page.…",
+    "nextDisabled":  false,
+    "skipDisabled":  false,
+    "pauseDisabled":  true,
+    "selectedStepIndex":  0,
+    "playback":  {
+                     "sessionId":  "replay-1775202293143-1",
+                     "mode":  "hybrid",
+                     "status":  "paused",
+                     "replaying":  true,
+                     "running":  false,
+                     "paused":  true,
+                     "stopped":  false,
+                     "stepInProgress":  false,
+                     "currentStepIndex":  0,
+                     "totalSteps":  4,
+                     "currentStepId":  "step-001",
+                     "targetTabId":  224812641,
+                     "completedStepIndexes":  [
+
+                                              ],
+                     "failedStepIndex":  null,
+                     "failureIndex":  null,
+                     "lastError":  null,
+                     "lastResult":  null,
+                     "startedAt":  "2026-04-03T07:44:53.143Z",
+                     "finishedAt":  null,
+                     "logs":  [
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay started at step 1/4 (hybrid)",
+                                      "timestamp":  "2026-04-03T07:44:53.143Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay paused",
+                                      "timestamp":  "2026-04-03T07:44:53.699Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"pause\" acknowledged (paused)",
+                                      "timestamp":  "2026-04-03T07:44:53.773Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"start\" acknowledged (running)",
+                                      "timestamp":  "2026-04-03T07:44:54.064Z"
+                                  }
+                              ]
+                 },
+    "currentStep":  {
+                        "index":  0,
+                        "id":  "step-001",
+                        "type":  "navigate",
+                        "description":  "Navigate to http://127.0.0.1:17846/recorder-test-page.html",
+                        "selector":  {
+                                         "primaryStrategy":  "url",
+                                         "primaryValue":  "http://127.0.0.1:17846/recorder-test-page.html",
+                                         "confidenceScore":  0,
+                                         "explanation":  "Navigation step",
+                                         "visibleText":  "",
+                                         "elementTag":  "",
+                                         "inputType":  "",
+                                         "id":  null,
+                                         "name":  null,
+                                         "placeholder":  null,
+                                         "ariaLabel":  null,
+                                         "dataTestId":  null,
+                                         "dataQa":  null,
+                                         "semanticLabel":  null,
+                                         "cssPath":  null,
+                                         "xpath":  null,
+                                         "domPath":  null,
+                                         "classes":  [
+
+                                                     ],
+                                         "candidates":  [
+                                                            {
+                                                                "strategy":  "url",
+                                                                "value":  "http://127.0.0.1:17846/recorder-test-page.html",
+                                                                "confidenceScore":  1,
+                                                                "explanation":  "Page URL",
+                                                                "primary":  true
+                                                            }
+                                                        ]
+                                     },
+                        "expectedValue":  null
+                    },
+    "recentReplayLogs":  [
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay started at step 1/4 (hybrid)",
+                                 "timestamp":  "2026-04-03T07:44:53.143Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay paused",
+                                 "timestamp":  "2026-04-03T07:44:53.699Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"pause\" acknowledged (paused)",
+                                 "timestamp":  "2026-04-03T07:44:53.773Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"start\" acknowledged (running)",
+                                 "timestamp":  "2026-04-03T07:44:54.064Z"
+                             }
+                         ]
+}
