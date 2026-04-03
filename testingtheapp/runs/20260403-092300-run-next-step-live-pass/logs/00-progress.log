@@ -1,0 +1,15 @@
+﻿[2026-04-03T09:05:44.5265250+02:00] Starting Run Next Step live validation
+[2026-04-03T09:05:46.1955482+02:00] Doctor completed
+[2026-04-03T09:05:47.1959537+02:00] Fixture server ready
+[2026-04-03T09:05:49.8132740+02:00] Panel target reset
+[2026-04-03T09:05:50.9609444+02:00] Panel socket connected
+[2026-04-03T09:05:56.7790770+02:00] Start New Test completed and fixture tab detected
+[2026-04-03T09:05:59.1178481+02:00] Panel remained connected after Start New Test
+[2026-04-03T09:06:05.1166907+02:00] Recorded navigate/type/click steps and stopped recording
+[2026-04-03T09:06:14.6713970+02:00] Added passing assertion step
+[2026-04-03T09:06:24.2979747+02:00] Replay started and pause requested
+[2026-04-03T09:06:54.8599247+02:00] Replay paused on step 2 and Run Next Step enabled
+[2026-04-03T09:07:06.7666423+02:00] Run Next Step advanced once
+[2026-04-03T09:07:16.6754908+02:00] Run Next Step advanced twice
+[2026-04-03T09:07:25.6163404+02:00] Final Run Next Step completed replay cleanly
+[2026-04-03T09:07:25.9218243+02:00] Results note saved

@@ -1,0 +1,182 @@
+﻿{
+    "statusReplay":  "Replay Paused",
+    "replaySummary":  "Replay: Paused at step 2 of 4 (Hybrid)",
+    "replayHelp":  "Replay is paused at step 2. Use Run Next Step to advance manually, Resume Replay to continue, or Stop Replay to end the session.",
+    "replayError":  "",
+    "selectedStepText":  "Selected Step: Type \"alice\" into field with id \"usernameInput\"",
+    "nextDisabled":  false,
+    "pauseDisabled":  true,
+    "selectedStepIndex":  1,
+    "playback":  {
+                     "sessionId":  "replay-1775199979111-1",
+                     "mode":  "hybrid",
+                     "status":  "paused",
+                     "replaying":  true,
+                     "running":  false,
+                     "paused":  true,
+                     "stopped":  false,
+                     "stepInProgress":  false,
+                     "currentStepIndex":  1,
+                     "totalSteps":  4,
+                     "currentStepId":  "step-002",
+                     "targetTabId":  224812492,
+                     "completedStepIndexes":  [
+                                                  0
+                                              ],
+                     "failedStepIndex":  null,
+                     "failureIndex":  null,
+                     "lastError":  null,
+                     "lastResult":  {
+                                        "ok":  true,
+                                        "type":  "REPLAY_STEP_RESULT",
+                                        "sessionId":  "replay-1775199979111-1",
+                                        "stepId":  "step-001"
+                                    },
+                     "startedAt":  "2026-04-03T07:06:19.111Z",
+                     "finishedAt":  null,
+                     "logs":  [
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay started at step 1/4 (hybrid)",
+                                      "timestamp":  "2026-04-03T07:06:19.112Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"start\" acknowledged (running)",
+                                      "timestamp":  "2026-04-03T07:06:21.134Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay paused",
+                                      "timestamp":  "2026-04-03T07:06:24.826Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 1/4 started: step-001 navigate",
+                                      "timestamp":  "2026-04-03T07:06:24.837Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"pause\" acknowledged (paused)",
+                                      "timestamp":  "2026-04-03T07:06:25.903Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 1/4 completed: step-001",
+                                      "timestamp":  "2026-04-03T07:06:29.322Z"
+                                  }
+                              ]
+                 },
+    "currentStep":  {
+                        "index":  1,
+                        "id":  "step-002",
+                        "type":  "type",
+                        "description":  "Type into username",
+                        "selector":  {
+                                         "primaryStrategy":  "id",
+                                         "primaryValue":  "usernameInput",
+                                         "confidenceScore":  0.99,
+                                         "explanation":  "Stable element id",
+                                         "visibleText":  "alice",
+                                         "elementTag":  "input",
+                                         "inputType":  "text",
+                                         "id":  "usernameInput",
+                                         "name":  "username",
+                                         "placeholder":  "alice",
+                                         "ariaLabel":  null,
+                                         "dataTestId":  null,
+                                         "dataQa":  null,
+                                         "semanticLabel":  "Username",
+                                         "cssPath":  "body \u003e input#usernameInput",
+                                         "xpath":  "//*[@id=\"usernameInput\"]",
+                                         "domPath":  "body \u003e input#usernameInput",
+                                         "classes":  [
+
+                                                     ],
+                                         "candidates":  [
+                                                            {
+                                                                "strategy":  "id",
+                                                                "value":  "usernameInput",
+                                                                "confidenceScore":  0.99,
+                                                                "explanation":  "Stable element id",
+                                                                "primary":  true
+                                                            },
+                                                            {
+                                                                "strategy":  "name",
+                                                                "value":  "username",
+                                                                "confidenceScore":  0.88,
+                                                                "explanation":  "Element name",
+                                                                "primary":  false
+                                                            },
+                                                            {
+                                                                "strategy":  "placeholder",
+                                                                "value":  "alice",
+                                                                "confidenceScore":  0.87,
+                                                                "explanation":  "Input placeholder",
+                                                                "primary":  false
+                                                            },
+                                                            {
+                                                                "strategy":  "label",
+                                                                "value":  "Username",
+                                                                "confidenceScore":  0.82,
+                                                                "explanation":  "Semantic label",
+                                                                "primary":  false
+                                                            },
+                                                            {
+                                                                "strategy":  "text",
+                                                                "value":  "alice",
+                                                                "confidenceScore":  0.76,
+                                                                "explanation":  "Visible text",
+                                                                "primary":  false
+                                                            },
+                                                            {
+                                                                "strategy":  "css",
+                                                                "value":  "body \u003e input#usernameInput",
+                                                                "confidenceScore":  0.54,
+                                                                "explanation":  "CSS path fallback",
+                                                                "primary":  false
+                                                            },
+                                                            {
+                                                                "strategy":  "xpath",
+                                                                "value":  "//*[@id=\"usernameInput\"]",
+                                                                "confidenceScore":  0.37,
+                                                                "explanation":  "XPath fallback",
+                                                                "primary":  false
+                                                            }
+                                                        ]
+                                     },
+                        "expectedValue":  null
+                    },
+    "recentReplayLogs":  [
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay started at step 1/4 (hybrid)",
+                                 "timestamp":  "2026-04-03T07:06:19.112Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"start\" acknowledged (running)",
+                                 "timestamp":  "2026-04-03T07:06:21.134Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay paused",
+                                 "timestamp":  "2026-04-03T07:06:24.826Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 1/4 started: step-001 navigate",
+                                 "timestamp":  "2026-04-03T07:06:24.837Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"pause\" acknowledged (paused)",
+                                 "timestamp":  "2026-04-03T07:06:25.903Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 1/4 completed: step-001",
+                                 "timestamp":  "2026-04-03T07:06:29.322Z"
+                             }
+                         ]
+}

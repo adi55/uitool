@@ -1,0 +1,194 @@
+﻿{
+    "statusReplay":  "Replay Completed",
+    "replaySummary":  "Replay: Completed 4/4 (Hybrid)",
+    "replayHelp":  "Replay completed. Select any step and use Replay From Selected when you want to rerun only the tail of the scenario.",
+    "replayError":  "",
+    "selectedStepText":  "Selected Step: Expect element with id \"message\" text to equal \"Logged…",
+    "nextDisabled":  true,
+    "pauseDisabled":  true,
+    "selectedStepIndex":  3,
+    "playback":  {
+                     "sessionId":  "replay-1775199979111-1",
+                     "mode":  "hybrid",
+                     "status":  "completed",
+                     "replaying":  false,
+                     "running":  false,
+                     "paused":  false,
+                     "stopped":  false,
+                     "stepInProgress":  false,
+                     "currentStepIndex":  4,
+                     "totalSteps":  4,
+                     "currentStepId":  null,
+                     "targetTabId":  224812492,
+                     "completedStepIndexes":  [
+                                                  0,
+                                                  1,
+                                                  2,
+                                                  3
+                                              ],
+                     "failedStepIndex":  null,
+                     "failureIndex":  null,
+                     "lastError":  null,
+                     "lastResult":  {
+                                        "ok":  true,
+                                        "sessionId":  "replay-1775199979111-1",
+                                        "stepIndex":  3,
+                                        "totalSteps":  4,
+                                        "stepId":  "step-004",
+                                        "stepType":  "assert_text_equals",
+                                        "type":  "REPLAY_STEP_RESULT"
+                                    },
+                     "startedAt":  "2026-04-03T07:06:19.111Z",
+                     "finishedAt":  "2026-04-03T07:07:21.151Z",
+                     "logs":  [
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay started at step 1/4 (hybrid)",
+                                      "timestamp":  "2026-04-03T07:06:19.112Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"start\" acknowledged (running)",
+                                      "timestamp":  "2026-04-03T07:06:21.134Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay paused",
+                                      "timestamp":  "2026-04-03T07:06:24.826Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 1/4 started: step-001 navigate",
+                                      "timestamp":  "2026-04-03T07:06:24.837Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"pause\" acknowledged (paused)",
+                                      "timestamp":  "2026-04-03T07:06:25.903Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 1/4 completed: step-001",
+                                      "timestamp":  "2026-04-03T07:06:29.322Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 2/4 started: step-002 type",
+                                      "timestamp":  "2026-04-03T07:06:56.819Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 2/4 completed: step-002",
+                                      "timestamp":  "2026-04-03T07:06:59.217Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay paused after manual step",
+                                      "timestamp":  "2026-04-03T07:07:01.203Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"pause\" acknowledged (paused)",
+                                      "timestamp":  "2026-04-03T07:07:01.526Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 3/4 started: step-003 click",
+                                      "timestamp":  "2026-04-03T07:07:08.856Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 3/4 completed: step-003",
+                                      "timestamp":  "2026-04-03T07:07:10.342Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay paused after manual step",
+                                      "timestamp":  "2026-04-03T07:07:11.536Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"pause\" acknowledged (paused)",
+                                      "timestamp":  "2026-04-03T07:07:11.668Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 4/4 started: step-004 assert_text_equals",
+                                      "timestamp":  "2026-04-03T07:07:17.946Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 4/4 completed: step-004",
+                                      "timestamp":  "2026-04-03T07:07:19.405Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay completed",
+                                      "timestamp":  "2026-04-03T07:07:21.151Z"
+                                  }
+                              ]
+                 },
+    "currentStep":  null,
+    "recentReplayLogs":  [
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 1/4 completed: step-001",
+                                 "timestamp":  "2026-04-03T07:06:29.322Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 2/4 started: step-002 type",
+                                 "timestamp":  "2026-04-03T07:06:56.819Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 2/4 completed: step-002",
+                                 "timestamp":  "2026-04-03T07:06:59.217Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay paused after manual step",
+                                 "timestamp":  "2026-04-03T07:07:01.203Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"pause\" acknowledged (paused)",
+                                 "timestamp":  "2026-04-03T07:07:01.526Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 3/4 started: step-003 click",
+                                 "timestamp":  "2026-04-03T07:07:08.856Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 3/4 completed: step-003",
+                                 "timestamp":  "2026-04-03T07:07:10.342Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay paused after manual step",
+                                 "timestamp":  "2026-04-03T07:07:11.536Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"pause\" acknowledged (paused)",
+                                 "timestamp":  "2026-04-03T07:07:11.668Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 4/4 started: step-004 assert_text_equals",
+                                 "timestamp":  "2026-04-03T07:07:17.946Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 4/4 completed: step-004",
+                                 "timestamp":  "2026-04-03T07:07:19.405Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay completed",
+                                 "timestamp":  "2026-04-03T07:07:21.151Z"
+                             }
+                         ]
+}

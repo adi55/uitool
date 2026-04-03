@@ -1076,6 +1076,10 @@ async function runReplaySession(sessionId) {
     if (!result?.ok) {
       return
     }
+
+    // Yield between replay steps so queued pause/stop commands can settle
+    // before the next step is dispatched.
+    await new Promise((resolve) => setTimeout(resolve, 0))
   }
 }
 
@@ -1425,6 +1429,7 @@ async function stepReplaySessionOnce(retryCurrentStep) {
   replay.running = true
   replay.status = 'running'
   replay.replaying = true
+  await sendReplayControlToContent(replay.sessionId, 'resume')
   appendDebugEvent({
     source: 'background',
     category: 'replay',

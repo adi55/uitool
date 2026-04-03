@@ -1,0 +1,205 @@
+﻿{
+    "statusReplay":  "Replay Paused",
+    "replaySummary":  "Replay: Paused at step 3 of 4 (Hybrid)",
+    "replayHelp":  "Replay is paused at step 3. Use Run Next Step to advance manually, Resume Replay to continue, or Stop Replay to end the session.",
+    "replayError":  "",
+    "selectedStepText":  "Selected Step: Click element with id \"loginBtn\"",
+    "nextDisabled":  false,
+    "pauseDisabled":  true,
+    "selectedStepIndex":  2,
+    "playback":  {
+                     "sessionId":  "replay-1775199979111-1",
+                     "mode":  "hybrid",
+                     "status":  "paused",
+                     "replaying":  true,
+                     "running":  false,
+                     "paused":  true,
+                     "stopped":  false,
+                     "stepInProgress":  false,
+                     "currentStepIndex":  2,
+                     "totalSteps":  4,
+                     "currentStepId":  "step-003",
+                     "targetTabId":  224812492,
+                     "completedStepIndexes":  [
+                                                  0,
+                                                  1
+                                              ],
+                     "failedStepIndex":  null,
+                     "failureIndex":  null,
+                     "lastError":  null,
+                     "lastResult":  {
+                                        "ok":  true,
+                                        "sessionId":  "replay-1775199979111-1",
+                                        "stepIndex":  1,
+                                        "totalSteps":  4,
+                                        "stepId":  "step-002",
+                                        "stepType":  "type",
+                                        "type":  "REPLAY_STEP_RESULT"
+                                    },
+                     "startedAt":  "2026-04-03T07:06:19.111Z",
+                     "finishedAt":  null,
+                     "logs":  [
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay started at step 1/4 (hybrid)",
+                                      "timestamp":  "2026-04-03T07:06:19.112Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"start\" acknowledged (running)",
+                                      "timestamp":  "2026-04-03T07:06:21.134Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay paused",
+                                      "timestamp":  "2026-04-03T07:06:24.826Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 1/4 started: step-001 navigate",
+                                      "timestamp":  "2026-04-03T07:06:24.837Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"pause\" acknowledged (paused)",
+                                      "timestamp":  "2026-04-03T07:06:25.903Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 1/4 completed: step-001",
+                                      "timestamp":  "2026-04-03T07:06:29.322Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 2/4 started: step-002 type",
+                                      "timestamp":  "2026-04-03T07:06:56.819Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Step 2/4 completed: step-002",
+                                      "timestamp":  "2026-04-03T07:06:59.217Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay paused after manual step",
+                                      "timestamp":  "2026-04-03T07:07:01.203Z"
+                                  },
+                                  {
+                                      "level":  "INFO",
+                                      "message":  "Replay control \"pause\" acknowledged (paused)",
+                                      "timestamp":  "2026-04-03T07:07:01.526Z"
+                                  }
+                              ]
+                 },
+    "currentStep":  {
+                        "index":  2,
+                        "id":  "step-003",
+                        "type":  "click",
+                        "description":  "Click Sign in",
+                        "selector":  {
+                                         "primaryStrategy":  "id",
+                                         "primaryValue":  "loginBtn",
+                                         "confidenceScore":  0.99,
+                                         "explanation":  "Stable element id",
+                                         "visibleText":  "Sign in",
+                                         "elementTag":  "button",
+                                         "inputType":  "",
+                                         "id":  "loginBtn",
+                                         "name":  null,
+                                         "placeholder":  null,
+                                         "ariaLabel":  null,
+                                         "dataTestId":  null,
+                                         "dataQa":  null,
+                                         "semanticLabel":  "",
+                                         "cssPath":  "body \u003e button#loginBtn",
+                                         "xpath":  "//*[@id=\"loginBtn\"]",
+                                         "domPath":  "body \u003e button#loginBtn",
+                                         "classes":  [
+
+                                                     ],
+                                         "candidates":  [
+                                                            {
+                                                                "strategy":  "id",
+                                                                "value":  "loginBtn",
+                                                                "confidenceScore":  0.99,
+                                                                "explanation":  "Stable element id",
+                                                                "primary":  true
+                                                            },
+                                                            {
+                                                                "strategy":  "text",
+                                                                "value":  "Sign in",
+                                                                "confidenceScore":  0.76,
+                                                                "explanation":  "Visible text",
+                                                                "primary":  false
+                                                            },
+                                                            {
+                                                                "strategy":  "css",
+                                                                "value":  "body \u003e button#loginBtn",
+                                                                "confidenceScore":  0.54,
+                                                                "explanation":  "CSS path fallback",
+                                                                "primary":  false
+                                                            },
+                                                            {
+                                                                "strategy":  "xpath",
+                                                                "value":  "//*[@id=\"loginBtn\"]",
+                                                                "confidenceScore":  0.37,
+                                                                "explanation":  "XPath fallback",
+                                                                "primary":  false
+                                                            }
+                                                        ]
+                                     },
+                        "expectedValue":  null
+                    },
+    "recentReplayLogs":  [
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay started at step 1/4 (hybrid)",
+                                 "timestamp":  "2026-04-03T07:06:19.112Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"start\" acknowledged (running)",
+                                 "timestamp":  "2026-04-03T07:06:21.134Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay paused",
+                                 "timestamp":  "2026-04-03T07:06:24.826Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 1/4 started: step-001 navigate",
+                                 "timestamp":  "2026-04-03T07:06:24.837Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"pause\" acknowledged (paused)",
+                                 "timestamp":  "2026-04-03T07:06:25.903Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 1/4 completed: step-001",
+                                 "timestamp":  "2026-04-03T07:06:29.322Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 2/4 started: step-002 type",
+                                 "timestamp":  "2026-04-03T07:06:56.819Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Step 2/4 completed: step-002",
+                                 "timestamp":  "2026-04-03T07:06:59.217Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay paused after manual step",
+                                 "timestamp":  "2026-04-03T07:07:01.203Z"
+                             },
+                             {
+                                 "level":  "INFO",
+                                 "message":  "Replay control \"pause\" acknowledged (paused)",
+                                 "timestamp":  "2026-04-03T07:07:01.526Z"
+                             }
+                         ]
+}

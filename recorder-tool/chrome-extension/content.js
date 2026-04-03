@@ -744,15 +744,12 @@ function startReplayContext(replayContext) {
   if (!replayContext?.sessionId) {
     return
   }
-  const isNewSession = replayController.sessionId !== replayContext.sessionId
   replayController.sessionId = replayContext.sessionId
   replayController.currentStepIndex = replayContext.stepIndex
   replayController.totalSteps = replayContext.totalSteps
   replayController.stopped = false
-  if (isNewSession) {
-    replayController.paused = false
-  }
-  replayController.status = replayController.paused ? 'paused' : 'running'
+  replayController.paused = false
+  replayController.status = 'running'
 }
 
 function formatReplayResponse(result, step, replayContext) {
